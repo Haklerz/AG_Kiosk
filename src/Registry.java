@@ -34,7 +34,8 @@ public class Registry {
     }
 
     /**
-     * Finds books by title.
+     * Finds books by title. Returns an ArrayList of
+     * books who's title contains the 
      * @return ArrayList of found books.
      */
     public ArrayList<Book> findByTitle(String title) {
@@ -48,4 +49,22 @@ public class Registry {
         }
         return foundBooks;
     }
+
+    /**
+     * Finds books by title. Returns an ArrayList of
+     * books who's title contains the 
+     * @return ArrayList of found books.
+     */
+    public ArrayList<Book> findByAuthor(String author) {
+        ArrayList<Book> foundBooks = new ArrayList<>();
+        for (Book book : books) {
+            String bookAuthor = book.getAuthor().toUpperCase();
+            String testAuthor = author.toUpperCase();
+            if (bookAuthor.contains(testAuthor)) {
+                foundBooks.add(book);
+            }
+        }
+        return foundBooks;
+    }
+
 }
