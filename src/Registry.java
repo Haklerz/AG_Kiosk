@@ -20,14 +20,14 @@ public class Registry {
     private ArrayList<Book> books;
 
     /**
-     * 
+     * Constructor for the Registry class.
      */
     public Registry() {
         this.books = new ArrayList<>();
     }
 
     /**
-     * 
+     * Adds a book to the Registry.
      */
     public void addBook(Book book) {
         books.add(book);
