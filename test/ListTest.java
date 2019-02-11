@@ -1,5 +1,6 @@
 package kiosk.test;
 
+import src.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 

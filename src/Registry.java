@@ -1,4 +1,4 @@
-package src;
+package kiosk.src;
 
 import java.util.ArrayList;
 
