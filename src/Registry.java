@@ -35,7 +35,7 @@ public class Registry {
 
     /**
      * Finds books by title. Returns an ArrayList of
-     * books who's title contains the 
+     * books who's title contains the title given.
      * @return ArrayList of found books.
      */
     public ArrayList<Book> findByTitle(String title) {
@@ -52,7 +52,7 @@ public class Registry {
 
     /**
      * Finds books by title. Returns an ArrayList of
-     * books who's title contains the 
+     * books who's title contains the author given.
      * @return ArrayList of found books.
      */
     public ArrayList<Book> findByAuthor(String author) {
@@ -67,4 +67,20 @@ public class Registry {
         return foundBooks;
     }
 
+    /**
+     * Finds books by publisher. Returns an ArrayList of
+     * books who's title contians the publisher given.
+     * @return ArrayList of found books.
+     */
+    public ArrayList<Book> findByPublisher(String publisher) {
+        ArrayList<Book> foundBooks = new ArrayList<>();
+        for (Book book : books) {
+            String bookPublisher = book.getPublisher().toUpperCase();
+            String testPublisher = publisher.toUpperCase();
+            if (bookPublisher.contains(testPublisher)) {
+                foundBooks.add(book);
+            }
+        }
+        return foundBooks;
+    }
 }
