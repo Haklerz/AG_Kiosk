@@ -1,4 +1,4 @@
-package kiosk.test;
+package test;
 
 import src.*;
 import java.util.Scanner;
