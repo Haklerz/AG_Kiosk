@@ -44,9 +44,9 @@ public class Registry {
      */
     public ArrayList<Book> findByTitle(String title) {
         ArrayList<Book> foundBooks = new ArrayList<>();
+        String testTitle = title.toUpperCase();
         for (Book book : books) {
             String bookTitle = book.getTitle().toUpperCase();
-            String testTitle = title.toUpperCase();
             if (bookTitle.contains(testTitle)) {
                 foundBooks.add(book);
             }
@@ -61,9 +61,9 @@ public class Registry {
      */
     public ArrayList<Book> findByAuthor(String author) {
         ArrayList<Book> foundBooks = new ArrayList<>();
+        String testAuthor = author.toUpperCase();
         for (Book book : books) {
             String bookAuthor = book.getAuthor().toUpperCase();
-            String testAuthor = author.toUpperCase();
             if (bookAuthor.contains(testAuthor)) {
                 foundBooks.add(book);
             }
@@ -78,9 +78,9 @@ public class Registry {
      */
     public ArrayList<Book> findByPublisher(String publisher) {
         ArrayList<Book> foundBooks = new ArrayList<>();
+        String testPublisher = publisher.toUpperCase();
         for (Book book : books) {
             String bookPublisher = book.getPublisher().toUpperCase();
-            String testPublisher = publisher.toUpperCase();
             if (bookPublisher.contains(testPublisher)) {
                 foundBooks.add(book);
             }
