@@ -33,6 +33,10 @@ public class Registry {
         books.add(book);
     }
 
+    public ArrayList<Book> getBooks() {
+        return this.books;
+    }
+
     /**
      * Finds books by title. Returns an ArrayList of
      * books who's title contains the title given.
