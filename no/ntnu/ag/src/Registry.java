@@ -1,4 +1,4 @@
-package src;
+package no.ntnu.ag.src;
 
 import java.util.ArrayList;
 

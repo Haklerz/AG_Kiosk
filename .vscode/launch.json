@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "src.Main",
+            "projectName": "Kiosk_63da3826"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ListTest",
+            "request": "launch",
+            "mainClass": "test.ListTest",
+            "projectName": "Kiosk_63da3826"
+        }
+    ]
+}
