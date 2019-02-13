@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * <li>Add an existing Book to a series.
  * </ul>
  * @see Book
+ * @author Håkon "Haklerz" Lervik, Trym "MrRazuuus" Jørgensen, Peter "ComradePetah" H. Osnes
+ * @version 0.1
  */
 public class BookRegistry {
     private ArrayList<Book> books;
