@@ -9,6 +9,8 @@ package no.ntnu.ag.src;
  * <li>Get the author of the Book.
  * <li>Get the number of pages in the Book.
  * </ul>
+ * @author Håkon "Haklerz" Lervik, Trym "MrRazuuus" Jørgensen, Peter "ComradePetah" H. Osnes
+ * @version 0.1
  */
 public class Book {
     private String title;
