@@ -11,9 +11,7 @@ public class Main {
     public static void main(String[] args) {
         //Search
         BookRegistry r = new BookRegistry();
-        r.addBook(new Book("Objects first with Java", "David J. Barnes, Michael Kölling", "Pearson", 630, 6));
-        r.addBook(new Book("Algoritmer og Datastrukturer", "Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, 1));
-        r.addBook(new Book("Electrical Engineering", "Allan R. Hambley", "Pearson", 866, 7));
+        r.fillDummies();
 
         ArrayList<Book> foundBooks = r.find("publisher","pearson");
         for (Book Book : foundBooks) {

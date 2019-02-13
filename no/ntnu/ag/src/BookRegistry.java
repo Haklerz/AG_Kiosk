@@ -77,4 +77,10 @@ public class BookRegistry {
         }
         return foundBooks;
     }
+
+    public void fillDummies() {
+        this.addBook(new Book("Objects first with Java", "David J. Barnes, Michael Kölling", "Pearson", 630, 6));
+        this.addBook(new Book("Algoritmer og Datastrukturer", "Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, 1));
+        this.addBook(new Book("Electrical Engineering", "Allan R. Hambley", "Pearson", 866, 7));
+    }
 }
