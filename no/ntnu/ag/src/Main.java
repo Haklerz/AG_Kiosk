@@ -15,7 +15,7 @@ public class Main {
         r.addBook(new Book("Algoritmer og Datastrukturer", "Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, 1));
         r.addBook(new Book("Electrical Engineering", "Allan R. Hambley", "Pearson", 866, 7));
 
-        ArrayList<Book> foundBooks = r.find("publisher","pear");
+        ArrayList<Book> foundBooks = r.find("publisher","pearson");
         for (Book Book : foundBooks) {
             System.out.println(Book.getTitle());
         }
