@@ -20,7 +20,7 @@ public class Registry {
     private ArrayList<Book> books;
 
     /**
-     * Constructor for the Registry class.
+     * Creates a Registry.
      */
     public Registry() {
         this.books = new ArrayList<>();

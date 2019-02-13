@@ -15,7 +15,7 @@ public class Book {
     private int pages, edition;
 
     /**
-     * Constructor for the class Book.
+     * Creates a book.
      * @param title Title of the Book.
      * @param author Author of the Book.
      * @param pages Number of pages in the Book.
