@@ -1,13 +1,13 @@
 package no.ntnu.ag.src;
 
 /**
- * Represents a book with a title, author and number of pages.
+ * Represents a Book with a title, author and number of pages.
  * <p>
  * With this class you can:
  * <ul>
- * <li>Get the title of the book.
- * <li>Get the author of the book.
- * <li>Get the number of pages in the book.
+ * <li>Get the title of the Book.
+ * <li>Get the author of the Book.
+ * <li>Get the number of pages in the Book.
  * </ul>
  */
 public class Book {
@@ -15,7 +15,7 @@ public class Book {
     private int pages, edition;
 
     /**
-     * Creates a book.
+     * Creates a Book.
      * @param title Title of the Book.
      * @param author Author of the Book.
      * @param pages Number of pages in the Book.
@@ -62,7 +62,7 @@ public class Book {
     }
 
     /**
-     * Returns the edition of the book.
+     * Returns the edition of the Book.
      * @return Edition of the Book.
      */
     public int getEdition() {

@@ -1,7 +1,7 @@
 package no.ntnu.ag.src;
 
 import no.ntnu.ag.src.Book;
-import no.ntnu.ag.src.Registry;
+import no.ntnu.ag.src.BookRegistry;
 import java.util.ArrayList;
 
 /**
@@ -10,26 +10,26 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         //Search
-        Registry r = new Registry();
+        BookRegistry r = new BookRegistry();
         r.addBook(new Book("Objects first with Java", "David J. Barnes, Michael Kölling", "Pearson", 630, 6));
         r.addBook(new Book("Algoritmer og Datastrukturer", "Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, 1));
         r.addBook(new Book("Electrical Engineering", "Allan R. Hambley", "Pearson", 866, 7));
 
         ArrayList<Book> foundBooks = r.findByPublisher("pear");
-        for (Book book : foundBooks) {
-            System.out.println(book.getTitle());
+        for (Book Book : foundBooks) {
+            System.out.println(Book.getTitle());
         }
         System.out.println();
 
         //List
-        ArrayList<Book> books = r.getBooks();
-        for (Book book : books) {
-            System.out.println("Title     : " + book.getTitle());
-            System.out.println("Author    : " + book.getAuthor());
-            System.out.println("Publisher : " + book.getPublisher());
-            System.out.println("Pages     : " + book.getPages());
+        ArrayList<Book> Books = r.getBooks();
+        for (Book Book : Books) {
+            System.out.println("Title     : " + Book.getTitle());
+            System.out.println("Author    : " + Book.getAuthor());
+            System.out.println("Publisher : " + Book.getPublisher());
+            System.out.println("Pages     : " + Book.getPages());
 
-            String edition = "" + book.getEdition();
+            String edition = "" + Book.getEdition();
             String lastDigit = edition.substring(edition.length()-1);
 
             if (lastDigit.equals("1"))      edition = edition + "st";
