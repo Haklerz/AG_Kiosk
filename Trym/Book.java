@@ -10,7 +10,7 @@ public class Book
      * Set the author and title fields when this object
      * is constructed.
      */
-    public Book(String bookAuthor, String bookTitle, int Pages, String publisher)
+    public Book(String author, String title, int pages, String publisher)
     {
         this.author = author;
         this.title = title;
