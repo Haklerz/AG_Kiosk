@@ -11,8 +11,11 @@ package no.ntnu.ag.src;
  * </ul>
  */
 public class Book {
-    private String title, author, publisher;
-    private int pages, edition;
+    private String title;
+    private String author;
+    private String publisher;
+    private int pages;
+    private int edition;
 
     /**
      * Creates a Book.

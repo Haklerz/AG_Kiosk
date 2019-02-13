@@ -17,72 +17,60 @@ import java.util.ArrayList;
  * @see Book
  */
 public class BookRegistry {
-    private ArrayList<Book> Books;
+    private ArrayList<Book> books;
 
     /**
      * Creates a BookRegistry.
      */
     public BookRegistry() {
-        this.Books = new ArrayList<>();
+        this.books = new ArrayList<>();
     }
 
     /**
      * Adds a Book to the BookRegistry.
      */
-    public void addBook(Book Book) {
-        Books.add(Book);
+    public void addBook(Book book) {
+        books.add(book);
     }
 
+    /**
+     * Returns the ArrayList containing all the Books in the Registry.
+     * @return ArrayList of all the Books.
+     */
     public ArrayList<Book> getBooks() {
-        return this.Books;
+        return this.books;
     }
 
     /**
-     * Finds Books by title. Returns an ArrayList of
-     * Books who's title contains the title given.
+     * Finds Books by a searchType. Returns an ArrayList of
+     * Books that contains the searchText.
+     * <p>
+     * This method can search by:
+     * <ul>
+     * <li>Title.
+     * <li>Author.
+     * <li>Publisher.
+     * </ul>
+     * @param searchType What property to search by.
+     * @param searchText Text to search for.
      * @return ArrayList of found Books.
      */
-    public ArrayList<Book> findByTitle(String title) {
+    public ArrayList<Book> find(String searchType, String searchText) {
         ArrayList<Book> foundBooks = new ArrayList<>();
-        String testTitle = title.toUpperCase();
-        for (Book Book : Books) {
-            String BookTitle = Book.getTitle().toUpperCase();
-            if (BookTitle.contains(testTitle)) {
-                foundBooks.add(Book);
+        for (Book testBook : books) {
+            String testText = "";
+            if (searchType.toLowerCase().contains("title")) {
+                testText = testBook.getTitle();
             }
-        }
-        return foundBooks;
-    }
-
-    /**
-     * Finds Books by title. Returns an ArrayList of
-     * Books who's title contains the author given.
-     * @return ArrayList of found Books.
-     */
-    public ArrayList<Book> findByAuthor(String author) {
-        ArrayList<Book> foundBooks = new ArrayList<>();
-        String testAuthor = author.toUpperCase();
-        for (Book Book : Books) {
-            String BookAuthor = Book.getAuthor().toUpperCase();
-            if (BookAuthor.contains(testAuthor)) {
-                foundBooks.add(Book);
+            else if (searchType.toLowerCase().contains("author")) {
+                testText = testBook.getAuthor();
             }
-        }
-        return foundBooks;
-    }
-
-    /**
-     * Finds Books by publisher. Returns an ArrayList of
-     * Books who's title contians the publisher given.
-     * @return ArrayList of found Books.
-     */
-    public ArrayList<Book> findByPublisher(String publisher) {
-        ArrayList<Book> foundBooks = new ArrayList<>();
-        String testPublisher = publisher.toUpperCase();
-        for (Book Book : Books) {
-            String BookPublisher = Book.getPublisher().toUpperCase();
-            if (BookPublisher.contains(testPublisher)) {
-                foundBooks.add(Book);
+            else if (searchType.toLowerCase().contains("publisher")) {
+                testText = testBook.getPublisher();
+            }
+            testText = testText.toLowerCase();
+            if (testText.contains(searchText.toLowerCase())) {
+                foundBooks.add(testBook);
             }
         }
         return foundBooks;
