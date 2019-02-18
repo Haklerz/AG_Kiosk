@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Tui {
     private Scanner input;
     private BookRegistry bookRegistry;
-    private Book currantBook;
+    //private Book currantBook;
 
     public static void main(String[] args) {
         Tui tui = new Tui();
