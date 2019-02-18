@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- * Represents a Text-base User Interface.
+ * Represents a Text-based User Interface.
  */
 public class Tui {
     private Scanner input;
