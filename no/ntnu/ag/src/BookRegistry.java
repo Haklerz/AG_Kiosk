@@ -1,6 +1,7 @@
 package no.ntnu.ag.src;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Represents a collection of Books.
@@ -39,8 +40,8 @@ public class BookRegistry {
      * Returns the ArrayList containing all the Books in the Registry.
      * @return ArrayList of all the Books.
      */
-    public ArrayList<Book> getBooks() {
-        return this.books;
+    public Iterator<Book> getBooks() {
+        return this.books.iterator();
     }
 
     /**
