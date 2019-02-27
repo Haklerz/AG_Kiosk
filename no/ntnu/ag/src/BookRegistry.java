@@ -40,7 +40,7 @@ public class BookRegistry {
      * Returns the ArrayList containing all the Books in the Registry.
      * @return ArrayList of all the Books.
      */
-    public Iterator<Book> getBooks() {
+    public Iterator<Book> getBookIterator() {
         return this.books.iterator();
     }
 
@@ -77,6 +77,19 @@ public class BookRegistry {
             }
         }
         return foundBooks;
+    }
+
+    public Book findBook(String searchString) {
+        Book book = null;
+        double bestMatch = 0;
+        for (Book searchBook : books) {
+            double similarity = Search.similarity(searchString, searchBook.getTitle());
+            if (similarity > bestMatch) {
+                bestMatch = similarity;
+                book = searchBook;
+            }
+        }
+        return book;
     }
 
     public void fillDummies() {
