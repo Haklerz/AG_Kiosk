@@ -16,11 +16,11 @@ public class SearchTest {
         for (int i = 0; i < 10; i++) {
             System.out.print("Find book: ");
             Book book = br.findBook(input.nextLine());
-            if (!book.equals(null)) {
+            if (book != null) {
                 System.out.println(book.getTitle());
             }
             else {
-                System.out.println("Could not find book.");
+                System.out.println("Could not find book");
             }
         }
 
