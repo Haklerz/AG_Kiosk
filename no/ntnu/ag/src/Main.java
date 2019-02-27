@@ -5,5 +5,6 @@ package no.ntnu.ag.src;
  */
 public class Main {
     public static void main(String[] args) {
+        new Tui().run();
     }
 }

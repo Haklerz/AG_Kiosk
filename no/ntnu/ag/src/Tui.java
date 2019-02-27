@@ -8,14 +8,7 @@ import java.util.Scanner;
 public class Tui {
     private Scanner input;
     private BookRegistry bookRegistry;
-    //private Book currantBook;
-
-    public static void main(String[] args) {
-        Tui tui = new Tui();
-        tui.getInput();
-        tui.getInput();
-        tui.shutdown();
-    }
+    private boolean running;
 
     public Tui() {
         input = new Scanner(System.in);
@@ -23,14 +16,22 @@ public class Tui {
         bookRegistry.fillDummies();
     }
 
-    public void getInput() {
-        System.out.print(">");
-        String command = input.next();
-        command = command.toLowerCase();
-        System.out.println();
+    public void run() {
+        this.running = true;
+        while(running) {
+            getInput();
+        }
+        this.quit();
     }
 
-    public void shutdown() {
+    private Instruction getInput() {
+        System.out.print(">");
+        Instruction instruction = new Instruction(this.input.nextLine());
+        return instruction;
+    }
+
+    private void quit() {
         this.input.close();
+        this.running = false;
     }
 }
