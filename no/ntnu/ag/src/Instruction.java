@@ -29,12 +29,7 @@ public class Instruction {
                 this.command = testCommand;
             }
         }
-        if (components.length > 1) {
-            this.arguments = components[1];
-        }
-        else {
-            this.arguments = "";
-        }
+        this.arguments = (components.length > 1) ? components[1] : "";
     }
 
     /**
