@@ -15,7 +15,12 @@ public class Instruction {
                 this.command = testCommand;
             }
         }
-        this.arguments = components[1];
+        if (components.length > 1) {
+            this.arguments = components[1];
+        }
+        else {
+            this.arguments = "";
+        }
     }
 
     public Command getCommand() {
