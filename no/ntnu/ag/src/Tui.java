@@ -10,6 +10,9 @@ public class Tui {
     private BookRegistry bookRegistry;
     private boolean running;
 
+    /**
+     * Creates an instance of the Tui class.
+     */
     public Tui() {
         input = new Scanner(System.in);
         bookRegistry = new BookRegistry();

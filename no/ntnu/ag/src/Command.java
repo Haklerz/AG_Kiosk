@@ -1,5 +1,8 @@
 package no.ntnu.ag.src;
 
+/**
+ * Reprisents a command.
+ */
 public enum Command {
     QUIT("quit"),
     FIND("find"),
@@ -14,6 +17,9 @@ public enum Command {
         this.commandString = commandString;
     }
 
+    /**
+     * Returns the command String for comparing.
+     */
     public String getCommandString() {
         return this.commandString;
     }
