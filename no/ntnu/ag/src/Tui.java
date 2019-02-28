@@ -1,5 +1,6 @@
 package no.ntnu.ag.src;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -43,13 +44,20 @@ public class Tui {
                 this.running = false;
                 System.out.println("Bye-bye!");
                 break;
+
+            case LIST:
+                Iterator<Book> bookIterator = this.bookRegistry.getBookIterator();
+                while(bookIterator.hasNext()) {
+                    Book book = bookIterator.next();
+                    System.out.println(book.getTitle());
+                }
+                break;
             
             case HELP:
-                System.out.println("Command : Description");
-                System.out.println("quit    : Quits the application.");
-                System.out.println("find [] : Searches for a book.");
-                System.out.println("new  [] : Adds new book.");
-                System.out.println("help    : Provides help info.");
+                System.out.println("Commands:");
+                for(Command commandWord : Command.values()) {
+                    System.out.println(commandWord.getCommandString());
+                }
                 break;
             
             case FIND:
@@ -63,7 +71,8 @@ public class Tui {
                 break;
         
             default:
-                System.out.println("Command not recognized.\nType help for valid commands.");
+                System.out.println("Command not recognized.");
+                System.out.println("Type help for valid commands.");
                 break;
         }
     }
