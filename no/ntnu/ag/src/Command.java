@@ -9,6 +9,7 @@ public enum Command {
     NEW("new"),
     REMOVE("remove"),
     HELP("help"),
+    LIST("list"),
     UNKNOWN("?");
 
     private final String commandString;
