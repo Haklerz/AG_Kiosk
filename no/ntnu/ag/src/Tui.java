@@ -10,6 +10,7 @@ public class Tui {
     private Scanner input;
     private BookRegistry bookRegistry;
     private boolean running;
+    private Book currentBook;
 
     /**
      * Creates an instance of the Tui class.
@@ -25,8 +26,9 @@ public class Tui {
      */
     public void run() {
         this.running = true;
+        System.out.println("Kiosk Interface v0.4");
         while(running) {
-            System.out.print("\n> ");
+            this.printCursor();
             Instruction instruction = this.getInput();
             this.executeInstruction(instruction);
         }
@@ -34,6 +36,7 @@ public class Tui {
 
     /**
      * Executes an instruction.
+     * 
      * @param instruction Instructuion to execute.
      */
     private void executeInstruction(Instruction instruction) {
@@ -47,34 +50,81 @@ public class Tui {
 
             case LIST:
                 Iterator<Book> bookIterator = this.bookRegistry.getBookIterator();
-                while(bookIterator.hasNext()) {
-                    Book book = bookIterator.next();
-                    System.out.println(book.getTitle());
+                if (bookIterator.hasNext()) {
+                    while(bookIterator.hasNext()) {
+                        Book book = bookIterator.next();
+                        this.printBook(book);
+                        if (bookIterator.hasNext()) System.out.println();
+                    }
+                }
+                else {
+                    System.out.println("There are no books.");
                 }
                 break;
             
             case HELP:
                 System.out.println("Commands:");
                 for(Command commandWord : Command.values()) {
-                    System.out.println(commandWord.getCommandString());
+                    if (!commandWord.getCommandString().equals("?")) {
+                        System.out.println(commandWord.getCommandString());
+                    }
                 }
+                break;
+            
+            case NEW:
+                System.out.print("Title     > ");
+                String title = this.input.nextLine();
+                System.out.print("Author    > ");
+                String author = this.input.nextLine();
+                System.out.print("Publisher > ");
+                String publisher = this.input.nextLine();
+                System.out.print("Pages     > ");
+                int pages = Integer.parseInt(this.input.nextLine());
+                System.out.print("Edition   > ");
+                int edition = Integer.parseInt(this.input.nextLine());
+                this.bookRegistry.addBook(new Book(title, author, publisher, pages, edition));
+                System.out.println("Added book: " + title + ".");
                 break;
             
             case FIND:
                 Book book = this.bookRegistry.findBook(instruction.getArguments());
                 if (book != null) {
-                    System.out.println(book.getTitle());
-                }
-                else {
-                    System.out.println("Could not find book.");
-                }
-                break;
+                    this.printBook(book);
+                    this.currentBook = book;
+            } else {
+                System.out.println("Could not find book.");
+            }
+            break;
         
-            default:
-                System.out.println("Command not recognized.");
-                System.out.println("Type help for valid commands.");
-                break;
+        case REMOVE:
+            if (this.currentBook != null) {
+                System.out.println("Removed book: " + currentBook.getTitle() + ".");
+                this.bookRegistry.removeBook(this.currentBook);
+                this.currentBook = null;
+            }
+            break;
+
+        case UNKNOWN:
+            System.out.println("Command not recognized.");
+            System.out.println("Type help for valid commands.");
+            break;
         }
+    }
+
+    private void printCursor() {
+        System.out.println();
+        if (currentBook != null) {
+            System.out.print(currentBook.getTitle());
+        }
+        System.out.print("> ");
+    }
+
+    private void printBook(Book book) {
+        System.out.println("Title     : " + book.getTitle());
+        System.out.println("Author    : " + book.getAuthor());
+        System.out.println("Publisher : " + book.getPublisher());
+        System.out.println("Pages     : " + book.getPages());
+        System.out.println("Edition   : " + book.getEdition());
     }
 
     /**
@@ -82,7 +132,18 @@ public class Tui {
      * @return Instruction from user.
      */
     private Instruction getInput() {
-        Instruction instruction = new Instruction(this.input.nextLine());
-        return instruction;
+        String instructionString = this.input.nextLine();
+        String[] components = instructionString.split(" ", 2);
+        Command command = Command.UNKNOWN;
+        String arguments = "";
+        for (Command testCommand : Command.values()) {
+            if (testCommand.getCommandString().equalsIgnoreCase(components[0])) {
+                command = testCommand;
+            }
+        }
+        if (components.length > 1) {
+            arguments = components[1];
+        }
+        return new Instruction(command, arguments);
     }
 }

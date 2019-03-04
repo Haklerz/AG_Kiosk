@@ -21,15 +21,9 @@ public class Instruction {
      * arguments the argument is set to and empty String<code>""</code>.
      * @param instructionString Instruction String.
      */
-    public Instruction(String instructionString) {
-        String[] components = instructionString.split(" ", 2);
-        this.command = Command.UNKNOWN;
-        for (Command testCommand : Command.values()) {
-            if (testCommand.getCommandString().equals(components[0])) {
-                this.command = testCommand;
-            }
-        }
-        this.arguments = (components.length > 1) ? components[1] : "";
+    public Instruction(Command command, String arguments) {
+        this.command = command;
+        this.arguments = arguments;
     }
 
     /**

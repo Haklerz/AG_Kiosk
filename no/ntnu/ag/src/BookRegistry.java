@@ -37,6 +37,13 @@ public class BookRegistry {
     }
 
     /**
+     * Removes a Book from the BookRegistry if present.
+     */
+    public void removeBook(Book book) {
+        books.remove(book);
+    }
+
+    /**
      * Returns the ArrayList containing all the Books in the Registry.
      * @return ArrayList of all the Books.
      */
