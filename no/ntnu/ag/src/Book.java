@@ -25,13 +25,39 @@ public class Book {
      * @param author Author of the Book.
      * @param pages Number of pages in the Book.
      * @param publisher Publisher of the Book.
+     * @throws IllegalArgumentExeption
      */
     public Book(String title, String author, String publisher, int pages, int edition) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.pages = pages;
-        this.edition = edition;
+        if (title.trim().length() > 0) {
+            this.title = title;
+        }
+        else {
+            throw new IllegalArgumentException("Book must have a non-whitespace title");
+        }
+        if (author.trim().length() > 0){
+            this.author = author;
+        }
+        else {
+            throw new IllegalArgumentException("Book must have a non-whitespace author");
+        }
+        if (publisher.trim().length() > 0) {
+            this.publisher = publisher;
+        }
+        else {
+            throw new IllegalArgumentException("Book must have a non-whitespace publisher");
+        }
+        if (pages > 0) {
+            this.pages = pages;
+        }
+        else {
+            throw new IllegalArgumentException("Book must have more than 0 pages");
+        }
+        if (edition > 0) {
+            this.edition = edition;
+        }
+        else {
+            throw new IllegalArgumentException("Book must be more than 0th edition");
+        }
     }
 
     /**
