@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=ApplicationUI
+comment0.text=\n\ Makes\ up\ the\ user\ interface\ (text\ based)\ of\ the\ application.\n\ Responsible\ for\ all\ user\ interaction,\ like\ displaying\ the\ menu\n\ and\ receiving\ input\ from\ the\ user.\n\ \n\ @author\ asty\n\ @version\ 1.0\n
+comment1.params=
+comment1.target=ApplicationUI()
+comment1.text=\n\ Creates\ an\ instance\ of\ the\ ApplicationUI\ User\ interface.\ \n
+comment2.params=
+comment2.target=void\ start()
+comment2.text=\n\ Starts\ the\ application\ by\ showing\ the\ menu\ and\ retrieving\ input\ from\ the\n\ user.\n
+comment3.params=
+comment3.target=int\ showMenu()
+comment3.text=\n\ Displays\ the\ menu\ to\ the\ user,\ and\ waits\ for\ the\ users\ input.\ The\ user\ is\n\ expected\ to\ input\ an\ integer\ between\ 1\ and\ the\ max\ number\ of\ menu\ items.\ \n\ If\ the\ user\ inputs\ anything\ else,\ an\ InputMismatchException\ is\ thrown.\ \n\ The\ method\ returns\ the\ valid\ input\ from\ the\ user.\n\n\ @return\ the\ menu\ number\ (between\ 1\ and\ max\ menu\ item\ number)\ provided\ by\ the\ user.\n\ @throws\ InputMismatchException\ if\ user\ enters\ an\ invalid\ number/menu\ choice\n
+comment4.params=
+comment4.target=void\ init()
+comment4.text=\n\ Initializes\ the\ application.\n\ Typically\ you\ would\ create\ the\ LiteratureRegistrer-instance\ here\n
+comment5.params=
+comment5.target=void\ listAllProducts()
+comment5.text=\n\ Lists\ all\ the\ products/literature\ in\ the\ register\n
+comment6.params=
+comment6.target=void\ addNewProduct()
+comment6.text=\n\ Add\ a\ new\ product/literature\ to\ the\ register.\n\ In\ this\ method\ you\ have\ to\ add\ code\ to\ ask\ the\n\ user\ for\ the\ necessary\ information\ you\ need\ to\ \n\ create\ an\ instance\ of\ the\ product,\ which\ you\n\ then\ send\ as\ a\ parameter\ to\ the\ addNewspaper()-\n\ method\ of\ the\ register.\n\ Remember\ to\ also\ handle\ invalid\ input\ from\ the\n\ user\!\!\n
+comment7.params=
+comment7.target=void\ findProductByName()
+comment7.text=\n\ Find\ and\ display\ a\ product\ based\ on\ name\ (title).\n\ As\ with\ the\ addNewProduct()-method,\ you\ have\ to\n\ ask\ the\ user\ for\ the\ string\ (name/title/publisher)\n\ to\ search\ for,\ and\ then\ use\ this\ string\ as\ input-\n\ parameter\ to\ the\ method\ in\ the\ register-object.\n\ Then,\ upon\ return\ from\ the\ register,\ you\ need\n\ to\ print\ the\ details\ of\ the\ found\ item.\n
+comment8.params=iterator
+comment8.target=void\ printBookInfo(java.util.Iterator)
+numComments=9

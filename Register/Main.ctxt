@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Main
+comment0.text=\n\ The\ Main-class\ of\ the\ application.\ This\ class\ only\ holds\ the\ main()-method\n\ to\ start\ the\ application.\n\ \n\ @author\ asty\n\ @version\ 1.0\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment1.text=\n\ The\ main\ entry\ for\ the\ application.\n\ @param\ args\ arguments\ provided\ during\ startup\ of\ the\ application\n
+numComments=2
