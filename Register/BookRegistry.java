@@ -40,6 +40,10 @@ public class BookRegistry {
         return this.books;
     }
     
+    /**
+     * Returns an iterator of the arraylist cotaining all the books in the registry
+     * @return iterator of the arraylist
+     */
     public Iterator<Book> getIterator(){
         return this.books.iterator();
     }
