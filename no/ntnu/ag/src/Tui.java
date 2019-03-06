@@ -105,20 +105,35 @@ public class Tui {
                 break;
             
             case FIND:
-                Book book = this.bookRegistry.findBook(instruction.getArguments());
-                if (book != null) {
-                    this.printBook(book);
-                    this.currentBook = book;
-            } else {
-                System.out.println("Could not find book.");
-            }
+                String[] arguments = instruction.getArguments().split(" ", 2);
+                String searchType = arguments[0];
+                String searchString = (arguments.length > 1) ? arguments[1] : "";
+                try {
+                    Book book = this.bookRegistry.findBook(searchType, searchString);
+                    if (book != null) {
+                        this.printBook(book);
+                        this.currentBook = book;
+                    } else {
+                        System.out.println("Could not find book.");
+                    }
+                }
+                catch(IllegalArgumentException exception) {
+                    System.out.println("You need to spesify what to search by.");
+                }
+                
             break;
         
         case REMOVE:
-            if (this.currentBook != null) {
-                System.out.println("Removed book: " + currentBook.getTitle() + ".");
-                this.bookRegistry.removeBook(this.currentBook);
-                this.currentBook = null;
+            System.out.println("Are you sure?");
+            if ("yes".contains(this.input.nextLine().toLowerCase())) {
+                if (this.currentBook != null) {
+                    System.out.println("Removed book: " + currentBook.getTitle() + ".");
+                    this.bookRegistry.removeBook(this.currentBook);
+                    this.currentBook = null;
+                }
+            }
+            else {
+                System.out.println("Book was not removed.");
             }
             break;
 

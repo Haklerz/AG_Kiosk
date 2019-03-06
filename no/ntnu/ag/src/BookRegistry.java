@@ -33,7 +33,12 @@ public class BookRegistry {
      * Adds a Book to the BookRegistry.
      */
     public void addBook(Book book) {
-        books.add(book);
+        if (book != null) {
+            books.add(book);
+        }
+        else {
+            throw new IllegalArgumentException("Must be a valid book.");
+        }
     }
 
     /**
@@ -86,11 +91,30 @@ public class BookRegistry {
         return foundBooks;
     }
 
-    public Book findBook(String searchString) {
+    /**
+     * no
+     */
+    public Book findBook(String searchType, String searchString) {
         Book book = null;
         double bestMatch = 0;
         for (Book searchBook : books) {
-            double similarity = Search.similarity(searchString, searchBook.getTitle());
+            double similarity = 0;
+            switch(searchType) {
+                case "title":
+                    similarity = Search.similarity(searchString, searchBook.getTitle());
+                    break;
+
+                case "author":
+                    similarity = Search.similarity(searchString, searchBook.getAuthor());
+                    break;
+
+                case "publisher":
+                    similarity = Search.similarity(searchString, searchBook.getPublisher());
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Not a valid search type.");
+            }
             if (similarity > bestMatch) {
                 bestMatch = similarity;
                 book = searchBook;
@@ -99,6 +123,9 @@ public class BookRegistry {
         return book;
     }
 
+    /**
+     * Fills the book registry with dummie books.
+     */
     public void fillDummies() {
         this.addBook(new Book("Objects first with Java", "David J. Barnes, Michael Kölling", "Pearson", 630, 6));
         this.addBook(new Book("Algoritmer og Datastrukturer", "Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, 1));
