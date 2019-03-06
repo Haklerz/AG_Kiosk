@@ -39,4 +39,14 @@ public class BookRegistryTest
     public void tearDown()
     {
     }
+
+    @Test
+    public void testSize()
+    {
+        BookRegistry bookRegi1 = new BookRegistry();
+        bookRegi1.fillDummies();
+        assertEquals(3, bookRegi1.numberOfBooks());
+    }
 }
+
+

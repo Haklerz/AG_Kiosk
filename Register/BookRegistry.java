@@ -40,6 +40,10 @@ public class BookRegistry {
         return this.books;
     }
     
+    /**
+     * returns the iterator of the arraylist containing all the books in the registry.
+     * @return iterator of all the books.
+     */
     public Iterator<Book> getIterator(){
         return this.books.iterator();
     }
@@ -79,9 +83,21 @@ public class BookRegistry {
         return foundBooks.iterator();
     }
     
+     /**
+     * Fills the registry with books.
+     */
     public void fillDummies() {
         this.addBook(new Book("David J. Barnes, Michael Kölling", "Objects first with Java", 630, "Pearson"));
         this.addBook(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Algoritmer og Datastrukturer", 101, "Gyldendal"));
         this.addBook(new Book("Allan R. Hambley", "Electrical Engineering", 866, "Pearson"));
+    }
+    
+        
+    /**
+     * returns the number of books in the registry
+     * @return number of books in the registry
+     */
+    public int numberOfBooks(){
+        return books.size();
     }
 }

@@ -39,4 +39,36 @@ public class BookTest
     public void tearDown()
     {
     }
+
+
+    @Test
+    public void testPages()
+    {
+        Book book1 = new Book("jens", "yes", -70, "trym");
+        assertEquals(true, (book1.getPages() > 0));
+    }
+
+    @Test
+    public void testGetAuthor()
+    {
+        Book book1 = new Book("jens", "yes", -70, "trym");
+        assertEquals("jens", book1.getAuthor());
+    }
+    
+    @Test
+    public void testGetTitle()
+    {
+        Book book1 = new Book("jens", "yes", -70, "trym");
+        assertEquals("yes", book1.getTitle());
+    }
+    
+    @Test
+    public void testGetPublisher()
+    {
+        Book book1 = new Book("jens", "yes", -70, "trym");
+        assertEquals("trym", book1.getPublisher());
+    }
 }
+
+
+
