@@ -79,11 +79,29 @@ public class Tui {
                 System.out.print("Publisher > ");
                 String publisher = this.input.nextLine();
                 System.out.print("Pages     > ");
-                int pages = Integer.parseInt(this.input.nextLine());
+                int pages;
+                try {
+                    pages = Integer.parseInt(this.input.nextLine());
+                }
+                catch(NumberFormatException exception) {
+                    pages = 0;
+                }
                 System.out.print("Edition   > ");
-                int edition = Integer.parseInt(this.input.nextLine());
-                this.bookRegistry.addBook(new Book(title, author, publisher, pages, edition));
-                System.out.println("Added book: " + title + ".");
+                int edition;
+                try {
+                    edition = Integer.parseInt(this.input.nextLine());
+                }
+                catch(NumberFormatException exception) {
+                    edition = 0;
+                }
+                try {
+                    this.bookRegistry.addBook(new Book(title, author, publisher, pages, edition));
+                    System.out.println("Added book: " + title + ".");
+                }
+                catch(IllegalArgumentException exception) {
+                    System.out.println("Invalid book.");
+                    System.out.println(exception.getLocalizedMessage());
+                }
                 break;
             
             case FIND:

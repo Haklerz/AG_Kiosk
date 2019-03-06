@@ -32,31 +32,31 @@ public class Book {
             this.title = title;
         }
         else {
-            throw new IllegalArgumentException("Book must have a non-whitespace title");
+            throw new IllegalArgumentException("Book must have a non-whitespace title.");
         }
         if (author.trim().length() > 0){
             this.author = author;
         }
         else {
-            throw new IllegalArgumentException("Book must have a non-whitespace author");
+            throw new IllegalArgumentException("Book must have a non-whitespace author.");
         }
         if (publisher.trim().length() > 0) {
             this.publisher = publisher;
         }
         else {
-            throw new IllegalArgumentException("Book must have a non-whitespace publisher");
+            throw new IllegalArgumentException("Book must have a non-whitespace publisher.");
         }
         if (pages > 0) {
             this.pages = pages;
         }
         else {
-            throw new IllegalArgumentException("Book must have more than 0 pages");
+            throw new IllegalArgumentException("Book must have more than 0 pages.");
         }
         if (edition > 0) {
             this.edition = edition;
         }
         else {
-            throw new IllegalArgumentException("Book must be more than 0th edition");
+            throw new IllegalArgumentException("Book must be more than 0th edition.");
         }
     }
 
