@@ -105,11 +105,12 @@ public class Tui {
                 break;
             
             case FIND:
+            /*
                 String[] arguments = instruction.getArguments().split(" ", 2);
                 String searchType = arguments[0];
                 String searchString = (arguments.length > 1) ? arguments[1] : "";
                 try {
-                    Book book = this.bookRegistry.findBook(searchType, searchString);
+                    Book book = this.bookRegistry.findContains(searchType, searchString);
                     if (book != null) {
                         this.printBook(book);
                         this.currentBook = book;
@@ -120,6 +121,7 @@ public class Tui {
                 catch(IllegalArgumentException exception) {
                     System.out.println("You need to spesify what to search by.");
                 }
+                */
                 
             break;
         
