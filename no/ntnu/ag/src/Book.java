@@ -9,92 +9,70 @@ package no.ntnu.ag.src;
  * <li>Get the author of the Book.
  * <li>Get the number of pages in the Book.
  * </ul>
- * @author Håkon "Haklerz" Lervik, Trym "MrRazuuus" Jørgensen, Peter "ComradePetah" H. Osnes
+ * 
+ * @author Håkon "Haklerz" Lervik, Trym "MrRazuuus" Jørgensen, Peter
+ *         "ComradePetah" H. Osnes
  * @version 0.1
  */
-public class Book {
-    private String title;
-    private String author;
-    private String publisher;
+public class Book extends Literature {
+    // private String title;
+    // private String author;
+    // private String publisher;
     private int pages;
     private int edition;
 
     /**
      * Creates a Book.
-     * @param title Title of the Book.
-     * @param author Author of the Book.
-     * @param pages Number of pages in the Book.
+     * 
+     * @param title     Title of the Book.
+     * @param author    Author of the Book.
+     * @param pages     Number of pages in the Book.
      * @param publisher Publisher of the Book.
-     * @throws IllegalArgumentExeption
      */
     public Book(String title, String author, String publisher, int pages, int edition) {
-        if (title.trim().length() > 0) {
-            this.title = title;
-        }
-        else {
-            throw new IllegalArgumentException("Book must have a non-whitespace title.");
-        }
-        if (author.trim().length() > 0){
-            this.author = author;
-        }
-        else {
-            throw new IllegalArgumentException("Book must have a non-whitespace author.");
-        }
-        if (publisher.trim().length() > 0) {
-            this.publisher = publisher;
-        }
-        else {
-            throw new IllegalArgumentException("Book must have a non-whitespace publisher.");
-        }
-        if (pages > 0) {
-            this.pages = pages;
-        }
-        else {
-            throw new IllegalArgumentException("Book must have more than 0 pages.");
-        }
+        super(title, author, publisher);
+        this.setPages(pages);
+        this.setEdition(edition);
+    }
+
+    /**
+     * Sets the edition of the book.
+     * 
+     * @param edition edition of the book.
+     */
+    private void setEdition(int edition) {
         if (edition > 0) {
             this.edition = edition;
-        }
-        else {
-            throw new IllegalArgumentException("Book must be more than 0th edition.");
-        }
+        } else
+            throw new IllegalArgumentException();
     }
 
     /**
-     * Returns the title of the Book as a<code>String</code>.
-     * @return Title of the Book.
+     * Sets the number of pages in the book.
+     * 
+     * @param pages number of pages in the book.
+     * @throws IllegalArgumentException
      */
-    public String getTitle() {
-        return this.title;
+    private void setPages(int pages) {
+        if (pages > 0) {
+            this.pages = pages;
+        } else
+            throw new IllegalArgumentException();
     }
 
     /**
-     * Returns the author of the Book as a<code>String</code>.
-     * @return Author of the Book.
-     */
-    public String getAuthor() {
-        return this.author;
-    }
-
-    /**
-     * Returns the publisher of the Book as a<code>String</code>.
-     * @return Publisher of the Book.
-     */
-    public String getPublisher() {
-        return this.publisher;
-    }
-
-    /**
-     * Returns the number of pages in the Book as an<code>int</code>.
-     * @return Number of pages in the Book.
+     * Returns the number of pages in the book as an<code>int</code>.
+     * 
+     * @return number of pages in the book
      */
     public int getPages() {
         return this.pages;
     }
 
     /**
-     * Returns the edition of the Book.
-     * @return Edition of the Book.
+     * Returns the edition of the book as an<code>int</code>.
+     * 
+     * @return edition of the book
      */
     public int getEdition() {
         return this.edition;
