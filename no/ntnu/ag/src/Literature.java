@@ -1,7 +1,14 @@
 package no.ntnu.ag.src;
 
 /**
- * Represents a peice of literature with a title, author and publisher.
+ * Represents a literature object with a title, an author and a publisher.
+ * <p>
+ * With this class you can:
+ * <ul>
+ * <li>Get the title of the literature object.
+ * <li>Get the author of the literature object.
+ * <li>Get the publisher of the literature object.
+ * </ul>
  * 
  * @author Håkon "Haklerz" Lervik
  * @version 11.03.2019
@@ -12,11 +19,11 @@ public abstract class Literature {
     private String publisher;
 
     /**
-     * Initializes a literature object.
+     * Initializes a literature object with a title, an author and a publisher.
      * 
-     * @param title     title of the peice of literature
-     * @param author    author of the peice of literature
-     * @param publisher pulisher of the peice of literature
+     * @param title     title of the literature object
+     * @param author    author of the literature object
+     * @param publisher pulisher of the literature object
      */
     public Literature(String title, String author, String publisher) {
         this.setTitle(title);
@@ -25,9 +32,9 @@ public abstract class Literature {
     }
 
     /**
-     * Sets the title of the peice of literature.
+     * Sets the title of the literature object.
      * 
-     * @param title title of the peice of literature
+     * @param title title of the literature object
      * @throws IllegalArgumentException
      */
     private void setTitle(String title) {
@@ -39,9 +46,9 @@ public abstract class Literature {
     }
 
     /**
-     * Sets the author of the peice of literature.
+     * Sets the author of the literature object.
      * 
-     * @param author author of the peice of literature
+     * @param author author of the literature object
      * @throws IllegalArgumentException
      */
     private void setAuthor(String author) {
@@ -53,9 +60,9 @@ public abstract class Literature {
     }
 
     /**
-     * Sets the publisher of the peice of literature.
+     * Sets the publisher of the literature object.
      * 
-     * @param publisher publisher of the peice of literature
+     * @param publisher publisher of the literature object
      * @throws IllegalArgumentException
      */
     private void setPublisher(String publisher) {
@@ -67,7 +74,7 @@ public abstract class Literature {
     }
 
     /**
-     * Returns the title of the peice of literature as a<code>String</code>.
+     * Returns the title of the literature object as a<code>String</code>.
      * 
      * @return the title
      */
@@ -76,7 +83,7 @@ public abstract class Literature {
     }
 
     /**
-     * Returns the author of the peice of literature as a<code>String</code>.
+     * Returns the author of the literature object as a<code>String</code>.
      * 
      * @return the author
      */
@@ -85,7 +92,7 @@ public abstract class Literature {
     }
 
     /**
-     * Returns the publisher of the peice of literature as a<code>String</code>.
+     * Returns the publisher of the literature object as a<code>String</code>.
      * 
      * @return the publisher
      */
