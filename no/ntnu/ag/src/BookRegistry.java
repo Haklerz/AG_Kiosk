@@ -94,34 +94,7 @@ public class BookRegistry {
     /**
      * no
      */
-    public Book findBook(String searchType, String searchString) {
-        Book book = null;
-        double bestMatch = 0;
-        for (Book searchBook : books) {
-            double similarity = 0;
-            switch(searchType) {
-                case "title":
-                    similarity = Search.similarity(searchString, searchBook.getTitle());
-                    break;
-
-                case "author":
-                    similarity = Search.similarity(searchString, searchBook.getAuthor());
-                    break;
-
-                case "publisher":
-                    similarity = Search.similarity(searchString, searchBook.getPublisher());
-                    break;
-
-                default:
-                    throw new IllegalArgumentException("Not a valid search type.");
-            }
-            if (similarity > bestMatch) {
-                bestMatch = similarity;
-                book = searchBook;
-            }
-        }
-        return book;
-    }
+    
 
     /**
      * Fills the book registry with dummie books.
