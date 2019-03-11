@@ -2,68 +2,86 @@ package no.ntnu.ag.src;
 
 /**
  * Represents a Book with a title, author and number of pages.
- * <p>
- * With this class you can:
- * <ul>
- * <li>Get the title of the Book.
- * <li>Get the author of the Book.
- * <li>Get the number of pages in the Book.
- * </ul>
  * 
- * @author Håkon "Haklerz" Lervik, Trym "MrRazuuus" Jørgensen, Peter
- *         "ComradePetah" H. Osnes
- * @version 0.1
+ * @version 11.03.2019
+ * @author Håkon "Haklerz" Lervik
  */
 public class Book extends Literature {
-    // private String title;
-    // private String author;
-    // private String publisher;
+    private String author;
     private int pages;
     private int edition;
 
     /**
-     * Creates a Book.
+     * Creates a Book with a title, an author, a publisher, a number of pages and an
+     * edition.
      * 
-     * @param title     Title of the Book.
-     * @param author    Author of the Book.
-     * @param pages     Number of pages in the Book.
-     * @param publisher Publisher of the Book.
+     * @param title     title of the Book
+     * @param author    author of the Book
+     * @param pages     number of pages in the Book
+     * @param publisher publisher of the Book
      */
     public Book(String title, String author, String publisher, int pages, int edition) {
-        super(title, author, publisher);
+        super(title, publisher);
+        this.setAuthor(author);
         this.setPages(pages);
         this.setEdition(edition);
     }
 
     /**
+     * Sets the author of the book.
+     * 
+     * @param author the author of the book
+     * @throws IllegalArgumentException
+     */
+    private void setAuthor(String author) {
+        if (author.trim().length() > 0) {
+            this.author = author;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /**
      * Sets the edition of the book.
      * 
-     * @param edition edition of the book.
+     * @param edition the edition of the book
+     * @throws IllegalArgumentException
      */
     private void setEdition(int edition) {
         if (edition > 0) {
             this.edition = edition;
-        } else
+        } else {
             throw new IllegalArgumentException();
+        }
     }
 
     /**
      * Sets the number of pages in the book.
      * 
-     * @param pages number of pages in the book.
+     * @param pages the number of pages in the book
      * @throws IllegalArgumentException
      */
     private void setPages(int pages) {
         if (pages > 0) {
             this.pages = pages;
-        } else
+        } else {
             throw new IllegalArgumentException();
+        }
+    }
+
+    /**
+     * Returns the author of the book as a<code>String</code>.
+     * 
+     * @return the author of the book
+     */
+    public String getAuthor() {
+        return this.author;
     }
 
     /**
      * Returns the number of pages in the book as an<code>int</code>.
      * 
-     * @return number of pages in the book
+     * @return the number of pages in the book
      */
     public int getPages() {
         return this.pages;
@@ -72,7 +90,7 @@ public class Book extends Literature {
     /**
      * Returns the edition of the book as an<code>int</code>.
      * 
-     * @return edition of the book
+     * @return the edition of the book
      */
     public int getEdition() {
         return this.edition;
