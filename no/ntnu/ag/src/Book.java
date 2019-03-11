@@ -1,7 +1,8 @@
 package no.ntnu.ag.src;
 
 /**
- * Represents a Book with a title, author and number of pages.
+ * Represents a Book with a title and publisher, an author, a number of pages and an
+ * edition.
  * 
  * @version 11.03.2019
  * @author Håkon "Haklerz" Lervik
@@ -12,15 +13,16 @@ public class Book extends Literature {
     private int edition;
 
     /**
-     * Creates a Book with a title, an author, a publisher, a number of pages and an
+     * Creates a Book with a title and publisher, an author, a number of pages and an
      * edition.
      * 
      * @param title     title of the Book
-     * @param author    author of the Book
-     * @param pages     number of pages in the Book
      * @param publisher publisher of the Book
+     * @param author    author of the Book
+     * @param pages     the number of pages
+     * @param edition   the edition of the book
      */
-    public Book(String title, String author, String publisher, int pages, int edition) {
+    public Book(String title, String publisher, String author, int pages, int edition) {
         super(title, publisher);
         this.setAuthor(author);
         this.setPages(pages);

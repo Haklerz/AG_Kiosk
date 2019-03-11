@@ -1,7 +1,7 @@
 package no.ntnu.ag.src;
 
 /**
- * Represents a literature object with a title, an author and a publisher.
+ * Represents a literature object with a title and a publisher.
  * 
  * @version 11.03.2019
  * @author Håkon "Haklerz" Lervik
@@ -11,11 +11,10 @@ public abstract class Literature {
     private String publisher;
 
     /**
-     * Initializes a literature object with a title, an author and a publisher.
+     * Initializes a literature object with a title and a publisher.
      * 
-     * @param title     title of the literature object
-     * @param author    author of the literature object
-     * @param publisher pulisher of the literature object
+     * @param title     the title of the literature object
+     * @param publisher the pulisher of the literature object
      */
     public Literature(String title, String publisher) {
         this.setTitle(title);
