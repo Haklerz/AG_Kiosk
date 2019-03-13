@@ -3,34 +3,36 @@ package no.ntnu.ag.src;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Represents a collection of literature.
+ * @see Literature
+ * @version 13.03.2019
+ * @author Håkon "Haklerz" Lervik
+ */
 public class LiteratureRegistry {
     private ArrayList<Literature> literatureList;
 
     public LiteratureRegistry() {
-        this.literatureList = new ArrayList<>();
+        literatureList = new ArrayList<>();
     }
 
     public void addLiterature(Literature literature) {
         if (literature != null) {
-            this.literatureList.add(literature);
-        } else {
-            throw new NullPointerException();
+            literatureList.add(literature);
         }
     }
 
     public void removeLiterature(Literature literature) {
-        if (!this.literatureList.remove(literature)) {
-            throw new NullPointerException();
-        }
+        literatureList.remove(literature);
     }
 
     public Iterator<Literature> getLiteratureIterator() {
-        return this.literatureList.iterator();
+        return literatureList.iterator();
     }
 
-    public Iterator<Literature> findContains(String searchType, String searchText) {
+    public Iterator<Literature> find(String searchType, String searchText) {
         ArrayList<Literature> foundLiterature = new ArrayList<>();
-        for (Literature searchLiterature : this.literatureList) {
+        for (Literature searchLiterature : literatureList) {
             switch (searchType) {
             case "title":
                 if (searchLiterature.getTitle().toLowerCase().contains(searchText.toLowerCase())) {
@@ -43,36 +45,14 @@ public class LiteratureRegistry {
                     foundLiterature.add(searchLiterature);
                 }
                 break;
-
+            
             default:
-                throw new IllegalArgumentException();
+                break;
             }
         }
         return foundLiterature.iterator();
     }
 
-    public Literature findSimilarity(String searchType, String searchText) {
-        Literature foundLiterature = null;
-        double bestMatch = 0;
-        for (Literature searchLiterature : this.literatureList) {
-            double similarity = 0;
-            switch (searchType) {
-            case "title":
-                similarity = Search.similarity(searchText, searchLiterature.getTitle());
-                break;
-
-            case "publisher":
-                similarity = Search.similarity(searchText, searchLiterature.getPublisher());
-                break;
-
-            default:
-                throw new IllegalArgumentException();
-            }
-            if (similarity > bestMatch) {
-                bestMatch = similarity;
-                foundLiterature = searchLiterature;
-            }
-        }
-        return foundLiterature;
-    }
+	public void fillDummies() {
+	}
 }

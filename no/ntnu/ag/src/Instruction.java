@@ -1,44 +1,76 @@
 package no.ntnu.ag.src;
 
 /**
- * Represents an instruction with a command and arguments.
- * <p>
- * With this class you can:
- * <ul>
- * <li>Create an instruction.
- * <li>Get the command of an instruciton.
- * <li>Get the arguments of an instruction.
- * </ul>
+ * Represents an instruction with a command and argument.
  */
 public class Instruction {
-    Command command;
-    String arguments;
+    String command;
+    String argument;
 
     /**
-     * Parses and creates an istruction from a user input String.
-     * If the String does not match any of the valid commands,
-     * the command is set to UNNKNOWN. If the string does not have any
-     * arguments the argument is set to and empty String<code>""</code>.
-     * @param instructionString Instruction String.
+     * Creates an instruction object with a command and argument.
+     * 
+     * @param command  the command
+     * @param argument the argument
      */
-    public Instruction(Command command, String arguments) {
+    public Instruction(String command, String argument) {
+        setCommand(command);
+        setArgument(argument);
+    }
+
+    /**
+     * Parses a String to an instruction.
+     * 
+     * @param string String to parse
+     * @return an instruction
+     */
+    public static Instruction parseInstruction(String string) {
+        String[] parts = string.split(" ", 2);
+        return new Instruction(parts[0], (parts.length > 1) ? parts[1] : "");
+    }
+
+    /**
+     * Converts an instruction to a String.
+     * 
+     * @return a string representation of the instruction
+     */
+    public String toString() {
+        return command + " " + argument;
+    }
+
+    /**
+     * Returns the command of the instruction.
+     * 
+     * @return the command
+     */
+    public String getCommand() {
+        return command;
+    }
+
+    /**
+     * Sets the command of the instruction.
+     * 
+     * @param command the command to set
+     */
+    private void setCommand(String command) {
         this.command = command;
-        this.arguments = arguments;
     }
 
     /**
-     * Returns the command part of the instruction.
-     * @return Command of the instruction.
+     * Returns the argument of the instruction.
+     * 
+     * @return the argument
      */
-    public Command getCommand() {
-        return this.command;
+    public String getArgument() {
+        return argument;
     }
 
     /**
-     * Returns the argument part of the instruction.
-     * @return Arguments of the instruciton.
+     * Sets the argument of the instruction.
+     * 
+     * @param argument the argument to set
      */
-    public String getArguments() {
-        return this.arguments;
+    private void setArgument(String argument) {
+        this.argument = argument;
     }
 }

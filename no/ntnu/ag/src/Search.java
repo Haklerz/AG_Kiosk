@@ -1,6 +1,8 @@
 package no.ntnu.ag.src;
 
 /**
+ * Deprecated
+ * 
  * Wrapper for useful methods related to searching.
  */
 public class Search {
