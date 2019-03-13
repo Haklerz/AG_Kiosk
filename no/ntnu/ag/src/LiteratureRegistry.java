@@ -5,6 +5,9 @@ import java.util.Iterator;
 
 /**
  * Represents a collection of literature.
+ * @see Literature
+ * @version 13.03.2019
+ * @author Håkon "Haklerz" Lervik
  */
 public class LiteratureRegistry {
     private ArrayList<Literature> literatureList;
