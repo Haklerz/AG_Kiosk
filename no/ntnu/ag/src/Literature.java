@@ -64,4 +64,8 @@ public abstract class Literature {
     public String getPublisher() {
         return this.publisher;
     }
+
+	public String getDetails() {
+		return null;
+	}
 }

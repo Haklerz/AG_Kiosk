@@ -1,5 +1,7 @@
 package no.ntnu.ag.src;
 
+import java.util.Iterator;
+
 /**
  * Kiosk
  */
@@ -19,24 +21,20 @@ public class Kiosk {
      */
     public String executeRequest(String request) {
         Instruction instruction = Instruction.parseInstruction(request);
+        String response = "";
         switch (instruction.getCommand()) {
-            case "quit":
-                this.input.close();
-                this.running = false;
-                System.out.println("Bye-bye!");
-                break;
-
             case "list":
-                Iterator<Book> bookIterator = this.bookRegistry.getBookIterator();
-                if (bookIterator.hasNext()) {
-                    while(bookIterator.hasNext()) {
-                        Book book = bookIterator.next();
-                        this.printBook(book);
-                        if (bookIterator.hasNext()) System.out.println();
+                response = "print|";
+                Iterator<Literature> literatureIterator = literatureRegistry.getLiteratureIterator();
+                if (literatureIterator.hasNext()) {
+                    while(literatureIterator.hasNext()) {
+                        Literature literature = literatureIterator.next();
+                        response += literature.getDetails();
+                        if (literatureIterator.hasNext()) response += "\n";
                     }
                 }
                 else {
-                    System.out.println("There are no books.");
+                    response += "There is no literature in the registry";
                 }
                 break;
             
