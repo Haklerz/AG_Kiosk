@@ -8,7 +8,6 @@ import java.util.Scanner;
  */
 public class Tui {
     private Scanner input;
-    private BookRegistry bookRegistry;
     private boolean running;
     private Book currentBook;
 
@@ -18,7 +17,7 @@ public class Tui {
     public Tui() {
         input = new Scanner(System.in);
         bookRegistry = new BookRegistry();
-        bookRegistry.fillDummies();
+        //bookRegistry.fillDummies();
     }
 
     /**

@@ -44,22 +44,6 @@ public class Kiosk {
             response = help();
             break;
 
-        /*
-         * case "new": System.out.print("Title     > "); String title =
-         * this.input.nextLine(); System.out.print("Author    > "); String author =
-         * this.input.nextLine(); System.out.print("Publisher > "); String publisher =
-         * this.input.nextLine(); System.out.print("Pages     > "); int pages; try {
-         * pages = Integer.parseInt(this.input.nextLine()); }
-         * catch(NumberFormatException exception) { pages = 0; }
-         * System.out.print("Edition   > "); int edition; try { edition =
-         * Integer.parseInt(this.input.nextLine()); } catch(NumberFormatException
-         * exception) { edition = 0; } try { this.bookRegistry.addBook(new Book(title,
-         * author, publisher, pages, edition)); System.out.println("Added book: " +
-         * title + "."); } catch(IllegalArgumentException exception) {
-         * System.out.println("Invalid book.");
-         * System.out.println(exception.getLocalizedMessage()); } break;
-         */
-
         case "find":
             response = find(instruction.getArgument());
             break;
