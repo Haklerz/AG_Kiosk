@@ -3,7 +3,7 @@ package no.ntnu.ag.src;
 /**
  * Represents a literature object with a title and a publisher.
  * 
- * @version 11.03.2019
+ * @version 13.03.2019
  * @author Håkon "Haklerz" Lervik
  */
 public abstract class Literature {
@@ -25,13 +25,12 @@ public abstract class Literature {
      * Sets the title of the literature object.
      * 
      * @param title the title of the literature object
-     * @throws IllegalArgumentException
      */
-    private void setTitle(String title) throws IllegalArgumentException {
+    private void setTitle(String title) {
         if (title.trim().length() > 0) {
             this.title = title;
         } else {
-            throw new IllegalArgumentException();
+            this.title = "noTitle";
         }
     }
 
@@ -39,13 +38,12 @@ public abstract class Literature {
      * Sets the publisher of the literature object.
      * 
      * @param publisher the publisher of the literature object
-     * @throws IllegalArgumentException
      */
-    private void setPublisher(String publisher) throws IllegalArgumentException {
+    private void setPublisher(String publisher) {
         if (publisher.trim().length() > 0) {
             this.publisher = publisher;
         } else {
-            throw new IllegalArgumentException();
+            this.publisher = "noPublisher";
         }
     }
 
