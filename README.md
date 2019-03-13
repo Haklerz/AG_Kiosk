@@ -3,12 +3,14 @@ Kiosk prosjekt i OOP
 
 Krav til applikasjonen
 Følgende type lesestoff skal kunne håndteres av systemet:
+
 Aviser, blader, tidsskrifter
 Dette er lesestoff som ikke har en fast forfatter, og som kommer ut periodisk (en gang i uken, en
 gang i måneden, hver dag etc.).
 Lesestoffet her har tittel og utgiver (forlag). I tillegg er det interessant å vite antall utgivelser pr. år,
 type lesestoff (avis, ukeblad, tidsskrift) og fagområde/sjanger (sport, reiser, foto, familieblad,
 ungdomsblad etc.).
+
 Bøker – enkeltstående, og serier
 Dette er lesestoff som utkommer ikke-periodisk, og omfatter all type litteratur som har en enkelt
 forfatter.
@@ -18,6 +20,7 @@ For enkeltstående bøker, er det ønskelig å vite antall utgaver (type ”1. o
 For serier registreres seriens tittel og forfatter på samme måte som for enkeltstående bok. I tillegg
 ønsker mann å ha med opplysninger om alle utgivelsene (tittel og dato på den enkelte utgivelsen)
 som inngår i serien.
+
 Funksjonalitet
 • Det skal være mulig å registrere lesestoff av alle typer definert ovenfor.
 • Det skal være mulig å skrive ut innholdet i hele registeret.
@@ -26,3 +29,8 @@ Funksjonalitet
 • Det skal være mulig å gjøre om en enkeltstående bok om til en serie.
 I tillegg kan dere utvide applikasjonen med funksjonalitet dere mener hører hjemme i en slik
 applikasjon som for eksempel mer avansert søk, bygge inn salgs-støtte (kassa-apparat (POS)) osv.
+
+Literature(title, publisher)
+    Book(author, edition, datePublished)
+    BookSeries()
+    Periodical(editionsPerYear, type, genre)

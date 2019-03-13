@@ -3,6 +3,9 @@ package no.ntnu.ag.src;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Represents a collection of literature.
+ */
 public class LiteratureRegistry {
     private ArrayList<Literature> literatureList;
 

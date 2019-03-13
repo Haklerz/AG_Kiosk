@@ -27,7 +27,7 @@ public abstract class Literature {
      * @param title the title of the literature object
      * @throws IllegalArgumentException
      */
-    private void setTitle(String title) {
+    private void setTitle(String title) throws IllegalArgumentException {
         if (title.trim().length() > 0) {
             this.title = title;
         } else {
@@ -41,7 +41,7 @@ public abstract class Literature {
      * @param publisher the publisher of the literature object
      * @throws IllegalArgumentException
      */
-    private void setPublisher(String publisher) {
+    private void setPublisher(String publisher) throws IllegalArgumentException {
         if (publisher.trim().length() > 0) {
             this.publisher = publisher;
         } else {

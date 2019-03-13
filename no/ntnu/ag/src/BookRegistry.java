@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
+ * Deprecated
+ * 
  * Represents a collection of Books.
  * <p>
  * With this class you can:
