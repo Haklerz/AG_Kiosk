@@ -125,9 +125,9 @@ public class ApplicationUI
      */
     void listAllProducts()
     {
-        Iterator<Book> bookListIt = this.bookRegistry.getIterator();
+        Iterator<Litteratur> bookListIt = this.bookRegistry.getIterator();
        
-        printBookInfo(bookListIt);
+        printLitteraturInfo(bookListIt);
     }
 
     
@@ -143,21 +143,24 @@ public class ApplicationUI
      */
     void addNewProduct()
     {  
-        System.out.println("Please add the title of the book");
+        System.out.println("Please add the title of the litteratur");
         Scanner reader = new Scanner(System.in);
         String title = reader.nextLine();
         
-        System.out.println("Please add the author of the book");
+        System.out.println("Please add the author of the litteratur");
         String author = reader.nextLine();
-        
-        System.out.println("Please add the publisher of the book");
+         
+        System.out.println("Please add the publisher of the litteratur");
         String publisher = reader.nextLine();
+        
+        System.out.println("Please add the genre of the litteratur");
+        String genre = reader.nextLine();
                 
-        System.out.println("Please add the amout pages the book has");
+        System.out.println("Please add the amout pages the litteratur has");
         int pages = reader.nextInt();
         
-        Book book = new Book(author, title, pages, publisher);
-        this.bookRegistry.addBook(book);
+        Book book = new Book(author, publisher, pages, title, genre);
+        this.bookRegistry.addLitteratur(book);
     }
     
     /**
@@ -178,23 +181,23 @@ public class ApplicationUI
         System.out.println("Please add searchtext");
         String text = reader.nextLine();
         
-        Iterator<Book> foundBooksIt = this.bookRegistry.findBook(type, text);
+        Iterator<Book> foundBooksIt = this.bookRegistry.findLitteratur(type, text);
         
-        printBookInfo(foundBooksIt);
+        printLitteraturInfo(foundBooksIt);
     }
     
-    private void printBookInfo(Iterator iterator){
-        Iterator<Book> it = iterator;
+    private void printLitteraturInfo(Iterator iterator){
+        Iterator<Litteratur> it = iterator;
         
         if(it.hasNext()){
             while(it.hasNext() ){
-                Book book = it.next();
+                Litteratur lit = it.next();
                 
                 System.out.println();
-                System.out.println("Title: " + book.getTitle()
-                    + " Author: " + book.getAuthor()
-                    + " Publisher: " + book.getPublisher()
-                    + " Pages: " + book.getPages()
+                System.out.println("Title: " + lit.getTitle()
+                    + " Author: " + lit.getAuthor()
+                    + " Publisher: " + lit.getPublisher()
+                    + " Pages: " + lit.getPages()
                     );
                 System.out.println();
             }

@@ -16,36 +16,36 @@ import java.util.Iterator;
  * @see Book
  */
 public class BookRegistry {
-    private ArrayList<Book> books;
+    private ArrayList<Litteratur> litteraturs;
 
     /**
      * Creates a BookRegistry.
      */
     public BookRegistry() {
-        this.books = new ArrayList<>();
+        this.litteraturs = new ArrayList<>();
     }
 
     /**
      * Adds a Book to the BookRegistry.
      */
-    public void addBook(Book book) {
-        this.books.add(book);
+    public void addLitteratur(Litteratur litteratur) {
+        this.litteraturs.add(litteratur);
     }
 
     /**
      * Returns the ArrayList containing all the Books in the Registry.
      * @return ArrayList of all the Books.
      */
-    public ArrayList<Book> getBooks(){
-        return this.books;
+    public ArrayList<Litteratur> getLitteraturs(){
+        return this.litteraturs;
     }
     
     /**
      * returns the iterator of the arraylist containing all the books in the registry.
      * @return iterator of all the books.
      */
-    public Iterator<Book> getIterator(){
-        return this.books.iterator();
+    public Iterator<Litteratur> getIterator(){
+        return this.litteraturs.iterator();
     }
 
     /**
@@ -57,39 +57,41 @@ public class BookRegistry {
      * <li>Title.
      * <li>Author.
      * <li>Publisher.
+     * <li>Genre.
      * </ul>
      * @param searchType What property to search by.
      * @param searchText Text to search for.
      * @return ArrayList of found Books.
      */
-    public Iterator findBook(String searchType, String searchText) {
-        ArrayList<Book> foundBooks = new ArrayList<>();
-        for (Book testBook : books) {
+    public Iterator findLitteratur(String searchType, String searchText) {
+        ArrayList<Litteratur> foundLitteraturs = new ArrayList<>();
+        for (Litteratur testLitteratur : litteraturs) {
             String testText = "";
             if (searchType.toLowerCase().contains("title")) {
-                testText = testBook.getTitle();
+                testText = testLitteratur.getTitle();
             }
             else if (searchType.toLowerCase().contains("author")) {
-                testText = testBook.getAuthor();
+                testText = testLitteratur.getAuthor();
             }
             else if (searchType.toLowerCase().contains("publisher")) {
-                testText = testBook.getPublisher();
+                testText = testLitteratur.getPublisher();
             }
             testText = testText.toLowerCase();
             if (testText.contains(searchText.toLowerCase())) {
-                foundBooks.add(testBook);
+                foundLitteraturs.add(testLitteratur);
             }
         }
-        return foundBooks.iterator();
+        return foundLitteraturs.iterator();
     }
     
      /**
      * Fills the registry with books.
      */
     public void fillDummies() {
-        this.addBook(new Book("David J. Barnes, Michael Kölling", "Objects first with Java", 630, "Pearson"));
-        this.addBook(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Algoritmer og Datastrukturer", 101, "Gyldendal"));
-        this.addBook(new Book("Allan R. Hambley", "Electrical Engineering", 866, "Pearson"));
+        this.addLitteratur(new Book("David J. Barnes, Michael Kölling", "Pearson", 630, "Objects first with Java", "textbook"));
+        this.addLitteratur(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, "Algoritmer og Datastrukturer", "textbook"));
+        this.addLitteratur(new Book("Allan R. Hambley", "Pearson", 866, "Electrical Engineering", "textbook"));
+        this.addLitteratur(new Newspaper("Trym Jørgensen", "VG", 30, "VG", 340));
     }
     
         
@@ -97,7 +99,7 @@ public class BookRegistry {
      * returns the number of books in the registry
      * @return number of books in the registry
      */
-    public int numberOfBooks(){
-        return books.size();
+    public int numberOfLitteraturs(){
+        return litteraturs.size();
     }
 }
