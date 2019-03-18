@@ -11,6 +11,7 @@ import java.util.Iterator;
 public class Kiosk {
     private static final String[] validCommands = { "list", "help", "find", "remove" };
     private LiteratureRegistry literatureRegistry;
+    private String response;
 
     public Kiosk() {
         literatureRegistry = new LiteratureRegistry();
@@ -22,50 +23,33 @@ public class Kiosk {
      * 
      * @param request the request to execute
      */
-    public String executeRequest(String request) {
-        Instruction instruction = Instruction.parseInstruction(request);
+    
+
+    private String list() {
+        Iterator<Literature> literatureIterator = literatureRegistry.getLiteratureIterator();
         String response = "";
-        switch (instruction.getCommand()) {
-        case "list":
-            Iterator<Literature> literatureIterator = literatureRegistry.getLiteratureIterator();
-            if (literatureIterator.hasNext()) {
-                while (literatureIterator.hasNext()) {
-                    Literature literature = literatureIterator.next();
-                    response += literature.getDetails();
-                    if (literatureIterator.hasNext())
-                        response += "\n";
+        if (literatureIterator.hasNext()) {
+            while (literatureIterator.hasNext()) {
+                Literature literature = literatureIterator.next();
+                if (literature instanceof Book) {
+                    response += getBookDetails((Book) literature);
+                } else if (literature instanceof Periodical) {
+                    response += getPeriodicalDetails((Periodical) literature);
+                } else if (literature instanceof BookSeries) {
+                    response += getBookSeriesDetails((BookSeries) literature);
                 }
-            } else {
-                response += "There is no literature in the registry";
-            }
-            break;
-
-        case "help":
-            response = help();
-            break;
-
-        case "find":
-            response = find(instruction.getArgument());
-            break;
-
-        case "remove":
-            System.out.println("Are you sure?");
-            if ("yes".contains(this.input.nextLine().toLowerCase())) {
-                if (this.currentBook != null) {
-                    System.out.println("Removed book: " + currentBook.getTitle() + ".");
-                    this.bookRegistry.removeBook(this.currentBook);
-                    this.currentBook = null;
+                if (literatureIterator.hasNext()) {
+                    response += "\n";
                 }
-            } else {
-                System.out.println("Book was not removed.");
             }
-            break;
-
-        default:
-            response = unknownCommand();
-            break;
+        } else {
+            response += "There is no literature in the registry";
         }
         return response;
+    }
+
+    private String remove(String argument) {
+        return "Yeet";
     }
 
     private String unknownCommand() {
@@ -81,9 +65,13 @@ public class Kiosk {
     }
 
     private String find(String argument) {
-        String[] arguments = argument.split(" ", 2);
-        String searchType = arguments[0];
-        String searchText = (arguments.length > 1) ? arguments[1] : "";
+        // String[] arguments = argument.split(" ", 2);
+        // String searchType = arguments[0];
+        // String searchText = (arguments.length > 1) ? arguments[1] : "";
+
+        Instruction findInstruction = Instruction.parseInstruction(argument);
+        String searchType = findInstruction.getCommand();
+        String searchText = findInstruction.getArgument();
 
         String response = "Found following " + searchType + "s that contain " + searchText + ":";
         Iterator<Literature> foundLiterature = literatureRegistry.find(searchType, searchText);
@@ -91,5 +79,13 @@ public class Kiosk {
             response += "\n" + foundLiterature.next().getDetails();
         }
         return response;
+    }
+
+    public String getResponse() {
+        return this.response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
     }
 }

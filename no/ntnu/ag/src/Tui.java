@@ -1,183 +1,49 @@
 package no.ntnu.ag.src;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
-/**
- * Represents a Text-based User Interface.
- */
 public class Tui {
-    private Scanner input;
+    private Kiosk kiosk;
     private boolean running;
-    private Book currentBook;
+    private Scanner input;
 
-    /**
-     * Creates an instance of the Tui class.
-     */
-    public Tui() {
-        input = new Scanner(System.in);
-        bookRegistry = new BookRegistry();
-        //bookRegistry.fillDummies();
+    public Tui(Kiosk kiosk) {
+        this.kiosk = kiosk;
+        this.input = new Scanner(System.in);
     }
 
-    /**
-     * Starts the main logic loop of the Tui.
-     */
+    private void processRequest(String request) {
+        Instruction instruction = Instruction.parseInstruction(request);
+        switch (instruction.getCommand()) {
+        case "list":
+            kiosk.list();
+            break;
+
+        case "help":
+            kiosk.help();
+            break;
+
+        case "find":
+            kiosk.find(instruction.getArgument());
+            break;
+
+        case "remove":
+            kiosk.remove(instruction.getArgument());
+            break;
+
+        default:
+            kiosk.unknownCommand();
+            break;
+        }
+    }
+
     public void run() {
-        this.running = true;
-        System.out.println("Kiosk Interface v0.4");
-        while(running) {
-            this.printCursor();
-            Instruction instruction = this.getInput();
-            this.executeInstruction(instruction);
+        running = true;
+        while (running) {
+            String request = input.nextLine();
+            processRequest(request);
+            String response = kiosk.getResponse();
+            System.out.println(response);
         }
-    }
-
-    /**
-     * Executes an instruction.
-     * 
-     * @param instruction Instructuion to execute.
-     */
-    private void executeInstruction(Instruction instruction) {
-        Command command = instruction.getCommand();
-        switch (command) {
-            case QUIT:
-                this.input.close();
-                this.running = false;
-                System.out.println("Bye-bye!");
-                break;
-
-            case LIST:
-                Iterator<Book> bookIterator = this.bookRegistry.getBookIterator();
-                if (bookIterator.hasNext()) {
-                    while(bookIterator.hasNext()) {
-                        Book book = bookIterator.next();
-                        this.printBook(book);
-                        if (bookIterator.hasNext()) System.out.println();
-                    }
-                }
-                else {
-                    System.out.println("There are no books.");
-                }
-                break;
-            
-            case HELP:
-                System.out.println("Commands:");
-                for(Command commandWord : Command.values()) {
-                    if (!commandWord.getCommandString().equals("?")) {
-                        System.out.println(commandWord.getCommandString());
-                    }
-                }
-                break;
-            
-            case NEW:
-                System.out.print("Title     > ");
-                String title = this.input.nextLine();
-                System.out.print("Author    > ");
-                String author = this.input.nextLine();
-                System.out.print("Publisher > ");
-                String publisher = this.input.nextLine();
-                System.out.print("Pages     > ");
-                int pages;
-                try {
-                    pages = Integer.parseInt(this.input.nextLine());
-                }
-                catch(NumberFormatException exception) {
-                    pages = 0;
-                }
-                System.out.print("Edition   > ");
-                int edition;
-                try {
-                    edition = Integer.parseInt(this.input.nextLine());
-                }
-                catch(NumberFormatException exception) {
-                    edition = 0;
-                }
-                try {
-                    this.bookRegistry.addBook(new Book(title, author, publisher, pages, edition));
-                    System.out.println("Added book: " + title + ".");
-                }
-                catch(IllegalArgumentException exception) {
-                    System.out.println("Invalid book.");
-                    System.out.println(exception.getLocalizedMessage());
-                }
-                break;
-            
-            case FIND:
-            /*
-                String[] arguments = instruction.getArguments().split(" ", 2);
-                String searchType = arguments[0];
-                String searchString = (arguments.length > 1) ? arguments[1] : "";
-                try {
-                    Book book = this.bookRegistry.findContains(searchType, searchString);
-                    if (book != null) {
-                        this.printBook(book);
-                        this.currentBook = book;
-                    } else {
-                        System.out.println("Could not find book.");
-                    }
-                }
-                catch(IllegalArgumentException exception) {
-                    System.out.println("You need to spesify what to search by.");
-                }
-                */
-                
-            break;
-        
-        case REMOVE:
-            System.out.println("Are you sure?");
-            if ("yes".contains(this.input.nextLine().toLowerCase())) {
-                if (this.currentBook != null) {
-                    System.out.println("Removed book: " + currentBook.getTitle() + ".");
-                    this.bookRegistry.removeBook(this.currentBook);
-                    this.currentBook = null;
-                }
-            }
-            else {
-                System.out.println("Book was not removed.");
-            }
-            break;
-
-        case UNKNOWN:
-            System.out.println("Command not recognized.");
-            System.out.println("Type help for valid commands.");
-            break;
-        }
-    }
-
-    private void printCursor() {
-        System.out.println();
-        if (currentBook != null) {
-            System.out.print(currentBook.getTitle());
-        }
-        System.out.print("> ");
-    }
-
-    private void printBook(Book book) {
-        System.out.println("Title     : " + book.getTitle());
-        System.out.println("Author    : " + book.getAuthor());
-        System.out.println("Publisher : " + book.getPublisher());
-        System.out.println("Pages     : " + book.getPages());
-        System.out.println("Edition   : " + book.getEdition());
-    }
-
-    /**
-     * Gets an instruction from the user.
-     * @return Instruction from user.
-     */
-    private Instruction getInput() {
-        String instructionString = this.input.nextLine();
-        String[] components = instructionString.split(" ", 2);
-        Command command = Command.UNKNOWN;
-        String arguments = "";
-        for (Command testCommand : Command.values()) {
-            if (testCommand.getCommandString().equalsIgnoreCase(components[0])) {
-                command = testCommand;
-            }
-        }
-        if (components.length > 1) {
-            arguments = components[1];
-        }
-        return new Instruction(command, arguments);
     }
 }
