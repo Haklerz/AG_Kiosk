@@ -19,9 +19,10 @@ public class ApplicationUI
     // to fit your application (i.e. replace "prodct" with "litterature"
     // etc.
     private String[] menuItems = {
-        "1. List all products",
-        "2. Add new product",
-        "3. Find a product by name",
+        "1. List all litteratur",
+        "2. Add new Newspaper",
+        "3. Add new Book",    
+        "4. Find a product by name",
     };
 
     /**
@@ -57,7 +58,11 @@ public class ApplicationUI
                     case 2:
                         this.addNewProduct();
                         break;
+
                     case 3:
+                        this.addNewBook();
+                        break;    
+                    case 4:
                         this.findProductByName();
                         break;
 
