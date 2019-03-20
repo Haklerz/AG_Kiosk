@@ -2,6 +2,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Makes up the user interface (text based) of the application.
@@ -56,7 +57,7 @@ public class ApplicationUI
                         break;
 
                     case 2:
-                        this.addNewProduct();
+                        this.addNewNewspaper();
                         break;
 
                     case 3:
@@ -66,7 +67,7 @@ public class ApplicationUI
                         this.findProductByName();
                         break;
 
-                    case 4:
+                    case 5:
                         System.out.println("\nThank you for using Application v0.1. Bye!\n");
                         quit = true;
                         break;
@@ -146,7 +147,7 @@ public class ApplicationUI
      * Remember to also handle invalid input from the
      * user!!
      */
-    void addNewProduct()
+    private Litteratur addNewProduct()
     {  
         System.out.println("Please add the title of the litteratur");
         Scanner reader = new Scanner(System.in);
@@ -157,15 +158,32 @@ public class ApplicationUI
          
         System.out.println("Please add the publisher of the litteratur");
         String publisher = reader.nextLine();
-        
-        System.out.println("Please add the genre of the litteratur");
-        String genre = reader.nextLine();
                 
         System.out.println("Please add the amout pages the litteratur has");
         int pages = reader.nextInt();
-        
-        Book book = new Book(author, publisher, pages, title, genre);
+
+        Litteratur litteratur = new Litteratur(author, publisher, pages, title);
+        return litteratur;
+    }
+
+    void addNewBook(){
+        Scanner reader = new Scanner(System.in);
+        Litteratur book1 = addNewProduct();
+        System.out.println("Please add the genre of the book");
+        String genre = reader.nextLine();
+
+        Book book = new Book(book1.getAuthor(), book1.getPublisher(), book1.getPages(), book1.getTitle(), genre);
         this.bookRegistry.addLitteratur(book);
+    }
+
+    void addNewNewspaper(){
+        Scanner reader = new Scanner(System.in);
+        Litteratur newspaper1 = addNewProduct();
+        System.out.println("Please add the amount of issues the newspaper has a year");
+        int issues = reader.nextInt();
+
+        Newspaper newspaper = new Newspaper(newspaper1.getAuthor(), newspaper1.getPublisher(), newspaper1.getPages(), newspaper1.getTitle(), issues);
+        this.bookRegistry.addLitteratur(newspaper);
     }
     
     /**

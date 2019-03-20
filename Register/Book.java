@@ -24,7 +24,7 @@ public class Book extends Litteratur
      * Set the author and title fields when this object
      * is constructed.
      */
-    public Book(String author, String title, int pages, String publisher, String genre)
+    public Book(String author, String publisher, int pages, String title, String genre)
     {
         super(author, publisher, pages, title);
         this.genre = genre;

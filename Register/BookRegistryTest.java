@@ -45,7 +45,7 @@ public class BookRegistryTest
     {
         BookRegistry bookRegi1 = new BookRegistry();
         bookRegi1.fillDummies();
-        assertEquals(3, bookRegi1.numberOfBooks());
+        assertEquals(3, bookRegi1.numberOfLitteraturs());
     }
 }
 
