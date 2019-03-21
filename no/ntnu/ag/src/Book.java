@@ -9,7 +9,7 @@ package no.ntnu.ag.src;
  */
 public class Book extends Literature {
     private String author;
-    private int edition;
+    private String edition;
 
     /**
      * Creates a Book with a title and publisher, an author and an edition.
@@ -19,7 +19,7 @@ public class Book extends Literature {
      * @param author    author of the Book
      * @param edition   the edition of the book
      */
-    public Book(String title, String publisher, String author, int edition) {
+    public Book(String title, String publisher, String author, String edition) {
         super(title, publisher);
         this.setAuthor(author);
         this.setEdition(edition);
@@ -43,11 +43,11 @@ public class Book extends Literature {
      * 
      * @param edition the edition of the book
      */
-    private void setEdition(int edition) {
-        if (edition > 0) {
+    private void setEdition(String edition) {
+        if (edition.trim().length() > 0) {
             this.edition = edition;
         } else {
-            this.edition = 0;
+            this.edition = "noEdition";
         }
     }
 
@@ -65,7 +65,7 @@ public class Book extends Literature {
      * 
      * @return the edition of the book
      */
-    public int getEdition() {
+    public String getEdition() {
         return this.edition;
     }
 }
