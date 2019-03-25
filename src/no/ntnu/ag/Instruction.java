@@ -1,4 +1,4 @@
-package src.no.ntnu.ag;
+package no.ntnu.ag;
 
 /**
  * Represents an instruction with a command and argument.

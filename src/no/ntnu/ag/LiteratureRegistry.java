@@ -1,4 +1,4 @@
-package src.no.ntnu.ag;
+package no.ntnu.ag;
 
 import java.util.ArrayList;
 import java.util.Iterator;

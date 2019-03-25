@@ -1,4 +1,4 @@
-package src.no.ntnu.ag;
+package no.ntnu.ag;
 
 /**
  * The Main class contains the main method for running the application.
