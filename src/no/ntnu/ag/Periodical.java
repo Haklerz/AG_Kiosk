@@ -1,4 +1,4 @@
-package no.ntnu.ag.src;
+package src.no.ntnu.ag;
 
 /**
  * Represents a periodical with a title, a publisher and a number of editions

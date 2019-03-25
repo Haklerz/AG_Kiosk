@@ -1,4 +1,4 @@
-package no.ntnu.ag.src;
+package src.no.ntnu.ag;
 
 /**
  * Represents a Book with a title and publisher, an author, a number of pages
