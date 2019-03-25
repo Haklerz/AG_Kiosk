@@ -67,8 +67,8 @@ public class LiteratureRegistry {
         addLiterature(new Book("Pride and Prejudice", "Modern Library", "Jane Austen", "First Edition"));
         addLiterature(new Book("Twilight", "Little, Brown and Company", "Stephenie Meyer", "First Edition"));
         addLiterature(new Book("The Chronicles of Narnia", "HarperCollins", "C.S. Lewis", "Reissue Edition"));
-        addLiterature(new Journal("Teknisk Ukeblad", "Teknisk Ukeblad Media", "Technology", 11));
-        addLiterature(new Magazine("KK", "Aller Media", "Health and Lifestyle", 49));
+        addLiterature(new Journal("Teknisk Ukeblad", "Teknisk Ukeblad Media", 11, "Technology"));
+        addLiterature(new Magazine("KK", "Aller Media", 49, "Health and Lifestyle"));
         addLiterature(new Newspaper("Aftenposten", "Schibsted Norge", 52));
         addLiterature(new Newspaper("Dagbladed", "Aller Media", 52));
     }

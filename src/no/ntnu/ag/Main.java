@@ -5,6 +5,6 @@ package no.ntnu.ag;
  */
 public class Main {
     public static void main(String[] args) {
-        new Tui(new Kiosk()).run();
+        new TextbasedUserInterface(new Kiosk()).run();
     }
 }
