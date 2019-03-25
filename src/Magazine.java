@@ -1,17 +1,17 @@
 /**
- * Represents a Newspaper.
+ * Represents a magazine.
  * <p>
  * With this class you can:
  * <ul>
- * <li>Make a newspaper.
- * <li>Get the author of the newspaper.
- * <li>Get the title of the newspaper.
- * <li>Get the publisher of the newspaper.
- * <li>Get the amout of pages in the newspaper.
- * <li>Get the number of issues the newspaper has a year.
+ * <li>Make a magazine.
+ * <li>Get the author of the magazine.
+ * <li>Get the title of the magazine.
+ * <li>Get the publisher of the magazine.
+ * <li>Get the amout of pages in the magazine.
+ * <li>Get the number of issues the magazine has a year.
  * </ul>
  * @author Trym Jorgensen
- * @version 1.0
+ * @version 2019.03.25
  */
 public class Magazine extends Periodical
 {
@@ -24,7 +24,7 @@ public class Magazine extends Periodical
     private String genre;
 
     /**
-     * Constructor for objects of class Newspaper
+     * Constructor for objects of class magazine
      */
     public Magazine(String publisher, int pages, String title, int issues, String genre)
     {
@@ -33,10 +33,21 @@ public class Magazine extends Periodical
         // this.pages = pages;
         // this.title = title;
         super(publisher, pages, title, issues);
-        this.genre = genre; 
+        this.setGenre(genre);
     }
     
+    /**
+     * Get the genre of the magazine
+     * @return the genre of the magazine
+     */
     public String getGenre(){
         return this.genre;
+    }
+    
+    /**
+     * set the genre of the magazine
+     */
+    private void setGenre(String genre){
+        this.genre = genre;
     }
 }

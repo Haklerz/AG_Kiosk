@@ -10,6 +10,7 @@
  * <li>Get the amout of pages in the book.
  * </ul>
  * @author Trym Jorgensen
+ * @version 2019.03.25
  */
 public class Book extends Litteratur
 {

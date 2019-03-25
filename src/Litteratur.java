@@ -2,8 +2,8 @@
 /**
  * Write a description of class Litteratur here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Trym Jørgensen
+ * @version 2019.03.25
  */
 public class Litteratur
 {

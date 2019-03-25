@@ -11,7 +11,7 @@
  * <li>Get the number of issues the newspaper has a year.
  * </ul>
  * @author Trym Jorgensen
- * @version 1.0
+ * @version 2019.03.25
  */
 public class Newspaper extends Periodical
 {

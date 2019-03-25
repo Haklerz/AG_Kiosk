@@ -14,6 +14,9 @@ import java.util.Iterator;
  * <li>Add an existing Book to a series.
  * </ul>
  * @see Book
+ * 
+ * @author Trym Jørgensen
+ * @version 2019.03.25
  */
 public class BookRegistry {
     private ArrayList<Litteratur> litteraturs;
