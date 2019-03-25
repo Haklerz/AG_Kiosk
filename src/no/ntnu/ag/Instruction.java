@@ -2,6 +2,9 @@ package no.ntnu.ag;
 
 /**
  * Represents an instruction with a command and argument.
+ * 
+ * @version 2019.3.25
+ * @author Håkon "Haklerz" Lervik
  */
 public class Instruction {
     String command;

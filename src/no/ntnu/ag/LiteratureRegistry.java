@@ -2,13 +2,16 @@ package no.ntnu.ag;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import no.ntnu.ag.Literature.*;
+import no.ntnu.ag.literature.Literature;
+
+//for the dummie fill method
+import no.ntnu.ag.literature.*;
 
 /**
  * Represents a collection of literature.
  * 
  * @see Literature
- * @version 13.03.2019
+ * @version 2019.3.25
  * @author Håkon "Haklerz" Lervik
  */
 public class LiteratureRegistry {
@@ -32,24 +35,12 @@ public class LiteratureRegistry {
         return literatureList.iterator();
     }
 
-    public Iterator<Literature> find(String searchType, String searchText) {
+    public Iterator<Literature> findLiterature(String searchText) {
         ArrayList<Literature> foundLiterature = new ArrayList<>();
-        for (Literature searchLiterature : literatureList) {
-            switch (searchType) {
-            case "title":
-                if (searchLiterature.getTitle().toLowerCase().contains(searchText.toLowerCase())) {
-                    foundLiterature.add(searchLiterature);
-                }
-                break;
-
-            case "publisher":
-                if (searchLiterature.getPublisher().toLowerCase().contains(searchText.toLowerCase())) {
-                    foundLiterature.add(searchLiterature);
-                }
-                break;
-
-            default:
-                break;
+        for (Literature literature : literatureList) {
+            String literatureDetails = literature.getTitle() + literature.getPublisher();
+            if (literatureDetails.toLowerCase().contains(searchText.toLowerCase())) {
+                foundLiterature.add(literature);
             }
         }
         return foundLiterature.iterator();
@@ -57,14 +48,22 @@ public class LiteratureRegistry {
 
     public void fillDummies() {
         addLiterature(new Book("The Hunger Games", "Scholastic Press", "Suzanne Collins", "First Edition"));
-        addLiterature(new Book("Harry Potter and the Philosopher's Stone", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        addLiterature(new Book("Harry Potter and the Chamber of Secrets", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        addLiterature(new Book("Harry Potter and the Prisoner of Azkaban", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        addLiterature(new Book("Harry Potter and the Goblet of Fire", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        addLiterature(new Book("Harry Potter and the Order of the Phoenix", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        addLiterature(new Book("Harry Potter and the Half-Blood Prince", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        addLiterature(new Book("Harry Potter and the Deathly Hallows", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        addLiterature(new Book("To Kill a Mockingbird", "Harper Perennial Modern Classics", "Harper Lee", "First Edition"));
+        addLiterature(new Book("Harry Potter and the Philosopher's Stone", "Bloomsbury Publishing", "J.K. Rowling",
+                "1st Edition"));
+        addLiterature(new Book("Harry Potter and the Chamber of Secrets", "Bloomsbury Publishing", "J.K. Rowling",
+                "1st Edition"));
+        addLiterature(new Book("Harry Potter and the Prisoner of Azkaban", "Bloomsbury Publishing", "J.K. Rowling",
+                "1st Edition"));
+        addLiterature(new Book("Harry Potter and the Goblet of Fire", "Bloomsbury Publishing", "J.K. Rowling",
+                "1st Edition"));
+        addLiterature(new Book("Harry Potter and the Order of the Phoenix", "Bloomsbury Publishing", "J.K. Rowling",
+                "1st Edition"));
+        addLiterature(new Book("Harry Potter and the Half-Blood Prince", "Bloomsbury Publishing", "J.K. Rowling",
+                "1st Edition"));
+        addLiterature(new Book("Harry Potter and the Deathly Hallows", "Bloomsbury Publishing", "J.K. Rowling",
+                "1st Edition"));
+        addLiterature(
+                new Book("To Kill a Mockingbird", "Harper Perennial Modern Classics", "Harper Lee", "First Edition"));
         addLiterature(new Book("Pride and Prejudice", "Modern Library", "Jane Austen", "First Edition"));
         addLiterature(new Book("Twilight", "Little, Brown and Company", "Stephenie Meyer", "First Edition"));
         addLiterature(new Book("The Chronicles of Narnia", "HarperCollins", "C.S. Lewis", "Reissue Edition"));

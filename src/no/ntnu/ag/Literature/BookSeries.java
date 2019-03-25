@@ -1,4 +1,4 @@
-package no.ntnu.ag.Literature;
+package no.ntnu.ag.literature;
 
 import java.util.ArrayList;
 import java.util.Iterator;

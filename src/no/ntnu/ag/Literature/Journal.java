@@ -1,48 +1,48 @@
-package no.ntnu.ag.Literature;
+package no.ntnu.ag.literature;
 
 /**
  * Represents a journal with a title, a publisher and a number of editions per
- * year.
+ * year and a field.
  * 
  * @version 2019.3.25
  * @author Håkon "Haklerz" Lervik
  */
 public class Journal extends Periodical {
-    public String genre;
+    public String field;
 
     /**
-     * Creates a journal with a title, a publisher and a number of editions per
-     * year.
+     * Creates a journal with a title, a publisher and a number of editions per year
+     * and a field.
      * 
      * @param title     the title
      * @param publisher the publisher
      * @param editions  the number of editions
-     * @param genre     the genre
+     * @param field     the field
      */
-    public Journal(String title, String publisher, int editions, String genre) {
+    public Journal(String title, String publisher, int editions, String field) {
         super(title, publisher, editions);
-        this.setGenre(genre);
+        this.setField(field);
     }
 
     /**
-     * Returns the genre of the journal.
+     * Returns the field of the journal.
      * 
-     * @return the genre
+     * @return the field
      */
-    public String getGenre() {
-        return genre;
+    public String getField() {
+        return field;
     }
 
     /**
-     * Sets the genre of the journal.
+     * Sets the field of the journal.
      * 
-     * @param genre the genre to set
+     * @param field the field to set
      */
-    private void setGenre(String genre) {
-        if (genre.trim().length() > 0) {
-            this.genre = genre;
+    private void setField(String field) {
+        if (field.trim().length() > 0) {
+            this.field = field;
         } else {
-            this.genre = "noGenre";
+            this.field = "noField";
         }
     }
 }

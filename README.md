@@ -33,4 +33,7 @@ applikasjon som for eksempel mer avansert søk, bygge inn salgs-støtte (kassa-a
 Literature(title, publisher)
     Book(author, edition, datePublished)
     BookSeries()
-    Periodical(editionsPerYear, type, genre)
+    Periodical(editionsPerYear)
+        Newspaper()
+        Journal(field)
+        Magazine(genre)

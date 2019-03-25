@@ -4,15 +4,31 @@ import java.util.Scanner;
 
 /**
  * TextbasedUserInterface
+ * 
+ * Det skal være mulig å registrere lesestoff av alle typer definert ovenfor.
+ * Det skal være mulig å skrive ut innholdet i hele registeret.
+ * Det skal være mulig å søke i registeret på tittel og utgiver for å finne ett konkret lesestoff.
+ * Det skal være mulig å søke i registeret etter alt lesestoff fra en bestemt utgiver.
+ * Det skal være mulig å gjøre om en enkeltstående bok om til en serie.
+ * I tillegg kan dere utvide applikasjonen med funksjonalitet dere mener hører hjemme i en slik
+ * applikasjon som for eksempel mer avansert søk, bygge inn salgs-støtte (kassa-apparat (POS)) osv.
+ * 
+ * new
+ * list
+ * find
+ * add
+ * remove
+ * 
+ * @version 2019.3.25
+ * @author Håkon "Haklerz" Lervik
  */
 public class TextbasedUserInterface {
-    private Kiosk kiosk;
+    private LiteratureRegistry registry;
     private boolean running;
     private Scanner input;
 
-    public TextbasedUserInterface(Kiosk kiosk) {
-        this.addKiosk(kiosk);
-        this.kiosk.init();
+    public TextbasedUserInterface() {
+        this.registry = new LiteratureRegistry();
         this.input = new Scanner(System.in);
     }
 
@@ -47,16 +63,5 @@ public class TextbasedUserInterface {
     private void quit() {
         this.running = false;
         this.input.close();
-    }
-
-    /**
-     * Points the textbased user interface to a kiosk to interact with.
-     * 
-     * @param kiosk the kiosk
-     */
-    private void addKiosk(Kiosk kiosk) {
-        if (kiosk != null) {
-            this.kiosk = kiosk;
-        }
     }
 }
