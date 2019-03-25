@@ -70,9 +70,6 @@ public class BookRegistry {
             if (searchType.toLowerCase().contains("title")) {
                 testText = testLitteratur.getTitle();
             }
-            else if (searchType.toLowerCase().contains("author")) {
-                testText = testLitteratur.getAuthor();
-            }
             else if (searchType.toLowerCase().contains("publisher")) {
                 testText = testLitteratur.getPublisher();
             }
@@ -91,7 +88,7 @@ public class BookRegistry {
         this.addLitteratur(new Book("David J. Barnes, Michael Kölling", "Pearson", 630, "Objects first with Java", "textbook"));
         this.addLitteratur(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, "Algoritmer og Datastrukturer", "textbook"));
         this.addLitteratur(new Book("Allan R. Hambley", "Pearson", 866, "Electrical Engineering", "textbook"));
-        this.addLitteratur(new Newspaper("Trym Jørgensen", "VG", 30, "VG", 340));
+        this.addLitteratur(new Newspaper("VG", 30, "VG", 340));
     }
     
         

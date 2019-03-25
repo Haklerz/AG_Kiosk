@@ -8,30 +8,19 @@
 public class Litteratur
 {
     // instance variables - replace the example below with your own
-    private String author;
     private String publisher;
     private int pages;
     private String title;
-
+    
     /**
      * Constructor for objects of class Litteratur
      */
-    public Litteratur(String author, String publisher, int pages, String title)
+    public Litteratur(String publisher, int pages, String title)
     {
         // initialise instance variables
-        this.author = author;
         this.publisher = publisher;
         this.pages = pages;
         this.title = title;
-    }
-    
-    /**
-     * returns the books author.
-     * @return the author of the book.
-     */
-    public String getAuthor()
-    {
-        return this.author;
     }
 
     /**

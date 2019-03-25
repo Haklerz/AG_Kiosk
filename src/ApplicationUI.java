@@ -26,8 +26,8 @@ public class ApplicationUI
     };
     
     private String[] menuTypes = {
-        "1. Book",
-        "2. Newspaper",
+        "1. Newspaper",
+        "2. Book",
     };
 
     /**
@@ -154,7 +154,7 @@ public class ApplicationUI
     private void init()
     {
         this.bookRegistry.fillDummies();
-        System.out.println("Dummies was filled");
+        System.out.println("Dummies was made for testing");
     }
 
     /**
@@ -183,9 +183,6 @@ public class ApplicationUI
         System.out.println("Please add the title of the litteratur");
         Scanner reader = new Scanner(System.in);
         String title = reader.nextLine();
-        
-        System.out.println("Please add the author of the litteratur");
-        String author = reader.nextLine();
          
         System.out.println("Please add the publisher of the litteratur");
         String publisher = reader.nextLine();
@@ -193,7 +190,7 @@ public class ApplicationUI
         System.out.println("Please add the amout pages the litteratur has");
         int pages = reader.nextInt();
 
-        Litteratur litteratur = new Litteratur(author, publisher, pages, title);
+        Litteratur litteratur = new Litteratur(publisher, pages, title);
         return litteratur;
     }
 
@@ -202,8 +199,11 @@ public class ApplicationUI
         Litteratur book1 = addNewProduct();
         System.out.println("Please add the genre of the book");
         String genre = reader.nextLine();
+        
+        System.out.println("Please add the author of the litteratur");
+        String author = reader.nextLine();
 
-        Book book = new Book(book1.getAuthor(), book1.getPublisher(), book1.getPages(), book1.getTitle(), genre);
+        Book book = new Book(author, book1.getPublisher(), book1.getPages(), book1.getTitle(), genre);
         this.bookRegistry.addLitteratur(book);
     }
 
@@ -213,7 +213,7 @@ public class ApplicationUI
         System.out.println("Please add the amount of issues the newspaper has a year");
         int issues = reader.nextInt();
 
-        Newspaper newspaper = new Newspaper(newspaper1.getAuthor(), newspaper1.getPublisher(), newspaper1.getPages(), newspaper1.getTitle(), issues);
+        Newspaper newspaper = new Newspaper(newspaper1.getPublisher(), newspaper1.getPages(), newspaper1.getTitle(), issues);
         this.bookRegistry.addLitteratur(newspaper);
     }
     
@@ -249,7 +249,6 @@ public class ApplicationUI
                 
                 System.out.println();
                 System.out.println("Title: " + lit.getTitle()
-                    + " Author: " + lit.getAuthor()
                     + " Publisher: " + lit.getPublisher()
                     + " Pages: " + lit.getPages()
                     );

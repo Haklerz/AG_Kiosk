@@ -19,6 +19,7 @@ public class Book extends Litteratur
     // private int pages;
     // private String publisher;
     private String genre;
+    private String author;
     
     /**
      * Set the author and title fields when this object
@@ -26,8 +27,9 @@ public class Book extends Litteratur
      */
     public Book(String author, String publisher, int pages, String title, String genre)
     {
-        super(author, publisher, pages, title);
+        super(publisher, pages, title);
         this.genre = genre;
+        this.author = author;
         // this.author = author;
         // this.title = title;
         // this.pages = pages;
@@ -43,14 +45,14 @@ public class Book extends Litteratur
         return this.genre;
     }
     
-    // /**
-     // * returns the books author
-     // * @return the author of the book
-     // */
-    // public String getAuthor()
-    // {
-        // return this.author;
-    // }
+    /**
+     * returns the books author
+     * @return the author of the book
+     */
+    public String getAuthor()
+    {
+        return this.author;
+    }
 
     // /**
      // * returns the books publisher

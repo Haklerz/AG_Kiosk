@@ -13,7 +13,7 @@
  * @author Trym Jorgensen
  * @version 1.0
  */
-public class Newspaper extends Periodical
+public class Magazine extends Periodical
 {
     // instance variables - replace the example below with your own
     // private String author;
@@ -21,16 +21,22 @@ public class Newspaper extends Periodical
     // private int pages;
     // private String title;
     // private int issuesPerYear;
+    private String genre;
 
     /**
      * Constructor for objects of class Newspaper
      */
-    public Newspaper(String publisher, int pages, String title, int issues)
+    public Magazine(String publisher, int pages, String title, int issues, String genre)
     {
         // this.author = author;
         // this.publisher = publisher;
         // this.pages = pages;
         // this.title = title;
         super(publisher, pages, title, issues);
+        this.genre = genre; 
+    }
+    
+    public String getGenre(){
+        return this.genre;
     }
 }
