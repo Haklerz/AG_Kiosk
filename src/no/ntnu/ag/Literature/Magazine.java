@@ -1,4 +1,4 @@
-package no.ntnu.ag;
+package no.ntnu.ag.Literature;
 
 /**
  * Represents a magazine with a title, a publisher, a number of editions per

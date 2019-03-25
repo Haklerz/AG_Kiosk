@@ -2,6 +2,7 @@ package no.ntnu.ag;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import no.ntnu.ag.Literature.*;
 
 /**
  * Represents a collection of literature.

@@ -1,4 +1,4 @@
-package no.ntnu.ag;
+package no.ntnu.ag.Literature;
 
 /**
  * Represents a newspaper with a title, a publisher and a number of editions per

@@ -1,4 +1,4 @@
-package no.ntnu.ag;
+package no.ntnu.ag.Literature;
 
 /**
  * Represents a literature object with a title and a publisher.
