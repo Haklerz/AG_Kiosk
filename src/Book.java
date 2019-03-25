@@ -1,71 +1,81 @@
-package src;
-
 /**
- * Represents a book with a title, author and number of pages.
+ * Represents a Book.
  * <p>
  * With this class you can:
  * <ul>
- * <li>Get the title of the book.
+ * <li>Make a book.
  * <li>Get the author of the book.
- * <li>Get the number of pages in the book.
+ * <li>Get the title of the book.
+ * <li>Get the publisher of the book.
+ * <li>Get the amout of pages in the book.
  * </ul>
+ * @author Trym Jorgensen
  */
-public class Book {
-    private String title, author, publisher;
-    private int pages, edition;
-
+public class Book extends Litteratur
+{
+    // The fields.
+    // private String author;
+    // private String title;
+    // private int pages;
+    // private String publisher;
+    private String genre;
+    
     /**
-     * Constructor for the class Book.
-     * @param title Title of the Book.
-     * @param author Author of the Book.
-     * @param pages Number of pages in the Book.
-     * @param publisher Publisher of the Book.
+     * Set the author and title fields when this object
+     * is constructed.
      */
-    public Book(String title, String author, String publisher, int pages, int edition) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.pages = pages;
-        this.edition = edition;
+    public Book(String author, String publisher, int pages, String title, String genre)
+    {
+        super(author, publisher, pages, title);
+        this.genre = genre;
+        // this.author = author;
+        // this.title = title;
+        // this.pages = pages;
+        // this.publisher = publisher;
     }
-
+    
     /**
-     * Returns the title of the Book as a<code>String</code>.
-     * @return Title of the Book.
-     */
-    public String getTitle() {
-        return this.title;
+    * returns the books author
+    * @return the author of the book
+    */
+    public String getGenre()
+    {
+        return this.genre;
     }
+    
+    // /**
+     // * returns the books author
+     // * @return the author of the book
+     // */
+    // public String getAuthor()
+    // {
+        // return this.author;
+    // }
 
-    /**
-     * Returns the author of the Book as a<code>String</code>.
-     * @return Author of the Book.
-     */
-    public String getAuthor() {
-        return this.author;
-    }
-
-    /**
-     * Returns the publisher of the Book as a<code>String</code>.
-     * @return Publisher of the Book.
-     */
-    public String getPublisher() {
-        return this.publisher;
-    }
-
-    /**
-     * Returns the number of pages in the Book as an<code>int</code>.
-     * @return Number of pages in the Book.
-     */
-    public int getPages() {
-        return this.pages;
-    }
-
-    /**
-     * Returns the edition of the book.
-     * @return Edition of the Book.
-     */
-    public int getEdition() {
-        return this.edition;
-    }
+    // /**
+     // * returns the books publisher
+     // * @return the publisher of the book
+     // */
+    // public String getPublisher()
+    // {
+        // return this.publisher;
+    // }
+    
+    // /**
+     // * returns the books title
+     // * @return the title of the book
+     // */
+    // public String getTitle()
+    // {
+        // return this.title; 
+    // }
+    
+    // /**
+     // * returns the amout of pages in the book
+     // * @return the amount of pages in the book
+     // */
+    // public int getPages()
+    // {
+        // return this.pages;
+    // }
 }
