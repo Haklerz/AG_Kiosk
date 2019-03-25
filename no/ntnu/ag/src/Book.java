@@ -4,7 +4,7 @@ package no.ntnu.ag.src;
  * Represents a Book with a title and publisher, an author, a number of pages
  * and an edition.
  * 
- * @version 13.03.2019
+ * @version 2019.3.25
  * @author Håkon "Haklerz" Lervik
  */
 public class Book extends Literature {
@@ -14,10 +14,10 @@ public class Book extends Literature {
     /**
      * Creates a Book with a title and publisher, an author and an edition.
      * 
-     * @param title     title of the Book
-     * @param publisher publisher of the Book
-     * @param author    author of the Book
-     * @param edition   the edition of the book
+     * @param title     the title
+     * @param publisher the publisher
+     * @param author    the author
+     * @param edition   the edition
      */
     public Book(String title, String publisher, String author, String edition) {
         super(title, publisher);
@@ -28,7 +28,7 @@ public class Book extends Literature {
     /**
      * Sets the author of the book.
      * 
-     * @param author the author of the book
+     * @param author the author
      */
     private void setAuthor(String author) {
         if (author.trim().length() > 0) {
@@ -41,7 +41,7 @@ public class Book extends Literature {
     /**
      * Sets the edition of the book.
      * 
-     * @param edition the edition of the book
+     * @param edition the edition
      */
     private void setEdition(String edition) {
         if (edition.trim().length() > 0) {
@@ -54,7 +54,7 @@ public class Book extends Literature {
     /**
      * Returns the author of the book as a<code>String</code>.
      * 
-     * @return the author of the book
+     * @return the author
      */
     public String getAuthor() {
         return this.author;
@@ -63,7 +63,7 @@ public class Book extends Literature {
     /**
      * Returns the edition of the book as an<code>int</code>.
      * 
-     * @return the edition of the book
+     * @return the edition
      */
     public String getEdition() {
         return this.edition;

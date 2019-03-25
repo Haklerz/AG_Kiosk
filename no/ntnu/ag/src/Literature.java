@@ -3,7 +3,7 @@ package no.ntnu.ag.src;
 /**
  * Represents a literature object with a title and a publisher.
  * 
- * @version 13.03.2019
+ * @version 2019.3.25
  * @author Håkon "Haklerz" Lervik
  */
 public abstract class Literature {
@@ -13,8 +13,8 @@ public abstract class Literature {
     /**
      * Initializes a literature object with a title and a publisher.
      * 
-     * @param title     the title of the literature object
-     * @param publisher the pulisher of the literature object
+     * @param title     the title
+     * @param publisher the pulisher
      */
     public Literature(String title, String publisher) {
         this.setTitle(title);
@@ -22,9 +22,9 @@ public abstract class Literature {
     }
 
     /**
-     * Sets the title of the literature object.
+     * Sets the title of the literature.
      * 
-     * @param title the title of the literature object
+     * @param title the title
      */
     private void setTitle(String title) {
         if (title.trim().length() > 0) {
@@ -35,9 +35,9 @@ public abstract class Literature {
     }
 
     /**
-     * Sets the publisher of the literature object.
+     * Sets the publisher of the literature.
      * 
-     * @param publisher the publisher of the literature object
+     * @param publisher the publisher
      */
     private void setPublisher(String publisher) {
         if (publisher.trim().length() > 0) {
@@ -48,18 +48,18 @@ public abstract class Literature {
     }
 
     /**
-     * Returns the title of the literature object as a<code>String</code>.
+     * Returns the title of the literature as a<code>String</code>.
      * 
-     * @return the title of the literature object
+     * @return the title
      */
     public String getTitle() {
         return this.title;
     }
 
     /**
-     * Returns the publisher of the literature object as a<code>String</code>.
+     * Returns the publisher of the literature as a<code>String</code>.
      * 
-     * @return the publisher of the literature object
+     * @return the publisher
      */
     public String getPublisher() {
         return this.publisher;
