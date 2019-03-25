@@ -1,14 +1,19 @@
 package no.ntnu.ag;
 
+import java.util.Scanner;
+
 /**
  * TextbasedUserInterface
  */
 public class TextbasedUserInterface {
     private Kiosk kiosk;
     private boolean running;
+    private Scanner input;
 
     public TextbasedUserInterface(Kiosk kiosk) {
         this.addKiosk(kiosk);
+        this.kiosk.init();
+        this.input = new Scanner(System.in);
     }
 
     public void run() {
@@ -16,7 +21,9 @@ public class TextbasedUserInterface {
 
         while (running) {
             printCursor();
-            Instruction instruction = null;
+            String userInput = input.nextLine();
+            Instruction instruction = Instruction.parseInstruction(userInput);
+
             switch (instruction.getCommand()) {
             case "quit":
                 quit();
@@ -39,6 +46,7 @@ public class TextbasedUserInterface {
 
     private void quit() {
         this.running = false;
+        this.input.close();
     }
 
     /**
