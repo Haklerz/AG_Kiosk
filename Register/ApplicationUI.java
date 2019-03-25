@@ -21,9 +21,13 @@ public class ApplicationUI
     // etc.
     private String[] menuItems = {
         "1. List all litteratur",
-        "2. Add new Newspaper",
-        "3. Add new Book",    
-        "4. Find a product by name",
+        "2. Add new Litteratur",
+        "3. Find a product by name",
+    };
+    
+    private String[] menuTypes = {
+        "1. Book",
+        "2. Newspaper",
     };
 
     /**
@@ -32,7 +36,6 @@ public class ApplicationUI
     public ApplicationUI() 
     {
         this.bookRegistry = new BookRegistry();
-        this.bookRegistry.fillDummies();
     }
 
     /**
@@ -49,7 +52,7 @@ public class ApplicationUI
         {
             try 
             {
-                int menuSelection = this.showMenu();
+                int menuSelection = this.showMenu(menuItems);
                 switch (menuSelection) 
                 {
                     case 1:
@@ -57,17 +60,14 @@ public class ApplicationUI
                         break;
 
                     case 2:
-                        this.addNewNewspaper();
+                        this.addNewLitteratur();
                         break;
-
+                        
                     case 3:
-                        this.addNewBook();
-                        break;    
-                    case 4:
                         this.findProductByName();
                         break;
 
-                    case 5:
+                    case 4:
                         System.out.println("\nThank you for using Application v0.1. Bye!\n");
                         quit = true;
                         break;
@@ -84,6 +84,36 @@ public class ApplicationUI
     }
 
     /**
+     * 
+     */
+    public void addNewLitteratur(){
+        try 
+        {
+            int menuSelection = this.showMenu(menuTypes);
+            switch (menuSelection) 
+            {
+                case 1:
+                    this.addNewNewspaper();
+                    break;
+
+                case 2:
+                    this.addNewBook();
+                    break;    
+
+                case 3:
+                    System.out.println("\nThank you for using Application v0.1. Bye!\n");
+                    break;
+
+                default:
+            }
+        } 
+        catch (InputMismatchException ime) 
+        {
+            System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
+        }   
+    }
+    
+    /**
      * Displays the menu to the user, and waits for the users input. The user is
      * expected to input an integer between 1 and the max number of menu items. 
      * If the user inputs anything else, an InputMismatchException is thrown. 
@@ -92,13 +122,13 @@ public class ApplicationUI
      * @return the menu number (between 1 and max menu item number) provided by the user.
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
-    private int showMenu() throws InputMismatchException 
+    private int showMenu(String [] menuChoices) throws InputMismatchException 
     {
         System.out.println("\n**** Application v0.1 ****\n");
         // Display the menu
-        for ( String menuItem : menuItems )
+        for ( String menuChoice : menuChoices ) 
         {
-            System.out.println(menuItem);
+            System.out.println(menuChoice);
         }
         int maxMenuItemNumber = menuItems.length + 1;
         // Add the "Exit"-choice to the menu
@@ -123,7 +153,8 @@ public class ApplicationUI
      */
     private void init()
     {
-        System.out.println("init() was called");
+        this.bookRegistry.fillDummies();
+        System.out.println("Dummies was filled");
     }
 
     /**
@@ -228,7 +259,7 @@ public class ApplicationUI
         
         else{
             System.out.println();
-            System.out.println("There are no books registered.");
+            System.out.println("There are no litteraturs registered.");
             System.out.println();
         }
     }
