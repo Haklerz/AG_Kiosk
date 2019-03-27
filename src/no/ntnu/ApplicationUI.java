@@ -98,15 +98,15 @@ public class ApplicationUI
             int menuSelection = this.showMenu(this.searchTypes);
             switch(menuSelection){
                 case 1:
-                    findLitteraturByTitle();
+                    findLitteratur("title");
                     break;
                 
                 case 2:
-                    findLitteraturByAuthor();
+                    findLitteratur("author");
                     break;
                 
                 case 3:
-                    findLitteraturByPublisher();
+                    findLitteratur("publisher");
                     break;
 
                 case 4:
@@ -275,45 +275,17 @@ public class ApplicationUI
 
         this.litRegistry.addLitteratur(new Magazine(magazine1.getPublisher(), magazine1.getPages(), magazine1.getTitle(), issues, genre));
     }
-    
-    /**
-    * Finds a litteratur by the authors name
-    */
-    void findLitteraturByAuthor()
-    {  
-        System.out.println("Please specify what the name of the author");
-        Scanner reader = new Scanner(System.in);
-        String text = reader.nextLine();
-        
-        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("author", text);
-        
-        printLitteraturInfo(foundLitIt);
-    }
-    
-    /**
-    * Finds a litteratur by the publsihers name
-    */
-    void findLitteraturByPublisher()
-    {  
-        System.out.println("Please specify what the name of the Publisher");
-        Scanner reader = new Scanner(System.in);
-        String text = reader.nextLine();
-        
-        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("publisher", text);
-        
-        printLitteraturInfo(foundLitIt);
-    }
 
     /**
-      * Finds a littartur by the title
+      * Finds a littartur by either the title, author or publisher.
       */
-    void findLitteraturByTitle()
+    void findLitteratur(String searchType)
     {
-        System.out.println("Please specify what the title of the book");
+        System.out.println("Please specify the " + searchType + " of the book");
         Scanner reader = new Scanner(System.in);
         String text = reader.nextLine();
         
-        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("title", text);
+        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur(searchType, text);
         
         printLitteraturInfo(foundLitIt);
     }
