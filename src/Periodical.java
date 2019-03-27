@@ -15,7 +15,7 @@ public class Periodical extends Litteratur
     {
         // initialise instance variables
         super(publisher, pages, title);
-        this.issuesPerYear = issues; 
+        this.setIssuesPerYear(issues);
     }
     
      /**
@@ -26,4 +26,10 @@ public class Periodical extends Litteratur
         return this.issuesPerYear;
     }
     
+    public void setIssuesPerYear(int issues){
+        this.issuesPerYear = issues;
+        if(issues>0){
+            this.issuesPerYear = 1;
+        }
+    }
 }

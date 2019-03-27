@@ -29,7 +29,7 @@ public class Book extends Litteratur
     public Book(String author, String publisher, int pages, String title, String genre)
     {
         super(publisher, pages, title);
-        this.genre = genre;
+        this.setGenre(genre);
         this.author = author;
         // this.author = author;
         // this.title = title;
@@ -53,6 +53,10 @@ public class Book extends Litteratur
     public String getAuthor()
     {
         return this.author;
+    }
+    
+    public void setGenre(String genre){
+        this.genre = genre;
     }
 
     // /**

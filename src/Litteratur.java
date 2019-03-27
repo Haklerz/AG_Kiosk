@@ -18,9 +18,9 @@ public class Litteratur
     public Litteratur(String publisher, int pages, String title)
     {
         // initialise instance variables
-        this.publisher = publisher;
-        this.pages = pages;
-        this.title = title;
+        this.setPublisher(publisher);
+        this.setPages(pages);
+        this.setTitle(title);
     }
 
     /**
@@ -48,5 +48,20 @@ public class Litteratur
     public int getPages()
     {
         return this.pages;
+    }
+    
+    public void setPages(int pages){
+        this.pages = pages;
+        if(pages>0){
+            this.pages = 1;
+        }
+    }
+    
+    public void setPublisher(String publisher){
+        this.publisher = publisher;
+    }
+    
+    public void setTitle(String title){
+        this.title = title;
     }
 }
