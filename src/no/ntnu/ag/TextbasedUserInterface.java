@@ -32,6 +32,7 @@ public class TextbasedUserInterface {
 
     public TextbasedUserInterface() {
         this.registry = new LiteratureRegistry();
+        this.registry.fillDummies();
         this.input = new Scanner(System.in);
     }
 
@@ -45,7 +46,7 @@ public class TextbasedUserInterface {
 
             switch (instruction.getCommand()) {
             case "list":
-                list();
+                list(registry.getLiteratureIterator());
                 break;
 
             case "quit":
@@ -59,22 +60,60 @@ public class TextbasedUserInterface {
         }
     }
 
-    private void list() {
-        Iterator<Literature> literatureIterator = registry.getLiteratureIterator();
+    private void list(Iterator<Literature> literatureIterator) {
         while (literatureIterator.hasNext()) {
             Literature literature = literatureIterator.next();
             if (literature instanceof Book) {
-
-            } else if (literature instanceof Journal) {
-
-            } else if (literature instanceof Newspaper) {
-            
-            } else if (literature instanceof Magazine) {
-
-            } else if (literature instanceof BookSeries) {
-                
+                printBookDetails((Book) literature);
             }
+            else if (literature instanceof Journal) {
+                printJournalDetails((Journal) literature);
+            }
+            else if (literature instanceof Newspaper) {
+                printNewspaperDetails((Newspaper) literature);
+            }
+            else if (literature instanceof Magazine) {
+                printMagazineDetails((Magazine) literature);
+            }
+            else if (literature instanceof BookSeries) {
+                BookSeries bookSeries = (BookSeries) literature;
+                printBookSeriesDetails(bookSeries);
+                Iterator<Book> bookIterator = bookSeries.getBookIterator();
+                while (bookIterator.hasNext()) {
+                    Book book = bookIterator.next();
+                    printBookDetailsIndent(book);
+                }
+            }
+            /*
+            if (literatureIterator.hasNext()) {
+                System.out.println();
+            }
+            */
         }
+    }
+
+    private void printBookSeriesDetails(BookSeries bookSeries) {
+        System.out.println("Series: " + bookSeries.getTitle());
+    }
+
+    private void printMagazineDetails(Magazine magazine) {
+        System.out.println("Magazine: " + magazine.getTitle());
+    }
+
+    private void printNewspaperDetails(Newspaper newspaper) {
+        System.out.println("Newspaper: " + newspaper.getTitle());
+    }
+
+    private void printJournalDetails(Journal journal) {
+        System.out.println("Journal: " + journal.getTitle());
+    }
+
+    private void printBookDetailsIndent(Book book) {
+        System.out.println("      : " + book.getTitle());
+    }
+
+    private void printBookDetails(Book book) {
+        System.out.println("Book: " + book.getTitle());
     }
 
     private void printCursor() {
@@ -86,7 +125,7 @@ public class TextbasedUserInterface {
     }
 
     private void quit() {
-        System.out.println("Thank you for using kiosk v" + 0.6 + ".");
+        System.out.println("Thank you for using kiosk v" + 0.6);
         this.running = false;
         this.input.close();
     }
