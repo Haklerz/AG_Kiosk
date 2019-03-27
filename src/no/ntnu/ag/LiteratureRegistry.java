@@ -72,6 +72,6 @@ public class LiteratureRegistry {
         addLiterature(new Journal("Teknisk Ukeblad", "Teknisk Ukeblad Media", 11, "Technology"));
         addLiterature(new Magazine("KK", "Aller Media", 49, "Health and Lifestyle"));
         addLiterature(new Newspaper("Aftenposten", "Schibsted Norge", 52));
-        addLiterature(new Newspaper("Dagbladed", "Aller Media", 52));
+        addLiterature(new Newspaper("Dagbladet", "Aller Media", 52));
     }
 }

@@ -117,32 +117,53 @@ public class TextbasedUserInterface {
             while (bookIterator.hasNext()) {
                 Book book = bookIterator.next();
                 printBookDetailsIndent(book);
+                if (bookIterator.hasNext()) {
+                    System.out.println();
+                }
             }
         }
     }
 
     private void printBookSeriesDetails(BookSeries bookSeries) {
-        System.out.println("Series: " + bookSeries.getTitle());
+        System.out.println(
+            "Series        " + bookSeries.getTitle() + "\n" + 
+            "Published by  " + bookSeries.getPublisher() + "\n"
+        );
     }
 
     private void printMagazineDetails(Magazine magazine) {
-        System.out.println("Magazine: " + magazine.getTitle());
+        System.out.println(
+            "Magazine      " + magazine.getTitle()
+        );
     }
 
     private void printNewspaperDetails(Newspaper newspaper) {
-        System.out.println("Newspaper: " + newspaper.getTitle());
+        System.out.println(
+            "Newspaper     " + newspaper.getTitle()
+        );
     }
 
     private void printJournalDetails(Journal journal) {
-        System.out.println("Journal: " + journal.getTitle());
+        System.out.println(
+            "Journal       " + journal.getTitle()
+        );
     }
 
     private void printBookDetailsIndent(Book book) {
-        System.out.println("      : " + book.getTitle());
+        System.out.println(
+            "    Book          " + book.getTitle() + "\n" +
+            "    Author        " + book.getAuthor() + "\n" +
+            "    Edition       " + book.getEdition()
+        );
     }
 
     private void printBookDetails(Book book) {
-        System.out.println("Book: " + book.getTitle());
+        System.out.println(
+            "Book          " + book.getTitle() + "\n" +
+            "Publisher     " + book.getPublisher() + "\n" +
+            "Author        " + book.getAuthor() + "\n" +
+            "Edition       " + book.getEdition()
+        );
     }
 
     private void printCursor() {
