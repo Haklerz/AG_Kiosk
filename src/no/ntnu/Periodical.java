@@ -31,7 +31,7 @@ public class Periodical extends Litteratur
      */
     public void setIssuesPerYear(int issues){
         this.issuesPerYear = issues;
-        if(issues>0){
+        if(issues<0){
             this.issuesPerYear = 1;
         }
     }

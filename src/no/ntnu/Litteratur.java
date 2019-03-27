@@ -55,7 +55,7 @@ public class Litteratur
      */
     public void setPages(int pages){
         this.pages = pages;
-        if(pages>0){
+        if(pages<0){
             this.pages = 1;
         }
     }

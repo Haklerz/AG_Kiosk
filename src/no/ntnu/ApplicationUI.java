@@ -22,13 +22,19 @@ public class ApplicationUI
     private String[] menuItems = {
         "1. List all litteratur",
         "2. Add new Litteratur",
-        "3. Find a product by name",
+        "3. Find a litteratur",
     };
     
     private String[] menuTypes = {
         "1. Newspaper",
         "2. Book",
         "3. Magazine",
+    };
+
+    private String [] searchTypes = {
+        "1. Title",
+        "2. Author",
+        "3. Publisher"
     };
 
     /**
@@ -53,7 +59,7 @@ public class ApplicationUI
         {
             try 
             {
-                int menuSelection = this.showMenu(menuItems);
+                int menuSelection = this.showMenu(this.menuItems);
                 switch (menuSelection) 
                 {
                     case 1:
@@ -65,7 +71,7 @@ public class ApplicationUI
                         break;
                         
                     case 3:
-                        this.findProductByName();
+                        this.findLitteratur();
                         break;
 
                     case 4:
@@ -87,10 +93,39 @@ public class ApplicationUI
     /**
      * 
      */
+    public void findLitteratur(){
+        try{
+            int menuSelection = this.showMenu(this.searchTypes);
+            switch(menuSelection){
+                case 1:
+                    findLitteraturByTitle();
+                    break;
+                
+                case 2:
+                    findLitteraturByAuthor();
+                    break;
+                
+                case 3:
+                    findLitteraturByPublisher();
+                    break;
+
+                case 4:
+                    System.out.println("\nPlease specify what you want to do!\n");
+                    break;
+            }
+        }
+        catch (InputMismatchException ime){
+            System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");            
+        }
+    }
+
+    /**
+     * adds a new litteratur.
+     */
     public void addNewLitteratur(){
         try 
         {
-            int menuSelection = this.showMenu(menuTypes);
+            int menuSelection = this.showMenu(this.menuTypes);
             switch (menuSelection) 
             {
                 case 1:
@@ -106,7 +141,7 @@ public class ApplicationUI
                     break;
 
                 case 4:
-                    System.out.println("\nThank you for using Application v0.1. Bye!\n");
+                    System.out.println("\nPlease specify what you want to do!\n");
                     break;
 
                 default:
@@ -129,7 +164,6 @@ public class ApplicationUI
      */
     private int showMenu(String [] menuChoices) throws InputMismatchException 
     {
-        System.out.println("\n**** Application v0.1 ****\n");
         // Display the menu
         for ( String menuChoice : menuChoices ) 
         {
@@ -160,6 +194,7 @@ public class ApplicationUI
     {
         this.litRegistry.fillDummies();
         System.out.println("Dummies was made for testing");
+        System.out.println("\n**** Application v0.1 ****\n");
     }
 
     /**
@@ -242,28 +277,51 @@ public class ApplicationUI
     }
     
     /**
-     * Find and display a product based on name (title).
-     * As with the addNewProduct()-method, you have to
-     * ask the user for the string (name/title/publisher)
-     * to search for, and then use this string as input-
-     * parameter to the method in the register-object.
-     * Then, upon return from the register, you need
-     * to print the details of the found item.
-     */
-    void findProductByName()
-    {
-        System.out.println("Please specify what you want to search for: (Author, Title or Publisher)");
+    * Finds a litteratur by the authors name
+    */
+    void findLitteraturByAuthor()
+    {  
+        System.out.println("Please specify what the name of the author");
         Scanner reader = new Scanner(System.in);
-        String type = reader.nextLine();
-        
-        System.out.println("Please add searchtext");
         String text = reader.nextLine();
         
-        Iterator<Book> foundBooksIt = this.litRegistry.findLitteratur(type, text);
+        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("author", text);
         
-        printLitteraturInfo(foundBooksIt);
+        printLitteraturInfo(foundLitIt);
     }
     
+    /**
+    * Finds a litteratur by the publsihers name
+    */
+    void findLitteraturByPublisher()
+    {  
+        System.out.println("Please specify what the name of the Publisher");
+        Scanner reader = new Scanner(System.in);
+        String text = reader.nextLine();
+        
+        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("publisher", text);
+        
+        printLitteraturInfo(foundLitIt);
+    }
+
+    /**
+      * Finds a littartur by the title
+      */
+    void findLitteraturByTitle()
+    {
+        System.out.println("Please specify what the title of the book");
+        Scanner reader = new Scanner(System.in);
+        String text = reader.nextLine();
+        
+        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("title", text);
+        
+        printLitteraturInfo(foundLitIt);
+    }
+    
+    /**
+     * Prints the Litteratur
+     * @param iterator iterator of the litteratur
+     */
     private void printLitteraturInfo(Iterator iterator){
         Iterator<Litteratur> it = iterator;
         

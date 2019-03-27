@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -74,6 +75,12 @@ public class LitteraturRegistry {
             }
             else if (searchType.toLowerCase().contains("publisher")) {
                 testText = testLitteratur.getPublisher();
+            }
+            else if (searchType.toLowerCase().contains("author")){
+                if(testLitteratur instanceof Book){
+                    Book testBook = (Book) testLitteratur;
+                    testText = testBook.getAuthor();
+                }
             }
             testText = testText.toLowerCase();
             if (testText.contains(searchText.toLowerCase())) {
