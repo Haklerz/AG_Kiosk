@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ApplicationUI 
 {
 
-    private BookRegistry bookRegistry;
+    private LitteraturRegistry litRegistry;
     // The menu tha will be displayed. Please edit/alter the menu
     // to fit your application (i.e. replace "prodct" with "litterature"
     // etc.
@@ -36,7 +36,7 @@ public class ApplicationUI
      */
     public ApplicationUI() 
     {
-        this.bookRegistry = new BookRegistry();
+        this.litRegistry = new LitteraturRegistry();
     }
 
     /**
@@ -158,7 +158,7 @@ public class ApplicationUI
      */
     private void init()
     {
-        this.bookRegistry.fillDummies();
+        this.litRegistry.fillDummies();
         System.out.println("Dummies was made for testing");
     }
 
@@ -167,9 +167,9 @@ public class ApplicationUI
      */
     void listAllProducts()
     {
-        Iterator<Litteratur> bookListIt = this.bookRegistry.getIterator();
+        Iterator<Litteratur> litListIt = this.litRegistry.getIterator();
        
-        printLitteraturInfo(bookListIt);
+        printLitteraturInfo(litListIt);
     }
 
     
@@ -211,7 +211,7 @@ public class ApplicationUI
         System.out.println("Please add the author of the litteratur");
         String author = reader.nextLine();
 
-        this.bookRegistry.addLitteratur(new Book(author, book1.getPublisher(), book1.getPages(), book1.getTitle(), genre));
+        this.litRegistry.addLitteratur(new Book(author, book1.getPublisher(), book1.getPages(), book1.getTitle(), genre));
     }
 
     /**
@@ -223,7 +223,7 @@ public class ApplicationUI
         System.out.println("Please add the amount of issues the newspaper has a year");
         int issues = reader.nextInt();
 
-        this.bookRegistry.addLitteratur(new Newspaper(newspaper1.getPublisher(), newspaper1.getPages(), newspaper1.getTitle(), issues));
+        this.litRegistry.addLitteratur(new Newspaper(newspaper1.getPublisher(), newspaper1.getPages(), newspaper1.getTitle(), issues));
     }
     
     /**
@@ -238,7 +238,7 @@ public class ApplicationUI
         System.out.println("Please add the genre of the magazine");
         String genre = reader.nextLine();
 
-        this.bookRegistry.addLitteratur(new Magazine(magazine1.getPublisher(), magazine1.getPages(), magazine1.getTitle(), issues, genre));
+        this.litRegistry.addLitteratur(new Magazine(magazine1.getPublisher(), magazine1.getPages(), magazine1.getTitle(), issues, genre));
     }
     
     /**
@@ -259,7 +259,7 @@ public class ApplicationUI
         System.out.println("Please add searchtext");
         String text = reader.nextLine();
         
-        Iterator<Book> foundBooksIt = this.bookRegistry.findLitteratur(type, text);
+        Iterator<Book> foundBooksIt = this.litRegistry.findLitteratur(type, text);
         
         printLitteraturInfo(foundBooksIt);
     }

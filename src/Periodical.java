@@ -26,6 +26,9 @@ public class Periodical extends Litteratur
         return this.issuesPerYear;
     }
     
+    /**
+     * sets the number of issues per year the perodical has.
+     */
     public void setIssuesPerYear(int issues){
         this.issuesPerYear = issues;
         if(issues>0){

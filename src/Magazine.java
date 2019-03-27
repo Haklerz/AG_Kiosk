@@ -45,7 +45,7 @@ public class Magazine extends Periodical
     }
     
     /**
-     * set the genre of the magazine
+     * sets the genre of the magazine
      */
     private void setGenre(String genre){
         this.genre = genre;

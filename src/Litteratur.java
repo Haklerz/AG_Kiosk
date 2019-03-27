@@ -50,6 +50,9 @@ public class Litteratur
         return this.pages;
     }
     
+    /**
+     * sets the number of pages in the litteratur.
+     */
     public void setPages(int pages){
         this.pages = pages;
         if(pages>0){
@@ -57,10 +60,16 @@ public class Litteratur
         }
     }
     
+    /**
+     * sets the publisher of the litteratur.
+     */
     public void setPublisher(String publisher){
         this.publisher = publisher;
     }
     
+    /**
+     * sets the title of the litteratur.
+     */
     public void setTitle(String title){
         this.title = title;
     }

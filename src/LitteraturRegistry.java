@@ -18,46 +18,45 @@ import java.util.Iterator;
  * @author Trym Jørgensen
  * @version 2019.03.25
  */
-public class BookRegistry {
+public class LitteraturRegistry {
     private ArrayList<Litteratur> litteraturs;
 
     /**
      * Creates a BookRegistry.
      */
-    public BookRegistry() {
+    public LitteraturRegistry() {
         this.litteraturs = new ArrayList<>();
     }
 
     /**
-     * Adds a Book to the BookRegistry.
+     * Adds a Litteratur to the LitteraturRegistry.
      */
     public void addLitteratur(Litteratur litteratur) {
         this.litteraturs.add(litteratur);
     }
 
     /**
-     * Returns the ArrayList containing all the Books in the Registry.
-     * @return ArrayList of all the Books.
+     * Returns the ArrayList containing all the litteratur in the Registry.
+     * @return ArrayList of all the litteratur.
      */
     public ArrayList<Litteratur> getLitteraturs(){
         return this.litteraturs;
     }
     
     /**
-     * returns the iterator of the arraylist containing all the books in the registry.
-     * @return iterator of all the books.
+     * returns the iterator of the arraylist containing all the litteratur in the registry.
+     * @return iterator of all the litteratur.
      */
     public Iterator<Litteratur> getIterator(){
         return this.litteraturs.iterator();
     }
 
     /**
-     * Finds Books by a searchType. Returns an ArrayList of
-     * Books that contains the searchText.
+     * Finds Litteartur by a searchType. Returns an ArrayList of
+     * Litteratur that contains the searchText.
      * <p>
      * This method can search by:
      * <ul>
-     * <li>Title.
      * <li>Author.
      * <li>Publisher.
      * <li>Genre.
@@ -85,7 +84,7 @@ public class BookRegistry {
     }
     
      /**
-     * Fills the registry with books.
+     * Fills the registry with litteratur.
      */
     public void fillDummies() {
         this.addLitteratur(new Book("David J. Barnes, Michael Kölling", "Pearson", 630, "Objects first with Java", "textbook"));
@@ -96,8 +95,8 @@ public class BookRegistry {
     
         
     /**
-     * returns the number of books in the registry
-     * @return number of books in the registry
+     * returns the number of litteratur in the registry
+     * @return number of litteratur in the registry
      */
     public int numberOfLitteraturs(){
         return litteraturs.size();

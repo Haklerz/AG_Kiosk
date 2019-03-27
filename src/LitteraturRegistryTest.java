@@ -6,17 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * The test class BookRegistryTest.
+ * The test class LitteraturRegistry.
  *
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class BookRegistryTest
+public class LitteraturRegistryTest
 {
     /**
      * Default constructor for test class BookRegistryTest
      */
-    public BookRegistryTest()
+    public LitteraturRegistryTest()
     {
     }
 
@@ -43,9 +43,9 @@ public class BookRegistryTest
     @Test
     public void testSize()
     {
-        BookRegistry bookRegi1 = new BookRegistry();
-        bookRegi1.fillDummies();
-        assertEquals(3, bookRegi1.numberOfLitteraturs());
+        LitteraturRegistry litRegi1 = new LitteraturRegistry();
+        litRegi1.fillDummies();
+        assertEquals(3, litRegi1.numberOfLitteraturs());
     }
 }
 
