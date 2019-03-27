@@ -22,10 +22,11 @@ import no.ntnu.ag.literature.*;
  * 
  * new list find add remove
  * 
- * @version 2019.3.25
+ * @version 2019.3.27
  * @author Håkon "Haklerz" Lervik
  */
 public class TextbasedUserInterface {
+    private static final int INFO_MARGIN = 16;
     private LiteratureRegistry registry;
     private Literature currentLiterature;
     private boolean running;
@@ -69,7 +70,7 @@ public class TextbasedUserInterface {
     private void find(String argument) {
         Iterator<Literature> literatureIterator = registry.getLiteratureIterator();
         Literature foundLiterature = null;
-        while(literatureIterator.hasNext()) {
+        while (literatureIterator.hasNext()) {
             Literature literature = literatureIterator.next();
             if (!(literature instanceof BookSeries)) {
                 String literatureDetails = literature.getTitle() + " " + literature.getPublisher();
@@ -125,45 +126,46 @@ public class TextbasedUserInterface {
     }
 
     private void printBookSeriesDetails(BookSeries bookSeries) {
-        System.out.println(
-            "Series        " + bookSeries.getTitle() + "\n" + 
-            "Published by  " + bookSeries.getPublisher() + "\n"
-        );
+        System.out.println("Series         " + bookSeries.getTitle() + "\n" + "Published by   "
+                + bookSeries.getPublisher() + "\n");
     }
 
     private void printMagazineDetails(Magazine magazine) {
-        System.out.println(
-            "Magazine      " + magazine.getTitle()
-        );
+        System.out.println("Magazine       " + magazine.getTitle() + "\n" + "Publisher      " + magazine.getPublisher()
+                + "\n" + "Genre          " + magazine.getGenre() + "\n" + "Editions/year  " + magazine.getEditions());
     }
 
     private void printNewspaperDetails(Newspaper newspaper) {
-        System.out.println(
-            "Newspaper     " + newspaper.getTitle()
-        );
+        System.out.println("Newspaper      " + newspaper.getTitle() + "\n" + "Publisher      "
+                + newspaper.getPublisher() + "\n" + "Editions/year  " + newspaper.getEditions());
     }
 
     private void printJournalDetails(Journal journal) {
-        System.out.println(
-            "Journal       " + journal.getTitle()
-        );
+        System.out.println("Journal        " + journal.getTitle() + "\n" + "Publisher      " + journal.getPublisher()
+                + "\n" + "Field          " + journal.getField() + "\n" + "Editions/year  " + journal.getEditions());
     }
 
     private void printBookDetailsIndent(Book book) {
-        System.out.println(
-            "    Book          " + book.getTitle() + "\n" +
-            "    Author        " + book.getAuthor() + "\n" +
-            "    Edition       " + book.getEdition()
-        );
+        System.out.println("    Book           " + book.getTitle() + "\n" + "    Author         " + book.getAuthor()
+                + "\n" + "    Edition        " + book.getEdition());
     }
 
     private void printBookDetails(Book book) {
         System.out.println(
-            "Book          " + book.getTitle() + "\n" +
-            "Publisher     " + book.getPublisher() + "\n" +
-            "Author        " + book.getAuthor() + "\n" +
-            "Edition       " + book.getEdition()
+            padString("Book") + book.getTitle() + "\n" +
+            padString("Publisher") + book.getPublisher() + "\n" +
+            padString("Author") + book.getAuthor() + "\n" +
+            padString("Edition") + book.getEdition()
         );
+    }
+
+    private String padString(String text) {
+        int n = INFO_MARGIN - text.length();
+        String paddedString = text;
+        for (int i = 0; i < n; i++) {
+            paddedString += " ";
+        }
+        return paddedString;
     }
 
     private void printCursor() {
