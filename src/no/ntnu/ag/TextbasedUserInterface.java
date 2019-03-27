@@ -27,12 +27,14 @@ import no.ntnu.ag.literature.*;
  */
 public class TextbasedUserInterface {
     private LiteratureRegistry registry;
+    private Literature currentLiterature;
     private boolean running;
     private Scanner input;
 
     public TextbasedUserInterface() {
         this.registry = new LiteratureRegistry();
         this.registry.fillDummies();
+        this.currentLiterature = null;
         this.input = new Scanner(System.in);
     }
 
@@ -45,8 +47,12 @@ public class TextbasedUserInterface {
             Instruction instruction = Instruction.parseInstruction(userInput);
 
             switch (instruction.getCommand()) {
+            case "find":
+                find(instruction.getArgument());
+                break;
+
             case "list":
-                list(registry.getLiteratureIterator());
+                list();
                 break;
 
             case "quit":
@@ -60,35 +66,58 @@ public class TextbasedUserInterface {
         }
     }
 
-    private void list(Iterator<Literature> literatureIterator) {
-        while (literatureIterator.hasNext()) {
+    private void find(String argument) {
+        Iterator<Literature> literatureIterator = registry.getLiteratureIterator();
+        Literature foundLiterature = null;
+        while(literatureIterator.hasNext()) {
             Literature literature = literatureIterator.next();
-            if (literature instanceof Book) {
-                printBookDetails((Book) literature);
-            }
-            else if (literature instanceof Journal) {
-                printJournalDetails((Journal) literature);
-            }
-            else if (literature instanceof Newspaper) {
-                printNewspaperDetails((Newspaper) literature);
-            }
-            else if (literature instanceof Magazine) {
-                printMagazineDetails((Magazine) literature);
-            }
-            else if (literature instanceof BookSeries) {
-                BookSeries bookSeries = (BookSeries) literature;
-                printBookSeriesDetails(bookSeries);
-                Iterator<Book> bookIterator = bookSeries.getBookIterator();
+            if (!(literature instanceof BookSeries)) {
+                String literatureDetails = literature.getTitle() + " " + literature.getPublisher();
+                if (literatureDetails.toLowerCase().contains(argument.toLowerCase())) {
+                    foundLiterature = literature;
+                }
+            } else {
+                Iterator<Book> bookIterator = ((BookSeries) literature).getBookIterator();
                 while (bookIterator.hasNext()) {
                     Book book = bookIterator.next();
-                    printBookDetailsIndent(book);
+                    String BookDetails = book.getTitle() + " " + book.getPublisher();
+                    if (BookDetails.toLowerCase().contains(argument.toLowerCase())) {
+                        foundLiterature = book;
+                    }
                 }
             }
-            /*
+        }
+        printLiteratureDetails(foundLiterature);
+    }
+
+    private void list() {
+        Iterator<Literature> literatureIterator = registry.getLiteratureIterator();
+        while (literatureIterator.hasNext()) {
+            Literature literature = literatureIterator.next();
+            printLiteratureDetails(literature);
             if (literatureIterator.hasNext()) {
                 System.out.println();
             }
-            */
+        }
+    }
+
+    private void printLiteratureDetails(Literature literature) {
+        if (literature instanceof Book) {
+            printBookDetails((Book) literature);
+        } else if (literature instanceof Journal) {
+            printJournalDetails((Journal) literature);
+        } else if (literature instanceof Newspaper) {
+            printNewspaperDetails((Newspaper) literature);
+        } else if (literature instanceof Magazine) {
+            printMagazineDetails((Magazine) literature);
+        } else if (literature instanceof BookSeries) {
+            BookSeries bookSeries = (BookSeries) literature;
+            printBookSeriesDetails(bookSeries);
+            Iterator<Book> bookIterator = bookSeries.getBookIterator();
+            while (bookIterator.hasNext()) {
+                Book book = bookIterator.next();
+                printBookDetailsIndent(book);
+            }
         }
     }
 
