@@ -98,6 +98,7 @@ public class LitteraturRegistry {
         this.addLitteratur(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, "Algoritmer og Datastrukturer", "textbook"));
         this.addLitteratur(new Book("Allan R. Hambley", "Pearson", 866, "Electrical Engineering", "textbook"));
         this.addLitteratur(new Newspaper("VG", 30, "VG", 340));
+        this.addLitteratur(new Magazine("KK", 38, "KK", 52, "Kvinneblad"));
     }
     
         

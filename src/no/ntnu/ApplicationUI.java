@@ -1,4 +1,3 @@
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Iterator;
@@ -98,15 +97,15 @@ public class ApplicationUI
             int menuSelection = this.showMenu(this.searchTypes);
             switch(menuSelection){
                 case 1:
-                    findLitteratur("title");
+                    findLitteraturByTitle();
                     break;
                 
                 case 2:
-                    findLitteratur("author");
+                    findLitteraturByAuthor();
                     break;
                 
                 case 3:
-                    findLitteratur("publisher");
+                    findLitteraturByPublisher();
                     break;
 
                 case 4:
@@ -267,25 +266,54 @@ public class ApplicationUI
     void addNewMagazine(){
         Scanner reader = new Scanner(System.in);
         Litteratur magazine1 = addNewProduct();
-        System.out.println("Please add the amount of issues the magazine has a year");
-        int issues = reader.nextInt();
         
         System.out.println("Please add the genre of the magazine");
         String genre = reader.nextLine();
+        
+        System.out.println("Please add the amount of issues the magazine has a year");
+        int issues = reader.nextInt();
 
         this.litRegistry.addLitteratur(new Magazine(magazine1.getPublisher(), magazine1.getPages(), magazine1.getTitle(), issues, genre));
     }
-
+    
     /**
-      * Finds a littartur by either the title, author or publisher.
-      */
-    void findLitteratur(String searchType)
-    {
-        System.out.println("Please specify the " + searchType + " of the book");
+    * Finds a litteratur by the authors name
+    */
+    void findLitteraturByAuthor()
+    {  
+        System.out.println("Please specify what the name of the author");
         Scanner reader = new Scanner(System.in);
         String text = reader.nextLine();
         
-        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur(searchType, text);
+        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("author", text);
+        
+        printLitteraturInfo(foundLitIt);
+    }
+    
+    /**
+    * Finds a litteratur by the publsihers name
+    */
+    void findLitteraturByPublisher()
+    {  
+        System.out.println("Please specify what the name of the Publisher");
+        Scanner reader = new Scanner(System.in);
+        String text = reader.nextLine();
+        
+        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("publisher", text);
+        
+        printLitteraturInfo(foundLitIt);
+    }
+
+    /**
+      * Finds a littartur by the title
+      */
+    void findLitteraturByTitle()
+    {
+        System.out.println("Please specify what the title of the book");
+        Scanner reader = new Scanner(System.in);
+        String text = reader.nextLine();
+        
+        Iterator<Book> foundLitIt = this.litRegistry.findLitteratur("title", text);
         
         printLitteraturInfo(foundLitIt);
     }
@@ -302,10 +330,24 @@ public class ApplicationUI
                 Litteratur lit = it.next();
                 
                 System.out.println();
-                System.out.println("Title: " + lit.getTitle()
+                System.out.print("Title: " + lit.getTitle()
                     + " Publisher: " + lit.getPublisher()
                     + " Pages: " + lit.getPages()
                     );
+                    if(lit instanceof Book){
+                        Book book1 = (Book) lit;
+                        System.out.print(" Author: " + book1.getAuthor());
+                    }
+                    else if(lit instanceof Magazine){
+                        Magazine mag1 = (Magazine) lit;
+                        System.out.print(" Genre: " + mag1.getGenre()
+                        + " Issues: " + mag1.getIssuesPerYear());
+                    }
+                    else if(lit instanceof Newspaper){
+                        Newspaper new1 = (Newspaper) lit;
+                        System.out.print(" Issues: " + new1.getIssuesPerYear());
+                    }
+                System.out.println();
                 System.out.println();
             }
         }
