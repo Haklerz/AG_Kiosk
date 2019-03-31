@@ -7,7 +7,7 @@ package no.ntnu.ag;
  * @author Håkon "Haklerz" Lervik
  */
 public class Instruction {
-    String command;
+    Command command;
     String argument;
 
     /**
@@ -16,7 +16,7 @@ public class Instruction {
      * @param command  the command
      * @param argument the argument
      */
-    public Instruction(String command, String argument) {
+    public Instruction(Command command, String argument) {
         setCommand(command);
         setArgument(argument);
     }
@@ -29,7 +29,9 @@ public class Instruction {
      */
     public static Instruction parseInstruction(String string) {
         String[] parts = string.split(" ", 2);
-        return new Instruction(parts[0], (parts.length > 1) ? parts[1] : "");
+        Command command = Command.parseCommand(parts[0]);
+        String argument = (parts.length > 1) ? parts[1] : "";
+        return new Instruction(command, argument);
     }
 
     /**
@@ -46,7 +48,7 @@ public class Instruction {
      * 
      * @return the command
      */
-    public String getCommand() {
+    public Command getCommand() {
         return command;
     }
 
@@ -55,7 +57,7 @@ public class Instruction {
      * 
      * @param command the command to set
      */
-    private void setCommand(String command) {
+    private void setCommand(Command command) {
         this.command = command;
     }
 

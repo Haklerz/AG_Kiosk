@@ -1,6 +1,7 @@
 package no.ntnu.ag;
 
 import java.util.Scanner;
+import java.util.HashMap;
 import java.util.Iterator;
 import no.ntnu.ag.literature.*;
 
@@ -20,25 +21,55 @@ import no.ntnu.ag.literature.*;
  * inn salgs-støtte (kassa-apparat (POS)) osv.
  * </ul>
  * 
- * new list find add remove
- * 
  * @version 2019.3.27
  * @author Håkon "Haklerz" Lervik
  */
 public class TextbasedUserInterface {
     private static final int INFO_MARGIN = 16;
+    private HashMap<String, String> text;
     private LiteratureRegistry registry;
     private Literature currentLiterature;
     private boolean running;
     private Scanner input;
 
+    /**
+     * 
+     */
     public TextbasedUserInterface() {
         this.registry = new LiteratureRegistry();
-        this.registry.fillDummies();
-        this.currentLiterature = null;
+        this.registry.fillDummies(); // temp.
+        this.setCurrentLiterature(null);
         this.input = new Scanner(System.in);
+        this.text = new HashMap<>();
+        this.fillText();
     }
 
+    /**
+     * 
+     */
+    private void fillText() {
+        this.text.put("UNKNOWN_CMD", "Unknown command. Type help for info.\n");
+        this.text.put("QUIT_MSG", "Shutting down. Thank you for using the kiosk.");
+    }
+
+    /**
+     * @return the currentLiterature
+     */
+    private Literature getCurrentLiterature() {
+        return currentLiterature;
+    }
+
+    /**
+     * @param literature the literature to set as current
+     */
+    private void setCurrentLiterature(Literature literature) {
+        if (literature != null)
+            this.currentLiterature = literature;
+    }
+
+    /**
+     * 
+     */
     public void run() {
         this.running = true;
 
@@ -48,25 +79,41 @@ public class TextbasedUserInterface {
             Instruction instruction = Instruction.parseInstruction(userInput);
 
             switch (instruction.getCommand()) {
-            case "find":
+            case MOVE:
+                break;
+
+            case FIND:
                 find(instruction.getArgument());
                 break;
 
-            case "list":
+            case LIST:
                 list();
                 break;
 
-            case "quit":
+            case QUIT:
                 quit();
                 break;
 
-            default:
-                printUnknownCommand();
+            case UNKNOWN:
+                print("UNKNOWN_CMD");
                 break;
             }
         }
     }
 
+    /**
+     * 
+     * @param info
+     */
+    private void print(String info) {
+        System.out.print(this.text.get(info));
+    }
+
+    /**
+     * TODO: Refactor this ugly thing.
+     * 
+     * @param argument
+     */
     private void find(String argument) {
         Iterator<Literature> literatureIterator = registry.getLiteratureIterator();
         Literature foundLiterature = null;
@@ -91,6 +138,9 @@ public class TextbasedUserInterface {
         printLiteratureDetails(foundLiterature);
     }
 
+    /**
+     * 
+     */
     private void list() {
         Iterator<Literature> literatureIterator = registry.getLiteratureIterator();
         while (literatureIterator.hasNext()) {
@@ -102,22 +152,56 @@ public class TextbasedUserInterface {
         }
     }
 
+    /**
+     * 
+     * @param literature
+     */
     private void printLiteratureDetails(Literature literature) {
         if (literature instanceof Book) {
-            printBookDetails((Book) literature);
+            Book book = (Book) literature;
+            System.out.println(
+                padString("Book") + book.getTitle() + "\n" + 
+                padString("Publisher") + book.getPublisher() + "\n" +
+                padString("Author") + book.getAuthor() + "\n" + 
+                padString("Edition") + book.getEdition()
+            );
         } else if (literature instanceof Journal) {
-            printJournalDetails((Journal) literature);
+            Journal journal = (Journal) literature;
+            System.out.println(
+                padString("Journal") + journal.getTitle() + "\n" + 
+                padString("Publisher") + journal.getPublisher()+ "\n" +
+                padString("Field") + journal.getField() + "\n" + 
+                padString("Editions/year") + journal.getEditions()
+            );
         } else if (literature instanceof Newspaper) {
-            printNewspaperDetails((Newspaper) literature);
+            Newspaper newspaper = (Newspaper) literature;
+            System.out.println(
+                padString("Newspaper") + newspaper.getTitle() + "\n" +
+                padString("Publisher") + newspaper.getPublisher() + "\n" +
+                padString("Editions/year") + newspaper.getEditions()
+            );
         } else if (literature instanceof Magazine) {
-            printMagazineDetails((Magazine) literature);
+            Magazine magazine = (Magazine) literature;
+            System.out.println(
+                padString("Magazine") + magazine.getTitle() + "\n" +
+                padString("Publisher") + magazine.getPublisher() + "\n" +
+                padString("Genre") + magazine.getGenre() + "\n" +
+                padString("Editions/year") + magazine.getEditions()
+            );
         } else if (literature instanceof BookSeries) {
             BookSeries bookSeries = (BookSeries) literature;
-            printBookSeriesDetails(bookSeries);
+            System.out.println(
+                padString("Series") + bookSeries.getTitle() + "\n" +
+                padString("Published by") + bookSeries.getPublisher() + "\n"
+            );
             Iterator<Book> bookIterator = bookSeries.getBookIterator();
             while (bookIterator.hasNext()) {
                 Book book = bookIterator.next();
-                printBookDetailsIndent(book);
+                System.out.println(
+                    padString("    Book") + book.getTitle() + "\n" +
+                    padString("    Author") + book.getAuthor() + "\n" +
+                    padString("    Edition") + book.getEdition()
+                );
                 if (bookIterator.hasNext()) {
                     System.out.println();
                 }
@@ -125,40 +209,9 @@ public class TextbasedUserInterface {
         }
     }
 
-    private void printBookSeriesDetails(BookSeries bookSeries) {
-        System.out.println("Series         " + bookSeries.getTitle() + "\n" + "Published by   "
-                + bookSeries.getPublisher() + "\n");
-    }
-
-    private void printMagazineDetails(Magazine magazine) {
-        System.out.println("Magazine       " + magazine.getTitle() + "\n" + "Publisher      " + magazine.getPublisher()
-                + "\n" + "Genre          " + magazine.getGenre() + "\n" + "Editions/year  " + magazine.getEditions());
-    }
-
-    private void printNewspaperDetails(Newspaper newspaper) {
-        System.out.println("Newspaper      " + newspaper.getTitle() + "\n" + "Publisher      "
-                + newspaper.getPublisher() + "\n" + "Editions/year  " + newspaper.getEditions());
-    }
-
-    private void printJournalDetails(Journal journal) {
-        System.out.println("Journal        " + journal.getTitle() + "\n" + "Publisher      " + journal.getPublisher()
-                + "\n" + "Field          " + journal.getField() + "\n" + "Editions/year  " + journal.getEditions());
-    }
-
-    private void printBookDetailsIndent(Book book) {
-        System.out.println("    Book           " + book.getTitle() + "\n" + "    Author         " + book.getAuthor()
-                + "\n" + "    Edition        " + book.getEdition());
-    }
-
-    private void printBookDetails(Book book) {
-        System.out.println(
-            padString("Book") + book.getTitle() + "\n" +
-            padString("Publisher") + book.getPublisher() + "\n" +
-            padString("Author") + book.getAuthor() + "\n" +
-            padString("Edition") + book.getEdition()
-        );
-    }
-
+    /**
+     * 
+     */
     private String padString(String text) {
         int n = INFO_MARGIN - text.length();
         String paddedString = text;
@@ -168,16 +221,18 @@ public class TextbasedUserInterface {
         return paddedString;
     }
 
+    /**
+     * 
+     */
     private void printCursor() {
         System.out.print("\n> ");
     }
 
-    private void printUnknownCommand() {
-        System.out.println("Unknown command. Type help for info.");
-    }
-
+    /**
+     * 
+     */
     private void quit() {
-        System.out.println("Thank you for using kiosk v" + 0.6);
+        print("QUIT_MSG");
         this.running = false;
         this.input.close();
     }
