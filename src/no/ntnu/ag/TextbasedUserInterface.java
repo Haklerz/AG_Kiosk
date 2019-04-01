@@ -110,9 +110,9 @@ public class TextbasedUserInterface {
         System.out.print(this.text.get(info));
     }
 
-    private void find(String searchText) {
+    private void find(Iterator<Literature> literatureIterator, String searchText) {
         ArrayList<Literature> foundLiterature = new ArrayList<>();
-        for (Iterator<Literature> literatureIterator = this.registry.getLiteratureIterator(); literatureIterator.hasNext();) {
+        while (literatureIterator.hasNext()) {
             Literature literature = literatureIterator.next();
             if (literature instanceof BookSeries) {
                 
@@ -121,7 +121,7 @@ public class TextbasedUserInterface {
     }
 
     /**
-     * TODO: Refactor this ugly thing. on it
+     * TODO: Refactor this ugly thing.
      * 
      * @param argument
      */
