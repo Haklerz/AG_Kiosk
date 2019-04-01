@@ -12,13 +12,15 @@ public class LiteratureCollection {
     private ArrayList<Literature> literatureList;
 
 	public void addLiterature(Literature literature) {
+		this.literatureList.add(literature);
 	}
 
 	public void removeLiterature(Literature literature) {
+		this.literatureList.remove(literature);
 	}
 
 	public Iterator<Literature> getLiteratureIterator() {
-		return null;
+		return this.literatureList.iterator();
 	}
 
 	public Iterator<Literature> findLiterature(String searchText) {
