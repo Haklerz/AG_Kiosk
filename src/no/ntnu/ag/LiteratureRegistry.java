@@ -15,35 +15,28 @@ import no.ntnu.ag.literature.*;
  * @author Håkon "Haklerz" Lervik
  */
 public class LiteratureRegistry {
-    private ArrayList<Literature> literatureList;
+    private LiteratureCollection literatureList;
 
     public LiteratureRegistry() {
-        literatureList = new ArrayList<>();
+        literatureList = new LiteratureCollection();
     }
 
     public void addLiterature(Literature literature) {
         if (literature != null) {
-            literatureList.add(literature);
+            literatureList.addLiterature(literature);
         }
     }
 
     public void removeLiterature(Literature literature) {
-        literatureList.remove(literature);
+        literatureList.removeLiterature(literature);
     }
 
     public Iterator<Literature> getLiteratureIterator() {
-        return literatureList.iterator();
+        return literatureList.getLiteratureIterator();
     }
 
     public Iterator<Literature> findLiterature(String searchText) {
-        ArrayList<Literature> foundLiterature = new ArrayList<>();
-        for (Literature literature : literatureList) {
-            String literatureDetails = literature.getTitle() + literature.getPublisher();
-            if (literatureDetails.toLowerCase().contains(searchText.toLowerCase())) {
-                foundLiterature.add(literature);
-            }
-        }
-        return foundLiterature.iterator();
+        return this.literatureList.findLiterature(searchText);
     }
 
     public void fillDummies() {

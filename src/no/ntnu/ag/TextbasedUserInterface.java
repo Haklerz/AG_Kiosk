@@ -1,6 +1,7 @@
 package no.ntnu.ag;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import no.ntnu.ag.literature.*;
@@ -109,12 +110,22 @@ public class TextbasedUserInterface {
         System.out.print(this.text.get(info));
     }
 
+    private void find(String searchText) {
+        ArrayList<Literature> foundLiterature = new ArrayList<>();
+        for (Iterator<Literature> literatureIterator = this.registry.getLiteratureIterator(); literatureIterator.hasNext();) {
+            Literature literature = literatureIterator.next();
+            if (literature instanceof BookSeries) {
+                
+            }
+        }
+    }
+
     /**
-     * TODO: Refactor this ugly thing.
+     * TODO: Refactor this ugly thing. on it
      * 
      * @param argument
      */
-    private void find(String argument) {
+    private void find_(String argument) {
         Iterator<Literature> literatureIterator = registry.getLiteratureIterator();
         Literature foundLiterature = null;
         while (literatureIterator.hasNext()) {
