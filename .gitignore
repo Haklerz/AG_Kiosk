@@ -1,4 +1,4 @@
 *.class
-no/ntnu/ag/bin
-no/ntnu/ag/test
-/.vscode
+test
+bin
+.vscode
