@@ -59,14 +59,14 @@ public class BookTest
     public void testGetTitle()
     {
         Book book1 = new Book("jens", "yes", -70, "trym", "textbook");
-        assertEquals("yes", book1.getTitle());
+        assertEquals("trym", book1.getTitle());
     }
     
     @Test
     public void testGetPublisher()
     {
         Book book1 = new Book("jens", "yes", -70, "trym", "textbook");
-        assertEquals("trym", book1.getPublisher());
+        assertEquals("yes", book1.getPublisher());
     }
 }
 

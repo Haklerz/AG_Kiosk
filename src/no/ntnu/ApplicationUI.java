@@ -13,7 +13,11 @@ import java.util.ArrayList;
  */
 public class ApplicationUI 
 {
-
+    private static final int ADD_NEWSPAPER = 1;
+    private static final int ADD_BOOK = 2;
+    private static final int ADD_MAGAZINE = 3;
+    
+    
     private LitteraturRegistry litRegistry;
     // The menu tha will be displayed. Please edit/alter the menu
     // to fit your application (i.e. replace "prodct" with "litterature"
@@ -128,15 +132,15 @@ public class ApplicationUI
             switch (menuSelection) 
             {
                 case 1:
-                    this.addNewNewspaper();
+                    this.addNewLitteratur(ADD_NEWSPAPER);
                     break;
 
                 case 2:
-                    this.addNewBook();
+                    this.addNewLitteratur(ADD_BOOK);
                     break;   
                     
                 case 3:
-                    this.addNewMagazine();
+                    this.addNewLitteratur(ADD_MAGAZINE);
                     break;
 
                 case 4:
@@ -217,7 +221,7 @@ public class ApplicationUI
      * Remember to also handle invalid input from the
      * user!!
      */
-    private Litteratur addNewProduct()
+    private void addNewLitteratur(int type)
     {  
         System.out.println("Please add the title of the litteratur");
         Scanner reader = new Scanner(System.in);
@@ -228,60 +232,86 @@ public class ApplicationUI
                 
         System.out.println("Please add the amout pages the litteratur has");
         int pages = reader.nextInt();
-
-        Litteratur litteratur = new Litteratur(publisher, pages, title);
-        return litteratur;
-    }
-
-    /**
-     * Adds a new book to the registry with the information gotten from the user
-     */
-    void addNewBook(){
-        Scanner reader = new Scanner(System.in);
-        Litteratur book1 = addNewProduct();
-        System.out.println("Please add the genre of the book");
-        String genre = reader.nextLine();
         
-        System.out.println("Please add the author of the litteratur");
-        String author = reader.nextLine();
+        reader.close();
+        if(type == 1){ // adds a new newspaper
+            Scanner reader1 = new Scanner(System.in);
+            System.out.println("Please add the amount of issues the newspaper has a year");
+            int issues = reader1.nextInt();
 
-        this.litRegistry.addLitteratur(new Book(author, book1.getPublisher(), book1.getPages(), book1.getTitle(), genre));
+            this.litRegistry.addLitteratur(new Newspaper(publisher, pages, title, issues));
+        }
+        
+        else if(type == 2){ //adds a new book
+            Scanner reader2 = new Scanner(System.in);
+            System.out.println("Please add the genre of the book");
+            String genre = reader2.nextLine();
+        
+            System.out.println("Please add the author of the litteratur");
+            String author = reader2.nextLine();
+
+            this.litRegistry.addLitteratur(new Book(author, publisher, pages, title, genre));
+        }
+        
+        else if(type == 3){ //adds a new litteratur
+            Scanner reader3 = new Scanner(System.in);
+            System.out.println("Please add the genre of the magazine");
+            String genre = reader3.nextLine();
+        
+            System.out.println("Please add the amount of issues the magazine has a year");
+            int issues = reader3.nextInt();
+
+            this.litRegistry.addLitteratur(new Magazine(publisher, pages, title, issues, genre));
+        }
     }
 
-    /**
-     * Adds a new newspaper to the registry with the information gotten from the user
-     */
-    void addNewNewspaper(){
-        Scanner reader = new Scanner(System.in);
-        Litteratur newspaper1 = addNewProduct();
-        System.out.println("Please add the amount of issues the newspaper has a year");
-        int issues = reader.nextInt();
+    // /**
+     // * Adds a new book to the registry with the information gotten from the user
+     // */
+    // void addNewBook(){
+        // Scanner reader = new Scanner(System.in);
+        // System.out.println("Please add the genre of the book");
+        // String genre = reader.nextLine();
+        
+        // System.out.println("Please add the author of the litteratur");
+        // String author = reader.nextLine();
 
-        this.litRegistry.addLitteratur(new Newspaper(newspaper1.getPublisher(), newspaper1.getPages(), newspaper1.getTitle(), issues));
-    }
+        // this.litRegistry.addLitteratur(new Book(author, book1.getPublisher(), book1.getPages(), book1.getTitle(), genre));
+    // }
+
+    // /**
+     // * Adds a new newspaper to the registry with the information gotten from the user
+     // */
+    // void addNewNewspaper(){
+        // Scanner reader = new Scanner(System.in);
+        // System.out.println("Please add the amount of issues the newspaper has a year");
+        // int issues = reader.nextInt();
+
+        // this.litRegistry.addLitteratur(new Newspaper(newspaper1.getPublisher(), newspaper1.getPages(), newspaper1.getTitle(), issues));
+    // }
     
-    /**
-     * Adds a new magazine to the registry with the information gotten from the user
-     */
-    void addNewMagazine(){
-        Scanner reader = new Scanner(System.in);
-        Litteratur magazine1 = addNewProduct();
+    // /**
+     // * Adds a new magazine to the registry with the information gotten from the user
+     // */
+    // void addNewMagazine(){
+        // Scanner reader = new Scanner(System.in);
+        // Litteratur magazine1 = addNewProduct();
         
-        System.out.println("Please add the genre of the magazine");
-        String genre = reader.nextLine();
+        // System.out.println("Please add the genre of the magazine");
+        // String genre = reader.nextLine();
         
-        System.out.println("Please add the amount of issues the magazine has a year");
-        int issues = reader.nextInt();
+        // System.out.println("Please add the amount of issues the magazine has a year");
+        // int issues = reader.nextInt();
 
-        this.litRegistry.addLitteratur(new Magazine(magazine1.getPublisher(), magazine1.getPages(), magazine1.getTitle(), issues, genre));
-    }
+        // this.litRegistry.addLitteratur(new Magazine(magazine1.getPublisher(), magazine1.getPages(), magazine1.getTitle(), issues, genre));
+    // }
     
     /**
     * Finds a litteratur by the authors name
     */
     void findLitteraturByAuthor()
     {  
-        System.out.println("Please specify what the name of the author");
+        System.out.println("Please specify the name of the author");
         Scanner reader = new Scanner(System.in);
         String text = reader.nextLine();
         
@@ -295,7 +325,7 @@ public class ApplicationUI
     */
     void findLitteraturByPublisher()
     {  
-        System.out.println("Please specify what the name of the Publisher");
+        System.out.println("Please specify the name of the publisher");
         Scanner reader = new Scanner(System.in);
         String text = reader.nextLine();
         
@@ -309,7 +339,7 @@ public class ApplicationUI
       */
     void findLitteraturByTitle()
     {
-        System.out.println("Please specify what the title of the book");
+        System.out.println("Please specify the title of the book");
         Scanner reader = new Scanner(System.in);
         String text = reader.nextLine();
         

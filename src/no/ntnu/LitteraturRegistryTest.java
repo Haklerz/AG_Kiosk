@@ -45,7 +45,7 @@ public class LitteraturRegistryTest
     {
         LitteraturRegistry litRegi1 = new LitteraturRegistry();
         litRegi1.fillDummies();
-        assertEquals(3, litRegi1.numberOfLitteraturs());
+        assertEquals(5, litRegi1.numberOfLitteraturs());
     }
 }
 
