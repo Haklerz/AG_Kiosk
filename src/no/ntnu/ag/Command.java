@@ -5,19 +5,21 @@ package no.ntnu.ag;
  * @author Håkon "Haklerz" Lervik
  */
 public enum Command {
+    HELP("help"),
     LIST("list"),
     FIND("find"),
+    NEW("new"),
     MOVE("move"),
     QUIT("quit"),
     UNKNOWN("");
     
     private final String commandString;
     
-    private Command(String commandString) {
+    Command(String commandString) {
         this.commandString = commandString;
     }
     
-    private String getCommandString() {
+    public String getCommandString() {
         return this.commandString;
     }
 

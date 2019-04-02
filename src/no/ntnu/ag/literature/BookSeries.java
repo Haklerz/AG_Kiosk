@@ -1,5 +1,7 @@
 package no.ntnu.ag.literature;
 
+import no.ntnu.ag.LiteratureCollection;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -10,7 +12,7 @@ import java.util.Iterator;
  * @author Håkon "Haklerz" Lervik
  */
 public class BookSeries extends Literature {
-    private ArrayList<Book> bookList;
+    private LiteratureCollection bookList;
 
     /**
      * Creates a series of books with a title and a publisher.
@@ -20,7 +22,7 @@ public class BookSeries extends Literature {
      */
     public BookSeries(String title, String publisher) {
         super(title, publisher);
-        bookList = new ArrayList<>();
+        bookList = new LiteratureCollection();
     }
 
     /**
@@ -30,7 +32,7 @@ public class BookSeries extends Literature {
      */
     public void addBook(Book book) {
         if (book != null) {
-            bookList.add(book);
+            bookList.addLiterature(book);
         }
     }
 
@@ -40,7 +42,7 @@ public class BookSeries extends Literature {
      * @param book the book to remove
      */
     public void removeBook(Book book) {
-        bookList.remove(book);
+        bookList.removeLiterature(book);
     }
 
     /**
@@ -48,7 +50,7 @@ public class BookSeries extends Literature {
      * 
      * @return an iterator over the series
      */
-    public Iterator<Book> getBookIterator() {
-        return bookList.iterator();
+    public Iterator<Literature> getLiteratureIterator() {
+        return bookList.getLiteratureIterator();
     }
 }
