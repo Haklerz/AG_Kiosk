@@ -15,7 +15,12 @@ public class Main
      */
     public static void main(String[] args)
     {
+        try{
         ApplicationUI appUI = new ApplicationUI();
         appUI.start();
+    }
+    catch(Exception e){
+        System.out.println("Sorry something went wrong, try again or call: 123 45 678");
+    }
     }
 }

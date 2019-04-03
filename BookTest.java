@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class BookTest
 {
+    Book book1 = new Book("jens", "yes", -70, "trym", "textbook");
     /**
      * Default constructor for test class BookTest
      */
@@ -44,28 +45,24 @@ public class BookTest
     @Test
     public void testPages()
     {
-        Book book1 = new Book("jens", "yes", -70, "trym", "textbook");
         assertEquals(true, (book1.getPages() > 0));
     }
 
     @Test
     public void testGetAuthor()
     {
-        Book book1 = new Book("jens", "yes", -70, "trym", "textbook");
         assertEquals("jens", book1.getAuthor());
     }
     
     @Test
     public void testGetTitle()
     {
-        Book book1 = new Book("jens", "yes", -70, "trym", "textbook");
         assertEquals("trym", book1.getTitle());
     }
     
     @Test
     public void testGetPublisher()
     {
-        Book book1 = new Book("jens", "yes", -70, "trym", "textbook");
         assertEquals("yes", book1.getPublisher());
     }
 }

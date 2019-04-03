@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class LitteraturRegistryTest
 {
+    LitteraturRegistry litRegi1 = new LitteraturRegistry();
     /**
      * Default constructor for test class BookRegistryTest
      */
@@ -28,6 +29,7 @@ public class LitteraturRegistryTest
     @Before
     public void setUp()
     {
+        litRegi1.fillDummies();
     }
 
     /**
@@ -43,9 +45,7 @@ public class LitteraturRegistryTest
     @Test
     public void testSize()
     {
-        LitteraturRegistry litRegi1 = new LitteraturRegistry();
-        litRegi1.fillDummies();
-        assertEquals(5, litRegi1.numberOfLitteraturs());
+        assertEquals(6, litRegi1.numberOfLitteraturs());
     }
 }
 

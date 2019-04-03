@@ -9,17 +9,15 @@ public class Litteratur
 {
     // instance variables - replace the example below with your own
     private String publisher;
-    private int pages;
     private String title;
     
     /**
      * Constructor for objects of class Litteratur
      */
-    public Litteratur(String publisher, int pages, String title)
+    public Litteratur(String publisher, String title)
     {
         // initialise instance variables
         this.setPublisher(publisher);
-        this.setPages(pages);
         this.setTitle(title);
     }
 
@@ -39,25 +37,6 @@ public class Litteratur
     public String getTitle()
     {
         return this.title; 
-    }
-    
-    /**
-     * returns the amout of pages in the book.
-     * @return the amount of pages in the book.
-     */
-    public int getPages()
-    {
-        return this.pages;
-    }
-    
-    /**
-     * sets the number of pages in the litteratur.
-     */
-    public void setPages(int pages){
-        this.pages = pages;
-        if(pages<0){
-            this.pages = 1;
-        }
     }
     
     /**

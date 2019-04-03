@@ -43,7 +43,7 @@ public class LitteraturRegistry {
     public ArrayList<Litteratur> getLitteraturs(){
         return this.litteraturs;
     }
-    
+
     /**
      * returns the iterator of the arraylist containing all the litteratur in the registry.
      * @return iterator of all the litteratur.
@@ -89,19 +89,22 @@ public class LitteraturRegistry {
         }
         return foundLitteraturs.iterator();
     }
-    
-     /**
+
+    /**
      * Fills the registry with litteratur.
      */
     public void fillDummies() {
+        BookSeries books = new BookSeries("Allen & Unwin", "Lord of the Rings");
+        books.fillWithLOTR();
+
+        this.addLitteratur(books);
         this.addLitteratur(new Book("David J. Barnes, Michael Kölling", "Pearson", 630, "Objects first with Java", "textbook"));
         this.addLitteratur(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, "Algoritmer og Datastrukturer", "textbook"));
         this.addLitteratur(new Book("Allan R. Hambley", "Pearson", 866, "Electrical Engineering", "textbook"));
         this.addLitteratur(new Newspaper("VG", 30, "VG", 340));
         this.addLitteratur(new Magazine("KK", 38, "KK", 52, "Kvinneblad"));
     }
-    
-        
+
     /**
      * returns the number of litteratur in the registry
      * @return number of litteratur in the registry
