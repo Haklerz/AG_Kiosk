@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import no.ntnu.ag.exceptions.*;
 import no.ntnu.ag.literature.*;
 
 /**
@@ -27,6 +28,7 @@ import no.ntnu.ag.literature.*;
  */
 public class TextbasedUserInterface {
     private static final int INFO_MARGIN = 16;
+    private static final int MAX_TRIES = 5;
     private LiteratureCollection registry;
     private Literature currentLiterature;
     private boolean running;
@@ -43,24 +45,30 @@ public class TextbasedUserInterface {
     }
 
     private void fillDummies() {
-        registry.addLiterature(new Book("The Hunger Games", "Scholastic Press", "Suzanne Collins", "First Edition"));
-        registry.addLiterature(new Book("To Kill a Mockingbird", "Modern Classics", "Harper Lee", "First Edition"));
-        registry.addLiterature(new Book("Pride and Prejudice", "Modern Library", "Jane Austen", "First Edition"));
-        registry.addLiterature(new Book("Twilight", "Little, Brown and Company", "Stephenie Meyer", "First Edition"));
-        BookSeries hp = new BookSeries("Harry Potter", "Bloomsbury Publishing");
-        hp.addBook(new Book("The Philosopher's Stone", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        hp.addBook(new Book("The Chamber of Secrets", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        hp.addBook(new Book("The Prisoner of Azkaban", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        hp.addBook(new Book("The Goblet of Fire", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        hp.addBook(new Book("The Order of the Phoenix", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        hp.addBook(new Book("The Half-Blood Prince", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        hp.addBook(new Book("The Deathly Hallows", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
-        registry.addLiterature(hp);
-        registry.addLiterature(new Book("The Chronicles of Narnia", "HarperCollins", "C.S. Lewis", "Reissue Edition"));
-        registry.addLiterature(new Journal("Teknisk Ukeblad", "Teknisk Ukeblad Media", 11, "Technology"));
-        registry.addLiterature(new Magazine("KK", "Aller Media", 49, "Health and Lifestyle"));
-        registry.addLiterature(new Newspaper("Aftenposten", "Schibsted Norge", 52));
-        registry.addLiterature(new Newspaper("Dagbladet", "Aller Media", 52));
+        try {
+            registry.addLiterature(new Book("The Hunger Games", "Scholastic Press", "Suzanne Collins", "First " +
+                    "Edition"));
+            registry.addLiterature(new Book("To Kill a Mockingbird", "Modern Classics", "Harper Lee", "First Edition"));
+            registry.addLiterature(new Book("Pride and Prejudice", "Modern Library", "Jane Austen", "First Edition"));
+            registry.addLiterature(new Book("Twilight", "Little, Brown and Company", "Stephenie Meyer", "First " +
+                    "Edition"));
+            BookSeries hp = new BookSeries("Harry Potter", "Bloomsbury Publishing");
+            hp.addBook(new Book("The Philosopher's Stone", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
+            hp.addBook(new Book("The Chamber of Secrets", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
+            hp.addBook(new Book("The Prisoner of Azkaban", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
+            hp.addBook(new Book("The Goblet of Fire", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
+            hp.addBook(new Book("The Order of the Phoenix", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
+            hp.addBook(new Book("The Half-Blood Prince", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
+            hp.addBook(new Book("The Deathly Hallows", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
+            registry.addLiterature(hp);
+            registry.addLiterature(new Book("The Chronicles of Narnia", "HarperCollins", "C.S. Lewis", "Reissue " +
+                    "Edition"));
+            registry.addLiterature(new Journal("Teknisk Ukeblad", "Teknisk Ukeblad Media", 11, "Technology"));
+            registry.addLiterature(new Magazine("KK", "Aller Media", 49, "Health and Lifestyle"));
+            registry.addLiterature(new Newspaper("Aftenposten", "Schibsted Norge", 52));
+            registry.addLiterature(new Newspaper("Dagbladet", "Aller Media", 52));
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -143,25 +151,70 @@ public class TextbasedUserInterface {
 
     private Literature newLiterature(String type) {
         Literature literature = null;
-        switch (type.toLowerCase()) {
-            case "book":
-                break;
+        int tries = MAX_TRIES;
+        boolean sucess = false;
+        while (!sucess && tries > 0) {
+            try {
+                if (tries == MAX_TRIES) {
+                    System.out.println("Please enter " + type.toLowerCase() + " details.");
+                }
+                else {
+                    System.out.println("\nYou have " + tries + ((tries == 1) ? " try" : " tries") + " left.");
+                    System.out.println("Please try again.");
+                }
+                switch (type.toLowerCase()) {
+                    case "book":
+                        System.out.print("Book title: ");
+                        String title = input.nextLine();
+                        System.out.print("Publisher: ");
+                        String publisher = input.nextLine();
+                        System.out.print("Author: ");
+                        String author = input.nextLine();
+                        System.out.print("Edition: ");
+                        String edition = input.nextLine();
+                        Book newBook = new Book(title, publisher, author, edition);
+                        this.registry.addLiterature(newBook);
+                        System.out.println("\nNew book, " + newBook.getTitle() + ", was created.");
+                        break;
 
-            case "journal":
-                break;
+                    case "journal":
+                        break;
 
-            case "magazine":
-                break;
+                    case "magazine":
+                        break;
 
-            case "newspaper":
-                break;
+                    case "newspaper":
+                        break;
 
-            case "series":
-                break;
+                    case "series":
+                        break;
 
-            default:
-                printUnknownLiteratureType();
-                break;
+                    default:
+                        printUnknownLiteratureType();
+                        break;
+                }
+                sucess = true;
+            } catch (IllegalTitleException ite) {
+                System.out.println("Title was invalid.");
+            } catch (IllegalPublisherException ipe) {
+                System.out.println("Publisher was invalid.");
+            } catch (IllegalAuthorException iae) {
+                System.out.println("Author was invalid.");
+            } catch (IllegalEditionException ide) {
+                System.out.println("Edition was invalid.");
+            }
+            /*
+            catch (IllegalNumEditionsException ine) {
+
+            }
+            catch (IllegalFieldException ife) {
+
+            }
+            catch (IllegalGenreException ige) {
+
+            }
+            */
+            tries--;
         }
         return literature;
     }
@@ -205,6 +258,7 @@ public class TextbasedUserInterface {
      *
      */
     private void list(Iterator<Literature> literatureIterator) {
+        if (!literatureIterator.hasNext()) System.out.println("-No literature-");
         while (literatureIterator.hasNext()) {
             Literature literature = literatureIterator.next();
             printLiteratureDetails(literature);
