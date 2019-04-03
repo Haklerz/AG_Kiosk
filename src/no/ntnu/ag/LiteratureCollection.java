@@ -16,15 +16,18 @@ public class LiteratureCollection {
 	}
 
 	public void addLiterature(Literature literature) {
-    	if (literature != null) {
-			this.literatureList.add(literature);
+    	if (literature == null) {
+			throw new IllegalArgumentException("literature to add must be non-null");
 		}
     	else {
-    		throw new NullPointerException("literature was a null object");
+			this.literatureList.add(literature);
 		}
 	}
 
 	public void removeLiterature(Literature literature) {
+    	if (literature == null) {
+    		throw new IllegalArgumentException("literature to remove must be non-null");
+		}
 		this.literatureList.remove(literature);
 	}
 
