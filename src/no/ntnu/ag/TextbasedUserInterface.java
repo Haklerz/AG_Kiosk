@@ -2,7 +2,6 @@ package no.ntnu.ag;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 import no.ntnu.ag.exceptions.*;
@@ -109,11 +108,11 @@ public class TextbasedUserInterface {
                     break;
 
                 case FIND:
-                    list(find(this.registry.getLiteratureIterator(), instruction.getArgument()));
+                    orderedList(find(this.registry.getLiteratureIterator(), instruction.getArgument()));
                     break;
 
                 case LIST:
-                    list(this.registry.getLiteratureIterator());
+                    unorderedList(this.registry.getLiteratureIterator());
                     break;
 
                 case QUIT:
@@ -204,15 +203,9 @@ public class TextbasedUserInterface {
                 System.out.println("Edition was invalid.");
             }
             /*
-            catch (IllegalNumEditionsException ine) {
-
-            }
-            catch (IllegalFieldException ife) {
-
-            }
-            catch (IllegalGenreException ige) {
-
-            }
+            catch (IllegalNumEditionsException ine) {}
+            catch (IllegalFieldException ife) {}
+            catch (IllegalGenreException ige) {}
             */
             tries--;
         }
@@ -222,7 +215,8 @@ public class TextbasedUserInterface {
     private boolean askYesNo(String question) {
         boolean sure = false;
         boolean answerBool = false;
-        while (!sure) {
+        int tries = MAX_TRIES;
+        while (!sure && tries > 0) {
             System.out.println(question + " yes/no");
             String answer = input.nextLine().toLowerCase();
             if (answer.equals("yes") || answer.equals("y")) {
@@ -233,6 +227,7 @@ public class TextbasedUserInterface {
                 answerBool = false;
                 sure = true;
             }
+            tries--;
         }
         return answerBool;
     }
@@ -254,10 +249,23 @@ public class TextbasedUserInterface {
         return foundLiterature.iterator();
     }
 
+    private void orderedList(Iterator<Literature> literatureIterator) {
+        if (!literatureIterator.hasNext()) System.out.println("-No literature-");
+        int index = 0;
+        while (literatureIterator.hasNext()) {
+            Literature literature = literatureIterator.next();
+            System.out.println(++index);
+            printLiteratureDetails(literature);
+            if (literatureIterator.hasNext()) {
+                System.out.println();
+            }
+        }
+    }
+
     /**
      *
      */
-    private void list(Iterator<Literature> literatureIterator) {
+    private void unorderedList(Iterator<Literature> literatureIterator) {
         if (!literatureIterator.hasNext()) System.out.println("-No literature-");
         while (literatureIterator.hasNext()) {
             Literature literature = literatureIterator.next();
