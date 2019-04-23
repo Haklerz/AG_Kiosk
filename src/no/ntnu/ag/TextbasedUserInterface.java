@@ -212,6 +212,7 @@ public class TextbasedUserInterface {
         return literature;
     }
 
+    /*
     private boolean askYesNo(String question) {
         boolean sure = false;
         boolean answerBool = false;
@@ -231,6 +232,7 @@ public class TextbasedUserInterface {
         }
         return answerBool;
     }
+    */
 
     private Iterator<Literature> find(Iterator<Literature> literatureIterator, String searchText) {
         ArrayList<Literature> foundLiterature = new ArrayList<>();
