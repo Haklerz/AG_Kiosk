@@ -11,18 +11,27 @@ import no.ntnu.ag.literature.Literature;
 public class LiteratureCollection {
     private ArrayList<Literature> literatureList;
 
+    public LiteratureCollection() {
+    	this.literatureList = new ArrayList<>();
+	}
+
 	public void addLiterature(Literature literature) {
+    	if (literature == null) {
+			throw new IllegalArgumentException("literature to add must be non-null");
+		}
+    	else {
+			this.literatureList.add(literature);
+		}
 	}
 
 	public void removeLiterature(Literature literature) {
+    	if (literature == null) {
+    		throw new IllegalArgumentException("literature to remove must be non-null");
+		}
+		this.literatureList.remove(literature);
 	}
 
 	public Iterator<Literature> getLiteratureIterator() {
-		return null;
+		return this.literatureList.iterator();
 	}
-
-	public Iterator<Literature> findLiterature(String searchText) {
-        return null;
-	}
-    
 }

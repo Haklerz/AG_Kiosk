@@ -16,7 +16,7 @@ public class Instruction {
      * @param command  the command
      * @param argument the argument
      */
-    public Instruction(Command command, String argument) {
+    private Instruction(Command command, String argument) {
         setCommand(command);
         setArgument(argument);
     }
@@ -28,19 +28,17 @@ public class Instruction {
      * @return an instruction
      */
     public static Instruction parseInstruction(String string) {
-        String[] parts = string.split(" ", 2);
-        Command command = Command.parseCommand(parts[0]);
-        String argument = (parts.length > 1) ? parts[1] : "";
-        return new Instruction(command, argument);
-    }
-
-    /**
-     * Converts an instruction to a String.
-     * 
-     * @return a string representation of the instruction
-     */
-    public String toString() {
-        return command + " " + argument;
+        Instruction instruction;
+        if (string == null) {
+            instruction = null;
+        }
+        else {
+            String[] parts = string.split(" ", 2);
+            Command command = Command.parseCommand(parts[0]);
+            String argument = (parts.length > 1) ? parts[1] : "";
+            instruction = new Instruction(command, argument);
+        }
+        return instruction;
     }
 
     /**
