@@ -1,9 +1,14 @@
+package no.ntnu.Litteratur;
 
 
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import no.ntnu.Exception.IllegalPagesException;
+import no.ntnu.Exception.IllegalAuthorException;
+import no.ntnu.Exception.IllegalPublisherException;
 
 /**
  * The test class BookSeriesTest.
@@ -13,7 +18,7 @@ import org.junit.Test;
  */
 public class BookSeriesTest
 {
-    BookSeries bookSeries1 = new BookSeries("LOTR", "A & U");
+    BookSeries bookSeries1;
     /**
      * Default constructor for test class BookSeriesTest
      */
@@ -27,9 +32,21 @@ public class BookSeriesTest
      * Called before every test case method.
      */
     @Before
-    public void setUp()
-    {
+    public void setUp(){
+        try{
+        bookSeries1 = new BookSeries("LOTR", "A & U");
         bookSeries1.fillWithLOTR();
+    }
+        catch(IllegalPagesException ipe){
+            System.out.println("Pages was invalid");
+        }
+        catch(IllegalAuthorException iae){
+            System.out.println(iae);
+        }
+        catch(IllegalPublisherException ipue)
+        {
+            System.out.print(ipue);
+        }
     }
 
     /**
@@ -39,6 +56,11 @@ public class BookSeriesTest
      */
     @After
     public void tearDown()
+    {
+    }
+    
+    @Test
+    public void testSize()
     {
         assertEquals(3, bookSeries1.numberOfBooks());
     }

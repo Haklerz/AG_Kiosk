@@ -1,5 +1,11 @@
+package no.ntnu.Litteratur;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import no.ntnu.Exception.IllegalPagesException;
+import no.ntnu.Exception.IllegalAuthorException;
+import no.ntnu.Exception.IllegalPublisherException;
 
 /**
  * Write a description of class BookSeries here.
@@ -11,7 +17,7 @@ public class BookSeries extends Litteratur
 {
     private ArrayList<Book> bookSeries; 
 
-    public BookSeries(String publisher, String title){
+    public BookSeries(String publisher, String title) throws IllegalPublisherException{
         super(publisher, title);
         bookSeries = new ArrayList<>();
     }
@@ -32,10 +38,10 @@ public class BookSeries extends Litteratur
         return bookSeries.iterator();
     }
 
-    public void fillWithLOTR(){
-        this.addBook(new Book("J.R.R Tolkien", "Allen & Unwin", 479, "Lord of the Rings - The Fellowship of the Ring", "Fantasy"));
-        this.addBook(new Book("J.R.R Tolkien", "Allen & Unwin", 415, "Lord of the Rings - The Two Towers", "Fantasy"));
-        this.addBook(new Book("J.R.R Tolkien", "Allen & Unwin", 347, "Lord of the Rings - The Return of the King", "Fantasy"));
+    public void fillWithLOTR() throws IllegalAuthorException, IllegalPagesException, IllegalPublisherException{
+            this.addBook(new Book("J.R.R Tolkien", "Allen & Unwin", 479, "Lord of the Rings - The Fellowship of the Ring", "Fantasy"));
+            this.addBook(new Book("J.R.R Tolkien", "Allen & Unwin", 415, "Lord of the Rings - The Two Towers", "Fantasy"));
+            this.addBook(new Book("J.R.R Tolkien", "Allen & Unwin", 347, "Lord of the Rings - The Return of the King", "Fantasy"));
     }
 
     /**

@@ -1,3 +1,8 @@
+package no.ntnu.Litteratur;
+
+import no.ntnu.Exception.IllegalPagesException;
+import no.ntnu.Exception.IllegalPublisherException;
+
 /**
  * Represents a magazine.
  * <p>
@@ -26,7 +31,7 @@ public class Magazine extends Periodical
     /**
      * Constructor for objects of class magazine
      */
-    public Magazine(String publisher, int pages, String title, int issues, String genre)
+    public Magazine(String publisher, int pages, String title, int issues, String genre) throws IllegalPagesException, IllegalPublisherException
     {
         // this.author = author;
         // this.publisher = publisher;

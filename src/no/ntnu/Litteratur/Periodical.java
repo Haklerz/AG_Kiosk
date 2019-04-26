@@ -1,3 +1,7 @@
+package no.ntnu.Litteratur;
+
+import no.ntnu.Exception.IllegalPagesException;
+import no.ntnu.Exception.IllegalPublisherException;
 
 /**
  * Write a description of class Periodical here.
@@ -12,7 +16,7 @@ public class Periodical extends Litteratur
     /**
      * Constructor for objects of class Periodical
      */
-    public Periodical(String publisher, int pages, String title, int issues)
+    public Periodical(String publisher, int pages, String title, int issues) throws IllegalPagesException, IllegalPublisherException
     {
         // initialise instance variables
         super(publisher, title);
@@ -41,10 +45,12 @@ public class Periodical extends Litteratur
     /**
      * sets the number of pages in the litteratur.
      */
-    public void setPages(int pages){
-        this.pages = pages;
+    public void setPages(int pages) throws IllegalPagesException{
         if(pages<0){
-            this.pages = 1;
+            throw new IllegalPagesException("Pages can´t be negative" + pages);
+        }
+        else{
+            this.pages = pages;
         }
     }
         

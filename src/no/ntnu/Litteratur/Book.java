@@ -1,3 +1,9 @@
+package no.ntnu.Litteratur;
+
+import no.ntnu.Exception.IllegalPagesException;
+import no.ntnu.Exception.IllegalAuthorException;
+import no.ntnu.Exception.IllegalPublisherException;
+
 /**
  * Represents a Book.
  * <p>
@@ -22,12 +28,12 @@ public class Book extends Litteratur
     private String genre;
     private String author;
     private int pages;
-    
+
     /**
      * Set the author and title fields when this object
      * is constructed.
      */
-    public Book(String author, String publisher, int pages, String title, String genre)
+    public Book(String author, String publisher, int pages, String title, String genre) throws IllegalPagesException, IllegalAuthorException, IllegalPublisherException
     {
         super(publisher, title);
         this.setPages(pages);
@@ -38,16 +44,16 @@ public class Book extends Litteratur
         // this.pages = pages;
         // this.publisher = publisher;
     }
-    
+
     /**
-    * returns the books author
-    * @return the author of the book
-    */
+     * returns the books author
+     * @return the author of the book
+     */
     public String getGenre()
     {
         return this.genre;
     }
-    
+
     /**
      * returns the books author
      * @return the author of the book
@@ -57,22 +63,37 @@ public class Book extends Litteratur
         return this.author;
     }
     
+    /**
+     * Sets the author of the book
+     */
+    public void setAuthor(String author)throws IllegalAuthorException{
+        if(author == null){
+            throw new IllegalAuthorException("String was null");
+        }
+        else if(author.trim() == ""){
+            throw new IllegalAuthorException("Authors name cant be empty");
+        }
+        else{
+            this.author = author;
+        }
+    }
+
     public void setGenre(String genre){
         this.genre = genre;
     }
 
-        
     /**
      * sets the number of pages in the litteratur.
      */
-    public void setPages(int pages){
-        this.pages = pages;
+    public void setPages(int pages) throws IllegalPagesException{
         if(pages<0){
-            this.pages = 1;
+            throw new IllegalPagesException("Pages cant be less than 0: " + pages);
+        }
+        else{
+            this.pages = pages;
         }
     }
-    
-        
+
     /**
      * returns the amout of pages in the book.
      * @return the amount of pages in the book.
@@ -82,29 +103,29 @@ public class Book extends Litteratur
         return this.pages;
     }
     // /**
-     // * returns the books publisher
-     // * @return the publisher of the book
-     // */
+    // * returns the books publisher
+    // * @return the publisher of the book
+    // */
     // public String getPublisher()
     // {
-        // return this.publisher;
+    // return this.publisher;
     // }
-    
+
     // /**
-     // * returns the books title
-     // * @return the title of the book
-     // */
+    // * returns the books title
+    // * @return the title of the book
+    // */
     // public String getTitle()
     // {
-        // return this.title; 
+    // return this.title; 
     // }
-    
+
     // /**
-     // * returns the amout of pages in the book
-     // * @return the amount of pages in the book
-     // */
+    // * returns the amout of pages in the book
+    // * @return the amount of pages in the book
+    // */
     // public int getPages()
     // {
-        // return this.pages;
+    // return this.pages;
     // }
 }

@@ -1,6 +1,12 @@
+package no.ntnu;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import no.ntnu.Litteratur.*;
+import no.ntnu.Exception.IllegalPagesException;
+import no.ntnu.Exception.IllegalAuthorException;
+import no.ntnu.Exception.IllegalPublisherException;
 
 /**
  * Represents a collection of Books.
@@ -94,15 +100,26 @@ public class LitteraturRegistry {
      * Fills the registry with litteratur.
      */
     public void fillDummies() {
-        BookSeries books = new BookSeries("Allen & Unwin", "Lord of the Rings");
-        books.fillWithLOTR();
+        try{
+            BookSeries books = new BookSeries("Allen & Unwin", "Lord of the Rings");
+            books.fillWithLOTR();
 
-        this.addLitteratur(books);
-        this.addLitteratur(new Book("David J. Barnes, Michael Kölling", "Pearson", 630, "Objects first with Java", "textbook"));
-        this.addLitteratur(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, "Algoritmer og Datastrukturer", "textbook"));
-        this.addLitteratur(new Book("Allan R. Hambley", "Pearson", 866, "Electrical Engineering", "textbook"));
-        this.addLitteratur(new Newspaper("VG", 30, "VG", 340));
-        this.addLitteratur(new Magazine("KK", 38, "KK", 52, "Kvinneblad"));
+            this.addLitteratur(books);
+            this.addLitteratur(new Book("David J. Barnes, Michael Kölling", "Pearson", 630, "Objects first with Java", "textbook"));
+            this.addLitteratur(new Book("Bo Puggaard Hansen, Martin Neiiendam", "Gyldendal", 101, "Algoritmer og Datastrukturer", "textbook"));
+            this.addLitteratur(new Book("Allan R. Hambley", "Pearson", 866, "Electrical Engineering", "textbook"));
+            this.addLitteratur(new Newspaper("VG", 30, "VG", 340));
+            this.addLitteratur(new Magazine("KK", 38, "KK", 52, "Kvinneblad"));
+        }
+        catch(IllegalPagesException ipe){
+            System.out.println("Pages was invalid");
+        }
+        catch(IllegalAuthorException iae){
+            System.out.println(iae);
+        }
+        catch(IllegalPublisherException ipue){
+            System.out.println("Publisher was invalid");
+        }
     }
 
     /**

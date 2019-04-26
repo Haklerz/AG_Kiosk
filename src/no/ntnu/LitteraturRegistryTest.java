@@ -1,3 +1,5 @@
+package no.ntnu;
+
 
 
 import static org.junit.Assert.*;

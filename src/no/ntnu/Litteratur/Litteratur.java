@@ -1,3 +1,6 @@
+package no.ntnu.Litteratur;
+
+import no.ntnu.Exception.IllegalPublisherException;
 
 /**
  * Write a description of class Litteratur here.
@@ -14,7 +17,7 @@ public class Litteratur
     /**
      * Constructor for objects of class Litteratur
      */
-    public Litteratur(String publisher, String title)
+    public Litteratur(String publisher, String title) throws IllegalPublisherException
     {
         // initialise instance variables
         this.setPublisher(publisher);
@@ -42,7 +45,10 @@ public class Litteratur
     /**
      * sets the publisher of the litteratur.
      */
-    public void setPublisher(String publisher){
+    public void setPublisher(String publisher) throws IllegalPublisherException{
+        if(publisher == null){
+            throw new IllegalPublisherException("Publisher can´t be null");
+        }
         this.publisher = publisher;
     }
     
