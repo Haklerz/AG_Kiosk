@@ -22,6 +22,7 @@ import no.ntnu.ag.literature.*;
  * hører hjemme i en slik applikasjon som for eksempel mer avansert søk, bygge
  * inn salgs-støtte (kassa-apparat (POS)) osv.
  * </ul>
+ * 
  * @author Håkon "Haklerz" Lervik
  * @version 2019.3.27
  */
@@ -34,7 +35,7 @@ public class TextbasedUserInterface {
     private Scanner input;
 
     /**
-     *
+     * Creates a Textbased user interface.
      */
     public TextbasedUserInterface() {
         this.registry = new LiteratureCollection();
@@ -45,12 +46,12 @@ public class TextbasedUserInterface {
 
     private void fillDummies() {
         try {
-            registry.addLiterature(new Book("The Hunger Games", "Scholastic Press", "Suzanne Collins", "First " +
-                    "Edition"));
+            registry.addLiterature(
+                    new Book("The Hunger Games", "Scholastic Press", "Suzanne Collins", "First " + "Edition"));
             registry.addLiterature(new Book("To Kill a Mockingbird", "Modern Classics", "Harper Lee", "First Edition"));
             registry.addLiterature(new Book("Pride and Prejudice", "Modern Library", "Jane Austen", "First Edition"));
-            registry.addLiterature(new Book("Twilight", "Little, Brown and Company", "Stephenie Meyer", "First " +
-                    "Edition"));
+            registry.addLiterature(
+                    new Book("Twilight", "Little, Brown and Company", "Stephenie Meyer", "First " + "Edition"));
             BookSeries hp = new BookSeries("Harry Potter", "Bloomsbury Publishing");
             hp.addBook(new Book("The Philosopher's Stone", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
             hp.addBook(new Book("The Chamber of Secrets", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
@@ -60,8 +61,8 @@ public class TextbasedUserInterface {
             hp.addBook(new Book("The Half-Blood Prince", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
             hp.addBook(new Book("The Deathly Hallows", "Bloomsbury Publishing", "J.K. Rowling", "1st Edition"));
             registry.addLiterature(hp);
-            registry.addLiterature(new Book("The Chronicles of Narnia", "HarperCollins", "C.S. Lewis", "Reissue " +
-                    "Edition"));
+            registry.addLiterature(
+                    new Book("The Chronicles of Narnia", "HarperCollins", "C.S. Lewis", "Reissue " + "Edition"));
             registry.addLiterature(new Journal("Teknisk Ukeblad", "Teknisk Ukeblad Media", 11, "Technology"));
             registry.addLiterature(new Magazine("KK", "Aller Media", 49, "Health and Lifestyle"));
             registry.addLiterature(new Newspaper("Aftenposten", "Schibsted Norge", 52));
@@ -71,59 +72,74 @@ public class TextbasedUserInterface {
     }
 
     /**
-     * @return the currentLiterature
+     * Returns the current literature.
+     * 
+     * @return the current Literature
      */
     private Literature getCurrentLiterature() {
         return currentLiterature;
     }
 
     /**
+     * Sets the current working literature.
+     * 
      * @param literature the literature to set as current
      */
     private void setCurrentLiterature(Literature literature) {
-        if (literature != null) this.currentLiterature = literature;
+        if (literature != null)
+            this.currentLiterature = literature;
     }
 
     /**
-     *
+     * Starts the user interface main loop.
      */
     public void run() {
         this.running = true;
 
+        printWelcome();
         while (running) {
             printCursor(getCurrentLiterature());
             String userInput = input.nextLine();
             Instruction instruction = Instruction.parseInstruction(userInput);
 
             switch (instruction.getCommand()) {
-                case HELP:
-                    printHelp();
-                    break;
+            case HELP:
+                printHelp();
+                break;
 
-                case NEW:
-                    setCurrentLiterature(newLiterature(instruction.getArgument()));
-                    break;
+            case NEW:
+                setCurrentLiterature(newLiterature(instruction.getArgument()));
+                break;
 
-                case MOVE:
-                    break;
+            case MOVE:
+                move(instruction.getArgument());
+                break;
 
-                case FIND:
-                    orderedList(find(this.registry.getLiteratureIterator(), instruction.getArgument()));
-                    break;
+            case FIND:
+                setCurrentLiterature(orderedList(find(this.registry.getLiteratureIterator(), instruction.getArgument())));
+                break;
 
-                case LIST:
-                    unorderedList(this.registry.getLiteratureIterator());
-                    break;
+            case LIST:
+                unorderedList(this.registry.getLiteratureIterator());
+                break;
 
-                case QUIT:
-                    quit();
-                    break;
+            case QUIT:
+                quit();
+                break;
 
-                case UNKNOWN:
-                    printUnknownCommand();
-                    break;
+            case UNKNOWN:
+                printUnknownCommand();
+                break;
             }
         }
+    }
+
+    private void move(String argument) {
+        //TODO move literature
+    }
+
+    private void printWelcome() {
+        System.out.println("Welcome to the AG kiosk! For info type 'help'");
     }
 
     private void printUnknownCommand() {
@@ -156,41 +172,40 @@ public class TextbasedUserInterface {
             try {
                 if (tries == MAX_TRIES) {
                     System.out.println("Please enter " + type.toLowerCase() + " details.");
-                }
-                else {
+                } else {
                     System.out.println("\nYou have " + tries + ((tries == 1) ? " try" : " tries") + " left.");
                     System.out.println("Please try again.");
                 }
                 switch (type.toLowerCase()) {
-                    case "book":
-                        System.out.print("Book title: ");
-                        String title = input.nextLine();
-                        System.out.print("Publisher: ");
-                        String publisher = input.nextLine();
-                        System.out.print("Author: ");
-                        String author = input.nextLine();
-                        System.out.print("Edition: ");
-                        String edition = input.nextLine();
-                        Book newBook = new Book(title, publisher, author, edition);
-                        this.registry.addLiterature(newBook);
-                        System.out.println("\nNew book, " + newBook.getTitle() + ", was created.");
-                        break;
+                case "book":
+                    System.out.print("Book title: ");
+                    String title = input.nextLine();
+                    System.out.print("Publisher: ");
+                    String publisher = input.nextLine();
+                    System.out.print("Author: ");
+                    String author = input.nextLine();
+                    System.out.print("Edition: ");
+                    String edition = input.nextLine();
+                    Book newBook = new Book(title, publisher, author, edition);
+                    this.registry.addLiterature(newBook);
+                    System.out.println("\nNew book, " + newBook.getTitle() + ", was created.");
+                    break;
 
-                    case "journal":
-                        break;
+                case "journal":
+                    break;
 
-                    case "magazine":
-                        break;
+                case "magazine":
+                    break;
 
-                    case "newspaper":
-                        break;
+                case "newspaper":
+                    break;
 
-                    case "series":
-                        break;
+                case "series":
+                    break;
 
-                    default:
-                        printUnknownLiteratureType();
-                        break;
+                default:
+                    printUnknownLiteratureType();
+                    break;
                 }
                 sucess = true;
             } catch (IllegalTitleException ite) {
@@ -203,36 +218,23 @@ public class TextbasedUserInterface {
                 System.out.println("Edition was invalid.");
             }
             /*
-            catch (IllegalNumEditionsException ine) {}
-            catch (IllegalFieldException ife) {}
-            catch (IllegalGenreException ige) {}
-            */
+             * catch (IllegalNumEditionsException ine) {} catch (IllegalFieldException ife)
+             * {} catch (IllegalGenreException ige) {}
+             */
             tries--;
         }
         return literature;
     }
 
     /*
-    private boolean askYesNo(String question) {
-        boolean sure = false;
-        boolean answerBool = false;
-        int tries = MAX_TRIES;
-        while (!sure && tries > 0) {
-            System.out.println(question + " yes/no");
-            String answer = input.nextLine().toLowerCase();
-            if (answer.equals("yes") || answer.equals("y")) {
-                answerBool = true;
-                sure = true;
-            }
-            else if (answer.equals("no") || answer.equals("n")) {
-                answerBool = false;
-                sure = true;
-            }
-            tries--;
-        }
-        return answerBool;
-    }
-    */
+     * private boolean askYesNo(String question) { boolean sure = false; boolean
+     * answerBool = false; int tries = MAX_TRIES; while (!sure && tries > 0) {
+     * System.out.println(question + " yes/no"); String answer =
+     * input.nextLine().toLowerCase(); if (answer.equals("yes") ||
+     * answer.equals("y")) { answerBool = true; sure = true; } else if
+     * (answer.equals("no") || answer.equals("n")) { answerBool = false; sure =
+     * true; } tries--; } return answerBool; }
+     */
 
     private Iterator<Literature> find(Iterator<Literature> literatureIterator, String searchText) {
         ArrayList<Literature> foundLiterature = new ArrayList<>();
@@ -245,30 +247,46 @@ public class TextbasedUserInterface {
             if (literature instanceof BookSeries) {
                 BookSeries bookSeries = (BookSeries) literature;
                 Iterator<Literature> bookIterator = find(bookSeries.getLiteratureIterator(), searchText);
-                while (bookIterator.hasNext()) foundLiterature.add(bookIterator.next());
+                while (bookIterator.hasNext())
+                    foundLiterature.add(bookIterator.next());
             }
         }
         return foundLiterature.iterator();
     }
 
-    private void orderedList(Iterator<Literature> literatureIterator) {
-        if (!literatureIterator.hasNext()) System.out.println("-No literature-");
-        int index = 0;
-        while (literatureIterator.hasNext()) {
-            Literature literature = literatureIterator.next();
-            System.out.println(++index);
-            printLiteratureDetails(literature);
-            if (literatureIterator.hasNext()) {
-                System.out.println();
+    private Literature orderedList(Iterator<Literature> literatureIterator) {
+        Literature returnLiterature = null;
+        if (!literatureIterator.hasNext()) {
+            System.out.println("-No literature-");
+        } else {
+            int index = 0;
+            ArrayList<Literature> options = new ArrayList<>();
+            while (literatureIterator.hasNext()) {
+                Literature literature = literatureIterator.next();
+                System.out.println(++index + ":");
+                printLiteratureDetails(literature);
+                if (literatureIterator.hasNext()) {
+                    System.out.println();
+                }
+                options.add(literature);
             }
+            printChoose();
+            int choise = Integer.parseInt(input.nextLine());
+            returnLiterature = options.get(choise-1);
         }
+        return returnLiterature;
+    }
+
+    private void printChoose() {
+        System.out.print("\nPlease choose one of the above options: ");
     }
 
     /**
      *
      */
     private void unorderedList(Iterator<Literature> literatureIterator) {
-        if (!literatureIterator.hasNext()) System.out.println("-No literature-");
+        if (!literatureIterator.hasNext())
+            System.out.println("-No literature-");
         while (literatureIterator.hasNext()) {
             Literature literature = literatureIterator.next();
             printLiteratureDetails(literature);
@@ -284,23 +302,27 @@ public class TextbasedUserInterface {
     private void printLiteratureDetails(Literature literature) {
         if (literature instanceof Book) {
             Book book = (Book) literature;
-            System.out.println(padString("Book title") + book.getTitle() + "\n" + padString("Publisher") + book.getPublisher() + "\n" + padString("Author") + book.getAuthor() + "\n" + padString("Edition") + book.getEdition());
-        }
-        else if (literature instanceof Journal) {
+            System.out.println(padString("Book title") + book.getTitle() + "\n" + padString("Publisher")
+                    + book.getPublisher() + "\n" + padString("Author") + book.getAuthor() + "\n" + padString("Edition")
+                    + book.getEdition());
+        } else if (literature instanceof Journal) {
             Journal journal = (Journal) literature;
-            System.out.println(padString("Journal title") + journal.getTitle() + "\n" + padString("Publisher") + journal.getPublisher() + "\n" + padString("Field") + journal.getField() + "\n" + padString("Editions/year") + journal.getEditions());
-        }
-        else if (literature instanceof Newspaper) {
+            System.out.println(padString("Journal title") + journal.getTitle() + "\n" + padString("Publisher")
+                    + journal.getPublisher() + "\n" + padString("Field") + journal.getField() + "\n"
+                    + padString("Editions/year") + journal.getEditions());
+        } else if (literature instanceof Newspaper) {
             Newspaper newspaper = (Newspaper) literature;
-            System.out.println(padString("Newspaper title") + newspaper.getTitle() + "\n" + padString("Publisher") + newspaper.getPublisher() + "\n" + padString("Editions/year") + newspaper.getEditions());
-        }
-        else if (literature instanceof Magazine) {
+            System.out.println(padString("Newspaper title") + newspaper.getTitle() + "\n" + padString("Publisher")
+                    + newspaper.getPublisher() + "\n" + padString("Editions/year") + newspaper.getEditions());
+        } else if (literature instanceof Magazine) {
             Magazine magazine = (Magazine) literature;
-            System.out.println(padString("Magazine title") + magazine.getTitle() + "\n" + padString("Publisher") + magazine.getPublisher() + "\n" + padString("Genre") + magazine.getGenre() + "\n" + padString("Editions/year") + magazine.getEditions());
-        }
-        else if (literature instanceof BookSeries) {
+            System.out.println(padString("Magazine title") + magazine.getTitle() + "\n" + padString("Publisher")
+                    + magazine.getPublisher() + "\n" + padString("Genre") + magazine.getGenre() + "\n"
+                    + padString("Editions/year") + magazine.getEditions());
+        } else if (literature instanceof BookSeries) {
             BookSeries bookSeries = (BookSeries) literature;
-            System.out.println(padString("Series title") + bookSeries.getTitle() + "\n" + padString("Published by") + bookSeries.getPublisher());
+            System.out.println(padString("Series title") + bookSeries.getTitle() + "\n" + padString("Published by")
+                    + bookSeries.getPublisher());
             Iterator<Literature> bookIterator = bookSeries.getLiteratureIterator();
             int number = 0;
             while (bookIterator.hasNext()) {
@@ -328,8 +350,7 @@ public class TextbasedUserInterface {
     private void printCursor(Literature literature) {
         if (literature != null) {
             System.out.print("\n" + literature.getTitle() + "> ");
-        }
-        else {
+        } else {
             System.out.print("\n>");
         }
     }
