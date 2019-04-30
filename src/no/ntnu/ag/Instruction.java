@@ -3,7 +3,7 @@ package no.ntnu.ag;
 /**
  * Represents an instruction with a command and argument.
  * 
- * @version 2019.3.25
+ * @version 2019.4.30
  * @author Håkon "Haklerz" Lervik
  */
 public class Instruction {
@@ -30,7 +30,7 @@ public class Instruction {
     public static Instruction parseInstruction(String string) {
         Instruction instruction;
         if (string == null) {
-            instruction = null;
+            instruction = new Instruction(Command.UNKNOWN, "");
         }
         else {
             String[] parts = string.split(" ", 2);
