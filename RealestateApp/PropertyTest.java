@@ -1,5 +1,3 @@
-package no.ntnu;
-
 
 
 import static org.junit.Assert.*;
@@ -8,18 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * The test class LitteraturRegistry.
+ * The test class PropertyTest.
  *
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class LitteraturRegistryTest
+public class PropertyTest
 {
-    LitteraturRegistry litRegi1 = new LitteraturRegistry();
     /**
-     * Default constructor for test class BookRegistryTest
+     * Default constructor for test class PropertyTest
      */
-    public LitteraturRegistryTest()
+    public PropertyTest()
     {
     }
 
@@ -31,7 +28,6 @@ public class LitteraturRegistryTest
     @Before
     public void setUp()
     {
-        litRegi1.fillDummies();
     }
 
     /**
@@ -43,12 +39,4 @@ public class LitteraturRegistryTest
     public void tearDown()
     {
     }
-
-    @Test
-    public void testSize()
-    {
-        assertEquals(6, litRegi1.numberOfLitteraturs());
-    }
 }
-
-
